@@ -67,7 +67,7 @@
                                                 <a class="plus-btn" asp-controller="basket" asp-action="plus" asp-route-id="@item.Id">+</a>
                                             </div>
                                         </td>
-                                        <td>$@ViewBag.Total</td>
+                                        <td id="total-price">$@ViewBag.Total</td>
                                     </tr>
                                 }
                             </tbody>
@@ -92,9 +92,9 @@
                     </div>
                     <div class="cart-totals">
                         <ul>
-                            <li>Subtotal <span>$800.00</span></li>
-                            <li>Shipping <span>$30.00</span></li>
-                            <li>Total <span>$830.00</span></li>
+                            <li>Subtotal <span id="cem"></span></li>
+                            <li>Shipping <span id="shipping"></span></li>
+                            <li>Total <span id="final"></span></li>
                         </ul>
                         <a href="checkout.html" class="default-btn"><span>Proceed to Checkout</span></a>
                     </div>

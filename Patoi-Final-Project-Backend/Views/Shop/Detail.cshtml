@@ -119,7 +119,7 @@
 
 
 
-                        <a href="wishlist.html" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
+                        <a asp-controller="wish" asp-action="AddWish" asp-route-id="@Model.Product.Id" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
                         <ul class="products-info">
                             <li><span>SKU:</span> @Model.Product.Image.Substring(0,8)</li>
                             <li>

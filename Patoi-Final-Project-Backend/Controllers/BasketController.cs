@@ -68,12 +68,12 @@ namespace Patoi_Final_Project_Backend.Controllers
 
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(30) });
 
-            return RedirectToAction("Index", "Shop");
+            return RedirectToAction(nameof(Index));
 
         }
 
 
-        public IActionResult Basket()
+        public IActionResult Index()
         {
             List<BasketProduct> products = JsonConvert.DeserializeObject<List<BasketProduct>>(Request.Cookies["basket"]);
 
@@ -92,10 +92,10 @@ namespace Patoi_Final_Project_Backend.Controllers
 
                 };
 
-               
+
                 updatedProducts.Add(basketProduct);
 
-            ViewBag.Total =dbProduct.Price*basketProduct.Count ;
+                ViewBag.Total = dbProduct.Price * basketProduct.Count;
             }
             return View(updatedProducts);
         }
@@ -114,7 +114,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             if (existProduct == null) return NotFound();
             products.Remove(existProduct);
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(60) });
-            return RedirectToAction(nameof(basket));
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -139,12 +139,12 @@ namespace Patoi_Final_Project_Backend.Controllers
             else
             {
                 TempData["Fail"] = "Satisda bundan artiq yoxdur!";
-                return RedirectToAction("basket", "basket");
+                return RedirectToAction(nameof(Index));
             }
 
 
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(60) });
-            return RedirectToAction(nameof(basket));
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -168,11 +168,11 @@ namespace Patoi_Final_Project_Backend.Controllers
             else
             {
                 RemoveItem(existProduct.Id);
-                return RedirectToAction(nameof(basket));
+                return RedirectToAction(nameof(Index));
             }
 
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(60) });
-            return RedirectToAction(nameof(basket));
+            return RedirectToAction(nameof(Index));
         }
     }
 }

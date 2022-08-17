@@ -24,6 +24,21 @@ $(document).ready(function () {
             }
         })
     })
- 
+
 
 });
+const prices = document.querySelectorAll("#total-price");
+const cem = document.getElementById("cem");
+const shipping = document.getElementById("shipping");
+const final = document.getElementById("final");
+
+var sum = 0;
+prices.forEach(
+    (x) =>
+        // console.log(parseInt(x.textContent.substring(1)))
+        (sum += parseInt(x.textContent.substring(1)))
+);
+cem.innerHTML = "$" + sum;
+let faiz = (sum * 7) / 100;
+shipping.innerHTML = "$" + faiz;
+final.innerHTML = "$" + (sum + faiz);

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WishProduct>
+@{
+    ViewData["Title"] = "Wish";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<main>
+    <section id="page-title">
+        <div class="page-title-area">
+            <div class="container">
+                <div class="page-title-content">
+                    <h1>Wishlist</h1>
+                    <ul>
+                        <li><a asp-controller="home" asp-action="index">Home</a></li>
+                        <li><i class="fa-solid fa-angle-right"></i> Wishlist</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wishlist Area -->
+    <div class="wishlist-area ptb-100">
+        <div class="container">
+            <form>
+                <div class="wishlist-table table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Stock Status</th>
+                                <th scope="col">Shop Now</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
+                                            <img src="~/images/products/@item.Image" alt="item">
+                                        </a>
+                                    </td>
+                                    <td><a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a></td>
+                                    <td class="product-price">$@item.Price</td>
+                                    <td class="product-stock-status">
+                                        @if (item.OnSale == true)
+                                        {
+                                            <span class="in-stock"><i class="fa-solid fa-check-circle"></i> In Stock</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="out-stock"><i class="fa-solid fa-x"></i> Out of Stock</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Basket" asp-action="AddBasket" asp-route-id="@item.Id" class="default-btn"><span>Shop Now</span></a>
+                                    </td>
+                                    <td><a asp-controller="wish" asp-action="removeitem" asp-route-id="@item.Id" class="remove"><i class="fa-solid fa-trash-alt"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Wishlist Area -->
+
+
+</main>
