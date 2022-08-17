@@ -1,0 +1,79 @@
+.wishlist-table {
+    img{
+        width: 100%;
+        height: auto    ;
+    }
+    table {
+        margin-bottom: 0;
+
+        thead {
+            tr {
+                border: none;
+
+                th {
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    padding: 0 0 15px;
+                    border: none;
+                    font: {
+                        size: 14.5px;
+                        family: $main-font,cursive;
+                    };
+                }
+            }
+        }
+        tbody {
+            tr {
+                border-color: #eeeeee;
+
+                td {
+                    color: $black;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    font: {
+                        weight: 600;
+                        size:16px;
+                    };
+                    padding: {
+                        left: 0;
+                        right: 0;
+                    };
+                    border: {
+                        color: #eaedff;
+                        left: none;
+                        right: none;
+                    };
+                    img {
+                        width: 80px;
+                    }
+                    a {
+                        display: inline-block;
+                    }
+                    .remove {
+                        color: red;
+                        font-size: 18px;
+                    }
+                    &.product-stock-status {
+                        span {
+                            display: inline-block;
+                            position: relative;
+                            padding-left: 21px;
+
+                            i {
+                                position: absolute;
+                                top: 4px;
+                                left: 0;
+                            }
+                            &.in-stock {
+                                color: #297e29;
+                            }
+                            &.out-stock {
+                                color: #ffb453;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

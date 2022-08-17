@@ -1,0 +1,147 @@
+.search-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 99999;
+  position: fixed;
+  overflow: hidden;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+
+  .search-overlay-layer {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    position: absolute;
+    transform: translateX(100%);
+
+    &:nth-child(1) {
+      left: 0;
+      transition: all 0.3s ease-in-out 0s;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    &:nth-child(2) {
+      left: 0;
+      transition: all 0.3s ease-in-out 0.3s;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    &:nth-child(3) {
+      left: 0;
+      transition: all 0.9s ease-in-out 0.6s;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  .search-overlay-close {
+    top: 40px;
+    right: 40px;
+    width: 50px;
+    z-index: 2;
+    opacity: 0;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    visibility: hidden;
+    position: absolute;
+    transition: all 0.9s ease-in-out 1.5s;
+
+    .search-overlay-close-line {
+      width: 100%;
+      height: 3px;
+      float: left;
+      margin-bottom: 5px;
+      transition: all 500ms ease;
+      background-color: white;
+
+      &:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      &:nth-child(2) {
+        margin-top: -7px;
+        transform: rotate(-45deg);
+      }
+    }
+    &:hover {
+      .search-overlay-close-line {
+        background: red;
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .search-overlay-form {
+    transform: translateY(-50%) translateX(-50%);
+    transition: all 0.9s ease-in-out 1.4s;
+    visibility: hidden;
+    position: absolute;
+    max-width: 600px;
+    width: 600px;
+    opacity: 0;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+
+    form {
+      position: relative;
+
+      .input-search {
+        padding: 0;
+        width: 100%;
+        height: 70px;
+        border: none;
+        display: block;
+        color: white;
+        background-color: transparent;
+        transition: 0.5s;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        font-size: 20px;
+
+        &::placeholder {
+          transition: 0.5s;
+          color: white;
+        }
+        &:focus {
+          border-color: white;
+
+          &::placeholder {
+            color: transparent;
+          }
+        }
+      }
+      button {
+        right: 0;
+        top: 13px;
+        border: none;
+        opacity: 0.7;
+        font-size: 25px;
+        position: absolute;
+        color: white;
+        transition: 0.5s;
+        background-color: transparent;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &.search-overlay-active {
+    &.search-overlay {
+      opacity: 1;
+      visibility: visible;
+
+      .search-overlay-layer {
+        transform: translateX(0);
+      }
+      .search-overlay-close {
+        opacity: 1;
+        visibility: visible;
+      }
+      .search-overlay-form {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}

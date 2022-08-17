@@ -1,0 +1,38 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <a class="btn btn-primary" asp-controller="user" asp-action="Create">Create</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Desc</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+
+                    <td><img src="~/images/user/@Model.ImageUrl" /></td>
+                    <td>@Model.Name</td>
+                    <td>@Model.Desc</td>
+                    <td>@Model.Position</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="user" asp-action="index">Back</a>
+
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.facility-inner {
+    padding: 100px 40px;
+    background: {
+        image: url(../images/bg1.jpg);
+        position: center center;
+        repeat: no-repeat;
+        size: cover;
+    };
+    .col-lg-3 {
+        border-right: 1px solid white;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+   
+
+    .single-facility-box {
+        text-align: center;
+        
+        img {
+            margin-bottom: 18px;
+        }
+        h3 {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+    }
+}

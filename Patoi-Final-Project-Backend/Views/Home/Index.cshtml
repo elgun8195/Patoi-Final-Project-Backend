@@ -1,0 +1,505 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <!-- Banner Area  -->
+    <section id="banner">
+        <div class="main-banner-area"
+             style="background: url(assets/images/banners/banner-bg.jpg)">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="main-banner-content">
+                            <span class="sub-title">Welcome to Patoi</span>
+                            <h1>We provide best pet products</h1>
+                            <p>Save 20% off your first order</p>
+                            <a asp-controller="shop" asp-action="index" class="default-btn">
+                                <span>Shop Now</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="main-banner-image">
+                            <img src="~/images/banners/banner1.png"
+                                 alt="banner-image" />
+                            <img src="~/images/banners/banner2.png"
+                                 alt="banner-image"
+                                 style="width: 300px; height: 200px" />
+                            <img src="~/images/banners/banner3.png"
+                                 alt="banner-image"
+                                 style="width: 300px; height: 200px" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Area -->
+    <!-- Offer Area -->
+
+    <section id="offer">
+        <div class="offer-area pt-100 pb-75">
+            <div class="container">
+                <div class="row justify-content-center">
+                    @*   @foreach (var item in Model.Offers.Take(3))
+                    {
+
+                    <div class="col-lg-4 col-md-4">
+                    <div class="single-offer-box">
+                    <a href="" class="d-block">
+                    <img src="~/images/offers/@item.ImageUrl" alt="" />
+                    </a>
+                    </div>
+                    </div>
+                    }*@
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Area -->
+    <!-- Category Area -->
+
+    <section id="category">
+        <div class="categories-area pb-75">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Shop by Categories</h2>
+                </div>
+                <div class="categories-slides owl-carousel owl-theme owl-loaded owl-drag">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage">
+                            @foreach (var item in Model.Categories)
+                            {
+                                <div class="owl-item"
+                                 style="width: 239.2px; margin-right: 25px">
+                                    <div class="single-categories-box">
+                                        <a asp-controller="shop" asp-action="index" class="d-block">
+                                            <img src="~/images/categories/@item.ImageUrl"
+                                             alt="categories-image" />
+                                            <h3>@item.Name</h3>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+                    <div class="owl-nav">
+                        <button type="button"
+                                role="presentation"
+                                class="owl-prev"></button><button type="button"
+                                                                  role="presentation"
+                                                                  class="owl-next"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Area -->
+    <!-- Product Area  -->
+    <section id="product">
+        <div class="products pb-75">
+            <div class="container">
+                <div class="section-title">
+                    <h2>New Arrivals</h2>
+                </div>
+                <div class="row justify-content-center">
+                    @await Component.InvokeAsync("Product",12)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Area  -->
+    <!-- Offer Area -->
+    <section id="offers">
+        <div class="offer-area pb-75">
+            <div class="container">
+                <div class="row justify-content-center">
+                    @foreach (var item in Model.Offers.Skip(3).Take(2))
+                    {
+
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-offer-box">
+                                <a href="" class="d-block">
+                                    <img src="~/images/offers/@item.ImageUrl" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Offer Area -->
+    <!-- Best Seller Area -->
+    <section id="best-seller">
+        <div class="products-area pb-75">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Best Sellers</h2>
+                </div>
+                <div class="products-slides owl-carousel owl-theme owl-loaded owl-drag">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage">
+                            @foreach (var item in Model.Products.Take(5))
+                            {
+
+
+                                <div class="owl-item" style="width: 305.25px; margin-right: 25px">
+                                    <div class="single-products-box">
+                                        <div class="image">
+                                            <a href="products-details.html" class="d-block">
+                                                <img src="~/images/products/@item.Image"
+                                                 alt="products-image" />
+                                            </a>
+                                            <ul class="products-button">
+                                                <li>
+                                                    <a href="cart.html">
+
+                                                        <i class="fa-solid fa-cart-shopping"></i>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="wishlist.html">
+
+                                                        <i class="fa-solid fa-heart"></i>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#productsQuickView">
+
+                                                        <i class="fa-solid fa-eye"></i>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="products-details.html">
+
+                                                        <i class="fa-solid fa-link"></i>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="content">
+                                            <h3>
+                                                <a href="products-details.html">@item.Name</a>
+                                            </h3>
+                                            <div class="price">
+                                                <span class="new-price">$@item.Price</span>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="owl-nav">
+                                <button type="button"
+                                        role="presentation"
+                                        class="owl-prev"></button>
+                                <button type="button"
+                                        role="presentation"
+                                        class="owl-next"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Best Seller Area -->
+    <!-- Offer Area -->
+
+    <section id="offer2">
+        <div class="offer-area pb-75">
+            <div class="container">
+                @*  @foreach (var item in Model.Offers.Skip(5).Take(1))
+                {
+
+                <div class="single-offer-box">
+                <a asp-controller="shop" asp-action="index" class="d-block">
+                <img src="~/images/offers/@item.ImageUrl" alt="" />
+                </a>
+                </div>
+                }*@
+            </div>
+        </div>
+    </section>
+    <!-- Offer Area -->
+    <!-- Brands Area -->
+    <section id="brands">
+        <div class="brands pb-75">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Top Brands</h2>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                    @foreach (var item in Model.Brands)
+                    {
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-4">
+                            <div class="single-brands-box">
+                                <a asp-controller="shop" asp-action="index" class="d-block">
+                                    <img src="~/images/brands/@item.ImageUrl"
+                                     alt="brands" />
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Brands Area -->
+    <!-- Special Offers -->
+
+    <section id="special-offers">
+        <div class="products-area pb-75">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Special Offers</h2>
+                </div>
+                <div class="row justify-content-center">
+                    @foreach (var item in Model.Products.Skip(12).Take(1))
+                    {
+
+
+                        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                            <div class="offer-box">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="image">
+                                            <img src="~/images/products/@item.Image"
+                                             alt="offer-image" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="content">
+                                            <h3>
+                                                <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a>
+                                            </h3>
+                                            <span class="price">$@item.Price</span>
+                                            <div class="rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consec tetur adipiscing
+                                                elit, sed do eiusmod tempor.
+                                            </p>
+                                            <h3>Place an order now</h3>
+                                            <span class="discount">Enjoy 30% OFF</span>
+                                            <div class="counter-class"
+                                             data-date="2023-06-28 10:00:00">
+                                                <div><span class="counter-days"></span> Days</div>
+                                                <div><span class="counter-hours"></span> Hours</div>
+                                                <div>
+                                                    <span class="counter-minutes"></span> Minutes
+                                                </div>
+                                                <div>
+                                                    <span class="counter-seconds"></span> Seconds
+                                                </div>
+                                            </div>
+                                            <a href="shop-grid.html" class="default-btn"><span>Shop Now</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @foreach (var item in Model.Products.Skip(13).Take(2))
+                    {
+
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                            <div class="single-products-box">
+                                <div class="image">
+                                    <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
+                                        <img src="~/images/products/@item.Image"
+                                         alt="products-image" />
+                                    </a>
+                                    <ul class="products-button">
+                                        <li>
+                                            <a href="cart.html">
+
+                                                <i class="fa-solid fa-cart-shopping"></i>
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="wishlist.html">
+
+                                                <i class="fa-solid fa-heart"></i>
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                           data-bs-toggle="modal"
+                                           data-bs-target="#productsQuickView">
+
+                                                <i class="fa-solid fa-eye"></i>
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
+
+                                                <i class="fa-solid fa-link"></i>
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="content">
+                                    <h3>
+                                        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a>
+                                    </h3>
+                                    <div class="price">
+                                        <span class="new-price">$@item.Price</span>
+                                        <span class="old-price">$200.00</span>
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <!-- Blog Area -->
+
+    <section id="blog">
+        <div class="blog-area pt-100 pb-75">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Latest Blog</h2>
+                </div>
+                <div class="row justify-content-center">
+                    @foreach (var item in Model.Blogs.Take(3))
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-blog-post">
+                                <div class="image">
+                                    <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="d-block">
+                                        <img src="~/images/blog/@item.ImageUrl"
+                                         alt="blog-image" />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <span class="date"> <span>@item.Date.ToString("dd MMMM")</span> @item.Date.ToString("yyyy") </span>
+                                    <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="category">@item.Name</a>
+                                    <h3>
+                                        <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id">@item.Desc</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Area -->
+    <div class="modal fade productsQuickView" id="productsQuickView" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="image">
+                                <img src="~/images/products/products1.jpg"
+                                     alt="image" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="content">
+                                <h3><a href="idii">Pet Brash</a></h3>
+                                <div class="price">
+                                    <span class="new-price">$150.00</span>
+                                    <span class="old-price">$200.00</span>
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p>
+                                    Nemo malesuada animi consectetur, cras consectetuer laborum
+                                    tenetur, cum, lacus nemo imperdiet facilisis aute metus
+                                    lorem.
+                                </p>
+                                <div class="products-add-to-cart">
+                                    <div class="input-counter">
+                                        <span class="minus-btn">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </span>
+                                        <input type="text" value="1" />
+                                        <span class="plus-btn">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </span>
+                                    </div>
+                                    <button type="submit" class="default-btn">
+                                        <span>Add to Cart</span>
+                                    </button>
+                                </div>
+                                <a href="wishlist.html" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
+                                <ul class="products-info">
+                                    <li><span>SKU:</span> 007</li>
+                                    <li>
+                                        <span>Categories:</span>
+                                        <a asp-controller="shop" asp-action="index">Brash</a>
+                                    </li>
+                                    <li><span>Availability:</span> In stock (7 items)</li>
+                                    <li><span>Tag:</span> Accessories</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

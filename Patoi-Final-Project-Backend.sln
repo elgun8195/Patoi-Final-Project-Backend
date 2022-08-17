@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patoi-Final-Project-Backend", "Patoi-Final-Project-Backend\Patoi-Final-Project-Backend.csproj", "{2FB33CE8-CCD8-427E-85B1-3530A54AD79A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FB33CE8-CCD8-427E-85B1-3530A54AD79A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB33CE8-CCD8-427E-85B1-3530A54AD79A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB33CE8-CCD8-427E-85B1-3530A54AD79A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB33CE8-CCD8-427E-85B1-3530A54AD79A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5A8F297-BDA9-4A49-ABF9-632A4FC601BF}
+	EndGlobalSection
+EndGlobal

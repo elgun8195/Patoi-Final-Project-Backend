@@ -1,0 +1,18 @@
+﻿@model Tag
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container mt-5">
+    <form method="post">
+
+        <div>
+            <label asp-for="@Model.Name">Name</label>
+            <input asp-for="@Model.Name"/>
+            <span asp-validation-for="@Model.Name"></span>
+        </div>
+        <button type="submit" class="btn btn-success mt-4">Create</button>
+    </form>
+
+
+</div>

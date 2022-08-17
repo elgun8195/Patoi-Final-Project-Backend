@@ -1,0 +1,100 @@
+﻿@model HomeVM
+<main>
+    <section id="page-title">
+        <div class="page-title-area">
+            <div class="container">
+                <div class="page-title-content">
+                    <h1>Cart</h1>
+                    <ul>
+                        <li><a asp-controller="home" asp-action="index">Home</a></li>
+                        <li><i class="fa-solid fa-angle-right"></i> Cart</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Area -->
+    <section id="cart">
+        <div class="cart-area ptb-100">
+            <div class="container">
+                <form method="post">
+                    <div class="cart-table table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Products.Take(6))
+                                {
+                                    
+                                
+                                <tr>
+                                    <td>
+                                        <a href="cart.html" class="remove">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+                                    <td class="product-thumbnail">
+                                        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
+                                            <img src="~/images/products/@item.Image"
+                                                 alt="item" />
+                                            <h3>@item.Name</h3>
+                                        </a>
+                                    </td>
+                                    <td>$199.00</td>
+                                    <td class="product-quantity">
+                                        <div class="input-counter">
+                                            <span class="minus-btn">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </span>
+                                            <input type="text" value="1" min="1" />
+                                            <span class="plus-btn">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>$@item.Price</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cart-buttons">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-sm-12 col-md-7">
+                                <div class="shopping-coupon-code">
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="Coupon code"
+                                           name="coupon-code"
+                                           id="coupon-code" />
+                                    <button type="submit">Apply Coupon</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-sm-12 col-md-5 text-end">
+                                <a href="cart.html" class="default-btn"><span>Update Cart</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-totals">
+                        <ul>
+                            <li>Subtotal <span>$800.00</span></li>
+                            <li>Shipping <span>$30.00</span></li>
+                            <li>Total <span>$830.00</span></li>
+                        </ul>
+                        <a href="checkout.html" class="default-btn"><span>Proceed to Checkout</span></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Cart Area -->
+
+</main>

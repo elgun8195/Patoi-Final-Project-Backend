@@ -1,0 +1,36 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary=ModelOnly> </div>
+            <div class="mb-3">
+                <input asp-for="Photo" class="form-control" accept="image/*">
+                <label asp-for="Photo" class="form-label">Photo</label>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Desc" class="form-label">Desc</label>
+                <input asp-for="Desc" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Title</label>
+                <input asp-for="Title" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Date" class="form-label">Date</label>
+                <input asp-for="Date" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+

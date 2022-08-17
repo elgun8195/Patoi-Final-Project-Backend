@@ -1,0 +1,142 @@
+﻿@model Pagination<Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<main>
+    <section id="page-title">
+        <div class="page-title-area">
+            <div class="container">
+                <div class="page-title-content">
+                    <h1>Blog Right Sidebar</h1>
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li>
+                            <i class="fa-solid fa-angle-right"></i> Blog Right Sidebar
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Area -->
+    <section id="blog-right">
+        <div class="blog-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="row">
+                            @foreach (var item in Model.Items)
+                           {
+                               
+                           
+                            <div class="col-lg-6 col-md-6">
+                                <div class="single-blog-post">
+                                    <div class="image">
+                                        <a href="blog-details.html" class="d-block">
+                                            <img src="~/images/blog/@item.ImageUrl" alt="blog-image">
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <span class="date">
+                                                <span>@item.Date.ToString("dd MMMM")</span> @item.Date.ToString("yyyy")
+                                        </span>
+                                        <a href="blog-grid.html" class="category">@item.Name</a>
+                                        <h3><a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id">@item.Desc</a></h3>
+                                        <p>@item.Title</p>
+                                    </div>
+                                </div>
+                            </div>
+                           }
+                            <div class="col-lg-12 col-md-12">
+                                <div class="pagination-area">
+                                    <div class="nav-links">
+                                        <a asp-controller="blogr" asp-action="index" class="previous page-numbers" title="Next Page"><i class="fa-solid fa-chevron-left"></i></a>
+                                        @for (var i = 1; i <= Model.PageCount; i++)
+                                        {
+
+                                            <a class="page-numbers  @(Model.CurrentPage==i? "current":"")" asp-controller="blog" asp-action="index" asp-route-pageSize="@i">@i</a>
+
+                                        }
+                                        <a asp-controller ="blogr" asp-action="index" class="next page-numbers" title="Next Page"><i class="fa-solid fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <aside class="widget-area right-sidebar">
+                            <div class="widget widget_search">
+                                <form method="post" class="search-form">
+                                    <input type="search" class="search-field" placeholder="Search...">
+                                    <button type="submit"><i class="fa-solid fa-search"></i></button>
+                                </form>
+                            </div>
+                            @foreach (var item in ViewBag.Teams)
+                            {
+                                <div class="widget widget_author">
+                                    <img src="~/images/team/@item.ImageUrl" alt="author">
+                                    <h3>@item.Name</h3>
+                                    <span>@item.Position</span>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                    <img src="~/images/signature.png" alt="signature">
+                                </div>
+                            }
+                            <div class="widget widget_follow_us">
+                                <h3 class="widget-title"><span>Follow Us</span></h3>
+                                <ul>
+                                    <li><a href="@ViewBag.Bio.Facebook" target="_blank">Facebook</a></li>
+                                    <li><a href="@ViewBag.Bio.Twitter" target="_blank">Twitter</a></li>
+                                    <li><a href="@ViewBag.Bio.Instagram" target="_blank">Instagram</a></li>
+                                    <li><a href="@ViewBag.Bio.Facebook" target="_blank">Pinterest</a></li>
+                                    <li><a href="@ViewBag.Bio.Facebook" target="_blank">Linkedin</a></li>
+                                </ul>
+                            </div>
+                            <div class="widget widget_patoi_posts_thumb">
+                                <h3 class="widget-title"><span>Popular Posts</span></h3>
+                                @foreach (var item in ViewBag.Blogs)
+                                {
+                                    <article class="item">
+                                        <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="thumb">
+                                            <img src="~/images/blog/@item.ImageUrl" alt="blog-image">
+                                        </a>
+                                        <div class="info">
+                                            <h4 class="title"><a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id">@item.Desc</a></h4>
+                                            <span class="date">@item.Date.ToString("MMMM dd"),@item.Date.ToString("yyyy")</span>
+                                        </div>
+                                    </article>
+                                }
+                            </div>
+                            <div class="widget widget_categories">
+                                <h3 class="widget-title"><span>Categories</span></h3>
+                                <ul>
+                                    @foreach (var item in ViewBag.Categories)
+                                    {
+
+                                        <li><a asp-controller="blogr" asp-action="index">@item.Name</a></li>
+                                    }
+
+                                </ul>
+                            </div>
+                            <div class="widget widget_tag_cloud">
+                                <h3 class="widget-title"><span>Tags</span></h3>
+                                <div class="tagcloud">
+                                    @foreach (var item in ViewBag.Tags)
+                                    {
+                                        <a asp-controller="blogr" asp-action="index">@item.Name</a>
+
+                                    }
+
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Area -->
+</main>

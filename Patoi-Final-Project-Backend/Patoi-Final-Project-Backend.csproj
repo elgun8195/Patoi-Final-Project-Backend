@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Patoi_Final_Project_Backend</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220815182902_AddTeamAndUserTable.cs" />
+    <Compile Remove="Migrations\20220815182902_AddTeamAndUserTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.28" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.28">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.28" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.28">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Bio\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Bio\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Bio\Update.cshtml" />
+    <None Include="Areas\Admin\Views\Brand\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Brand\Detail.cshtml" />
+    <None Include="Areas\Admin\Views\Brand\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Brand\Update.cshtml" />
+    <None Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Category\Detail.cshtml" />
+    <None Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Category\Update.cshtml" />
+    <None Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Offer\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Offer\Detail.cshtml" />
+    <None Include="Areas\Admin\Views\Offer\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Offer\Update.cshtml" />
+    <None Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <None Include="Areas\Admin\Views\Tag\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Tag\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Tag\Index.cshtml" />
+  </ItemGroup>
+
+</Project>

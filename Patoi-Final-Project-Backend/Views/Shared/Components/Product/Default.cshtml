@@ -1,0 +1,57 @@
+﻿@model List<Product>
+@foreach (var item in Model)
+{
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="product-box">
+            <div class="image">
+                <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
+                    <img src="~/images/products/@item.Image"
+                     alt="products-image" />
+                </a>
+                <ul class="products-button">
+                    <li>
+                        <a href="cart.html">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="wishlist.html">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" 
+                       data-bs-toggle="modal"
+                       data-bs-target="#productsQuickView">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
+                            <i class="fa-solid fa-link"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="p-content">
+                <h3>
+                    <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
+                        @item.Name
+                    </a>
+                </h3>
+                <div class="price">
+                    <span class="new-price">$@item.Price</span>
+                </div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+}

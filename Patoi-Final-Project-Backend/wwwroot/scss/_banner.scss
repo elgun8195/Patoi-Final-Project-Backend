@@ -1,0 +1,84 @@
+#banner{
+
+  .main-banner-area {
+    padding-top: 10px;
+    background-color: #cdebfc;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    .container-fluid {
+      max-width: 1360px;
+      a {
+        text-decoration: none;
+      }
+      .main-banner-content {
+        .sub-title {
+          display: block;
+          margin-bottom: 10px;
+          font-weight: 900;
+          font-family: $main-font, cursive;
+        }
+        h1 {
+          margin-bottom: 15px;
+          letter-spacing: 2px;
+          font-family: "Luckiest Guy", cursive;
+          font-size: 75px;
+        }
+        p {
+          font-family: $main-font, cursive;
+          color: $black;
+        }
+        
+      }
+  
+      .main-banner-image {
+        text-align: center;
+        position: relative;
+        img {
+          max-width: 100%;
+          height: auto;
+  
+          &:nth-child(2) {
+            left: -225px;
+            bottom: 10px;
+            position: absolute;
+            animation: moveleftbounce 5s linear infinite;
+        }
+        &:nth-child(3) {
+            animation: movebounce 5s linear infinite;
+            position: absolute;
+            top: 190px;
+            right: 0;
+        }
+        }
+      }
+    }
+  }
+}
+
+
+
+@keyframes moveleftbounce {
+  0% {
+      transform: translateX(0px); 
+  }
+  50% {
+      transform: translateX(20px); 
+  }
+  100% {
+      transform: translateX(0px); 
+  } 
+}
+
+@keyframes movebounce {
+  0% {
+      transform: translateY(0px); 
+  }
+  50% {
+      transform: translateY(20px); 
+  }
+  100% {
+      transform: translateY(0px); 
+  } 
+}

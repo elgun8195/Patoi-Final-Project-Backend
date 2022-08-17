@@ -1,0 +1,100 @@
+.contact-form {
+  padding-right: 20px;
+  h3 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eeeeee;
+  }
+  form {
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .form-check {
+      color: $secondary-color;
+      margin-top: 5px;
+      .form-check-input {
+        margin-top: 0.18em;
+        box-shadow: unset !important;
+      }
+      .form-check-input[type="checkbox"] {
+        border-radius: 0;
+      }
+      :checked {
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
+      :focus {
+        border-color: $primary-color;
+      }
+    }
+  
+    .help-block {
+      .with-errors {
+        color: red;
+        margin-bottom: 0;
+        margin-top: 12px;
+      }
+    }
+    #msgSubmit {
+      margin: 0;
+      .text-danger {
+        margin-top: 12px;
+      }
+      .text-success {
+        margin-top: 12px;
+      }
+    }
+  }
+}
+
+.contact-info {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+
+  h3 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eeeeee;
+  }
+  ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+    li {
+      color: $secondary-color;
+      margin-bottom: 13px;
+      span {
+        font-weight: 600;
+        color:$black;
+      }
+      a {
+        color: $secondary-color;
+      }
+      a:hover {
+        color: $primary-color;
+      }
+    }
+    li:last-child {
+        margin-bottom: 0;
+      }
+
+  }
+}
+
+#maps {
+    padding-top: 100px;
+    iframe {
+        margin-bottom: -6px;
+        height: 500px;
+        border: none;
+        width: 100%;
+      }
+      
+  }
+  

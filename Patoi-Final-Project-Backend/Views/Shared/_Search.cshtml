@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Product>
+
+
+@foreach (Product item in Model)
+{
+    <li style="text-align: center;list-style: none;background-color: wheat;">
+        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" style="color:red;">
+           @item.Name
+        </a>
+    </li>
+}
+ 

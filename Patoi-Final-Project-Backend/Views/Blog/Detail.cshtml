@@ -1,0 +1,219 @@
+﻿@model HomeVM
+<main>
+
+    <!-- Blog Area -->
+
+    <section id="blog-details">
+        <div class="blog-details-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="blog-details-desc">
+                            <div class="post-thumb">
+                                <img src="~/images/blog/@Model.Blog.ImageUrl" alt="blog-details">
+                            </div>
+                            <h4>@Model.Blog.Desc</h4>
+                            <div class="post-meta">
+                                <ul>
+                                    <li><i class="fa-solid fa-calendar"></i> July 30, 2022</li>
+                                    <li><i class="fa-solid fa-comment"></i> <a href="blog-details.html">4 Comments</a></li>
+                                </ul>
+                            </div>
+                            <p>Quuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quia non numquam eius modi tempora incidunt ut labore et dolore magnam dolor sit amet, consectetur adipisicing.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur <strong>adipisicing</strong> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea <a href="#">commodo</a> consequat. Duis aute irure dolor in reprehenderit in sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat.</p>
+                            <ol>
+                                <li>Nunc, mauris ut in vestibulum. Consectetur phasellus ultrices fusce nibh justo, venenatis, amet. Lectus quam in </li>
+                                <li>Most of the designer are very creative to do something , mauris ut in vestibulum. Consectetur phasellus ultrices fusce nibh justo, venenatis, amet. Lectus quam in lobortis </li>
+                                <li>There are two thing is very important in Consectetur phasellus ultrices fusce nibh justo, venenatis, amet. Lectus quam.</li>
+                                <li>Web design and development very creative to do something , mauris ut in vestibulum. Consectetur phasellus ultrices fusce nibh  venenatis, amet to all design and development.</li>
+                            </ol>
+                            <p>Quuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quia non numquam eius modi tempora incidunt ut labore et dolore magnam dolor sit amet, consectetur adipisicing.</p>
+                            <ul class="wp-block-gallery columns-3">
+                                @foreach (var item in Model.Blogs.Take(3))
+                               {
+                                   
+                               
+                                <li class="blocks-gallery-item">
+                                    <figure>
+
+                                        <img src="~/images/blog/@item.ImageUrl" alt="image">
+                                    </figure>
+                                </li>
+                               }
+                            </ul>
+                            <h4>Four major elements that we offer:</h4>
+                            <p>Quuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quia non numquam eius modi tempora incidunt ut labore et dolore magnam dolor sit amet, consectetur adipisicing.</p>
+                            <ul>
+                                <li>Scientific skills for getting a better result</li>
+                                <li>Communication skills to getting in touch</li>
+                                <li>A career overview opportunity available</li>
+                                <li>A good work environment for work</li>
+                            </ul>
+                            <h4>Setting the mood with incense</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in  sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat.</p>
+                            <blockquote class="wp-block-quote">
+                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                <cite>Tom Cruise</cite>
+                            </blockquote>
+                            <h4>The rise of marketing and why you need it</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur <strong>adipisicing</strong> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea <a href="#">commodo</a> consequat. Duis aute irure dolor in reprehenderit in sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat.</p>
+                            <div class="post-footer">
+                                <div class="post-tags">
+                                    <span class="sub">Tags:</span>
+                                    <ul>
+                                        <li><a href="blog-grid.html" rel="tag">Fashion</a></li>
+                                        <li><a href="blog-grid.html" rel="tag">Design</a></li>
+                                    </ul>
+                                </div>
+                                <div class="article-share">
+                                    <ul class="social">
+                                        <li><span>Share:</span></li>
+                                        <li><a href="@Model.Bio.Facebook" class="facebook" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                                        <li><a href="@Model.Bio.Twitter" class="twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                                        <li><a href="@Model.Bio.Hotline" class="linkedin" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
+                                        <li><a href="@Model.Bio.Instagram" class="instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comments-area">
+                            <h3 class="comments-title">@Model.Users.Count() Comments:</h3>
+                            <ol class="comment-list">
+                                <li class="comment">
+                                    @foreach (var item in Model.Users)
+                                   {
+                                       
+                                   
+                                    <div class="comment-body">
+                                        <footer class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <img src="~/images/user/@item.ImageUrl" class="avatar" alt="user">
+                                                <b class="fn">@item.Name</b>
+                                            </div>
+                                            <div class="comment-metadata">
+                                                <span>January 01, 2022 at 10:59 am</span>
+                                            </div>
+                                        </footer>
+                                        <div class="comment-content">
+                                            <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</p>
+                                        </div>
+                                        <div class="reply">
+                                            <a href="blog-details.html" class="comment-reply-link">Reply</a>
+                                        </div>
+                                    </div>
+                                   }
+                                </li>
+                            
+                            </ol>
+                            <div class="comment-respond">
+                                <h3 class="comment-reply-title">Leave A Reply</h3>
+                                <form method="post" class="comment-form">
+                                    <p class="comment-notes">
+                                        <span id="email-notes">Your email address will not be published.</span>
+                                        Required fields are marked <span class="required">*</span>
+                                    </p>
+                                    <p class="comment-form-author">
+                                        <label>Name <span class="required">*</span></label>
+                                        <input type="text" id="author" placeholder="Your Name*" name="author" required="required">
+                                    </p>
+                                    <p class="comment-form-email">
+                                        <label>Email <span class="required">*</span></label>
+                                        <input type="email" id="email" placeholder="Your Email*" name="email" required="required">
+                                    </p>
+                                    <p class="comment-form-url">
+                                        <label>Website</label>
+                                        <input type="url" id="url" placeholder="Website" name="url">
+                                    </p>
+                                    <p class="comment-form-comment">
+                                        <label>Comment</label>
+                                        <textarea name="comment" id="comment" cols="45" placeholder="Your Comment..." rows="5" maxlength="65525" required="required"></textarea>
+                                    </p>
+                                    <p class="comment-form-cookies-consent">
+                                        <input type="checkbox" value="yes" name="wp-comment-cookies-consent" id="wp-comment-cookies-consent">
+                                        <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>
+                                    </p>
+                                    <p class="form-submit">
+                                        <input type="submit" name="submit" id="submit" class="submit" value="Post A Comment">
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <aside class="widget-area right-sidebar">
+                            <div class="widget widget_search">
+                                <form method="post" class="search-form">
+                                    <input type="search" class="search-field" placeholder="Search...">
+                                    <button type="submit"><i class="fa-solid fa-search"></i></button>
+                                </form>
+                            </div>
+                            @foreach (var item in Model.Teams.Take(1))
+                           { 
+                            <div class="widget widget_author">
+                                <img src="~/images/team/@item.ImageUrl" alt="author">
+                                <h3>@item.Name</h3>
+                                <span>@item.Position</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                <img src="~/images/signature.png" alt="signature">
+                                </div>
+                                 }
+                                <div class="widget widget_follow_us">
+                                <h3 class="widget-title"><span>Follow Us</span></h3>
+                                <ul>
+                                    <li><a href="@Model.Bio.Facebook" target="_blank">Facebook</a></li>
+                                    <li><a href="@Model.Bio.Twitter" target="_blank">Twitter</a></li>
+                                    <li><a href="@Model.Bio.Instagram" target="_blank">Instagram</a></li>
+                                    <li><a href="@Model.Bio.Facebook" target="_blank">Pinterest</a></li>
+                                    <li><a href="@Model.Bio.Facebook" target="_blank">Linkedin</a></li>
+                                </ul>
+                            </div>
+                            <div class="widget widget_patoi_posts_thumb">
+                                <h3 class="widget-title"><span>Popular Posts</span></h3>
+                                @foreach (var item in Model.Blogs.Take(4))
+                               {
+                                <article class="item">
+                                    <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="thumb">
+                                        <img src="~/images/blog/@item.ImageUrl" alt="blog-image">
+                                    </a>
+                                    <div class="info">
+                                            <h4 class="title"><a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id">@item.Desc</a></h4>
+                                        <span class="date">@item.Date.ToString("MMMM dd"),@item.Date.ToString("yyyy")</span>
+                                    </div>
+                                </article> 
+                                }
+                            </div>
+                            <div class="widget widget_categories">
+                                <h3 class="widget-title"><span>Categories</span></h3>
+                                <ul>
+                                    @foreach (var item in Model.Categories)
+                                   {
+                                       
+                                    <li><a asp-controller="blogr" asp-action="index">@item.Name</a></li>
+                                   }
+                                    
+                                </ul>
+                            </div>
+                            <div class="widget widget_tag_cloud">
+                                <h3 class="widget-title"><span>Tags</span></h3>
+                                <div class="tagcloud">
+                                    @foreach (var item in Model.Tags)
+                                   {
+                                        <a asp-controller="blogr" asp-action="index">@item.Name</a>
+                                       
+                                   }
+                                
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Area -->
+
+
+
+</main>

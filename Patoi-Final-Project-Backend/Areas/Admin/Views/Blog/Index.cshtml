@@ -1,0 +1,60 @@
+﻿@model Pagination<Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = (Model.CurrentPage - 1) * 4;
+}
+
+<div class="container">
+    <div class="row">
+        <a class="btn btn-primary" asp-controller="blog" asp-action="Create">Create</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Desc</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td><img src="~/images/blog/@item.ImageUrl" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.Desc</td>
+                        <td>@item.Title</td>
+                        <td>@item.Date</td>
+                        <td>
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="blog" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn btn-success" asp-controller="blog" asp-action="update" asp-route-id="@item.Id">Update</a>
+                            <a class="btn btn-primary" asp-controller="blog" asp-action="detail" asp-route-id="@item.Id">Detail</a>
+
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <nav aria-label="...">
+        <ul class="pagination pagination-lg">
+
+            @for (var i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="page-item @(Model.CurrentPage==i? "disabled":"")">
+                    <a class="page-link " asp-area="Admin" asp-controller="blog" asp-action="index" asp-route-pageSize="@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

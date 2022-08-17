@@ -1,0 +1,137 @@
+﻿@model Bio
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <a asp-controller="home" asp-action="index" class="logo">
+                        <img src="~/images/@Model.LogoWhite" alt="logo" />
+                    </a>
+                    <ul class="footer-contact-info">
+                        <li><span>Hotline:</span> <a href="">@Model.Hotline</a></li>
+                        <li>
+                            <span>Tech support:</span>
+                            <a href="">@Model.Support</a>
+                        </li>
+                        <li>
+                            <span>Email:</span>
+                            <a href="mailto:hello@patoi.com">@Model.Email</a>
+                        </li>
+                        <li><span>Address:</span> @Model.Address</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget pl-4">
+                    <h3>Information</h3>
+                    <ul class="custom-links">
+                        <li>
+                            <a asp-controller="about" asp-action="index"><i class="fa-solid fa-angle-right"></i> About Us</a>
+                        </li>
+                        <li>
+                            <a asp-controller="terms" asp-action="index">
+                                <i class="fa-solid fa-angle-right"></i> Terms &amp;
+                                Conditions
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="privacy" asp-action="index"><i class="fa-solid fa-angle-right"></i> Privacy Policy</a>
+
+                        </li>
+                        <li>
+                            <a asp-controller="privacy" asp-action="index"><i class="fa-solid fa-angle-right"></i> Refund Policy</a>
+
+                        </li>
+                        <li>
+                            <a asp-controller="terms" asp-action="index"><i class="fa-solid fa-angle-right"></i> Cookie Policy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h3>Customer service</h3>
+                    <ul class="custom-links">
+                        <li>
+                            <a href="profile-authentication.html"><i class="fa-solid fa-angle-right"></i> My Account</a>
+                        </li>
+                        <li>
+                            <a asp-controller="faq" asp-action="index"><i class="fa-solid fa-angle-right"></i> FAQ's</a>
+                        </li>
+                        <li>
+                            <a asp-controller="cart" asp-action="index"><i class="fa-solid fa-angle-right"></i> Order History</a>
+                        </li>
+                        <li>
+                            <a href="wishlist.html"><i class="fa-solid fa-angle-right"></i> Wishlist</a>
+                        </li>
+                        <li>
+                            <a asp-controller="terms" asp-action="index">
+                                <i class="fa-solid fa-angle-right"></i> Delivery
+                                Information
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h3>Subscribe to our newsletter!</h3>
+                    <p>
+                        Sign up for our mailing list to get the latest updates news
+                        &amp; offers.
+                    </p>
+                    <form class="newsletter-form"
+                          data-toggle="validator"
+                          novalidate="true">
+                        <input type="email"
+                               class="input-newsletter"
+                               placeholder="Your email address"
+                               name="EMAIL"
+                               required=""
+                               autocomplete="off" />
+                        <button type="submit"
+                                class="disabled"
+                                style="pointer-events: all; cursor: pointer">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                        <div id="validator-newsletter" class="form-result"></div>
+                    </form>
+                    <div class="payment-types">
+                        <div class="d-flex align-items-center">
+                            <span>We accept:</span>
+                            <ul class="d-flex">
+                                <li>
+                                    <img src="~/images/payment/visa.png" alt="visa" />
+                                </li>
+                                <li>
+                                    <img src="~/images/payment/mc.png"
+                                         alt="master-card" />
+                                </li>
+                                <li>
+                                    <img src="~/images/payment/paypal.png"
+                                         alt="paypal" />
+                                </li>
+                                <li>
+                                    <img src="~/images/payment/ae.png"
+                                         alt="american-express" />
+                                </li>
+                                <li>
+                                    <img src="~/images/payment/discover.png"
+                                         alt="discover" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-area">
+        <div class="container">
+            <p>
+                Copyright 2022 <span>Patoi</span>. Design &amp; Developed by
+                <a href="https://www.instagram.com/gocayef.f/">Elgun</a>
+            </p>
+        </div>
+    </div>
+</footer>

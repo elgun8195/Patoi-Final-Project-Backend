@@ -1,0 +1,334 @@
+﻿@model Bio
+<!-- Start Top Header Area -->
+
+<div class="top-header-area">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <p>FREE 5 days shipping over $99</p>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-6">
+                <div class="search-box">
+                    <form>
+                        <input  type="text" class="input-search" placeholder="Enter your keywords...">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                    
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <ul>
+                    <li>
+                        <a href="@Model.Facebook" target="_blank">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Model.Twitter" target="_blank">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Model.Instagram" target="_blank">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Model.YouTube" target="_blank">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Top Header Area -->
+<!-- Navbar Start -->
+
+<div class="navbar-area">
+    <div class="patoi-responsive-nav">
+        <div class="container">
+            <div class="patoi-responsive-menu mean-container">
+                <div class="mean-bar">
+                    <a href="#nav"
+                       class="meanmenu-reveal"
+                       id="meanmenu-reveal"
+                       style="margin-top: -2%">
+                        <span><span><span></span></span></span>
+                    </a>
+                    <nav class="mean-nav">
+                        <ul class="navbar-nav" id="navbar-nav" style="display: none">
+                            <li class="nav-item">
+                                <a asp-controller="home" asp-action="index"
+                                   class="dropdown-toggle nav-link active">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="dropdown-toggle nav-link">Pages</a>
+                                <ul class="dropdown-menu" id="dmenu2" style="display: none">
+                                    <li class="nav-item">
+                                        <a asp-controller="about" asp-action="index" class="nav-link">About Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="order" asp-action="index" class="nav-link">Order Tracking</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="profile-authentication.html" class="nav-link">My Account</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="faq" asp-action="index" class="nav-link">FAQ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="privacy" asp-action="index" class="nav-link">Privacy Policy</a>
+
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="terms" asp-action="index" class="nav-link">Terms &amp; Conditions</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="error" asp-action="index" class="nav-link">404 Error Page</a>
+                                    </li>
+                                </ul>
+                                <a class="mean-expand"
+                                   id="mexpand2"
+                                   href="#"
+                                   style="font-size: 18px">+</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="dropdown-toggle nav-link">Shop</a>
+                                <ul class="dropdown-menu" id="dmenu3" style="display: none">
+                                    <li class="nav-item">
+                                        <a asp-controller="shop" asp-action="index" class="nav-link">Shop Grid</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="shopr" asp-action="index" class="nav-link">Shop Right Sidebar</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a asp-controller="cart" asp-action="index" class="nav-link">Cart</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="check" asp-action="index"  class="nav-link">Checkout</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="wishlist.html" class="nav-link">Wishlist</a>
+                                    </li>
+                                </ul>
+                                <a class="mean-expand"
+                                   id="mexpand3"
+                                   href="#"
+                                   style="font-size: 18px">+</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="dropdown-toggle nav-link">Blog</a>
+                                <ul class="dropdown-menu" id="dmenu4" style="display: none">
+                                    <li class="nav-item">
+                                        <a asp-controller="blog" asp-action="index" class="nav-link">Blog Grid</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a asp-controller="blogr" asp-action="index" class="nav-link">Blog Right Sidebar</a>
+                                    </li>
+                                   
+                                </ul>
+                                <a class="mean-expand"
+                                   id="mexpand4"
+                                   href="#"
+                                   style="font-size: 18px">+</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="contact" asp-action="index" class="nav-link">Contact</a>
+                            </li>
+                        </ul>
+                        <div class="others-option">
+                            <div class="d-flex align-items-center">
+                                <ul style="display: none">
+                                    <li>
+                                        <select class="form-select">
+                                            <option selected="">English</option>
+                                            <option value="1">Spanish</option>
+                                            <option value="2">Chinese</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <div class="search-icon">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="profile-authentication.html">
+                                            <i class="fa-solid fa-circle-user"></i>
+                                        </a>
+                                    </li>
+                                    <li class="mean-last">
+                                        <a asp-controller="cart" asp-action="index">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="logo">
+                    <a asp-controller="home" asp-action="index">
+                        <img src="~/images/@Model.LogoBlack" alt="logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="patoi-nav">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" asp-controller="home" asp-action="index">
+                    <img src="~/images/@Model.LogoBlack" alt="logo" />
+                </a>
+                <div class="collapse navbar-collapse mean-menu"
+                     style="display: block">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a asp-controller="home" asp-action="index" class="dropdown-toggle nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="dropdown-toggle nav-link">
+                                Pages <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="about" asp-action="index" class="nav-link">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="order" asp-action="index" class="nav-link">Order Tracking</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="profile-authentication.html" class="nav-link">My Account</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="faq" asp-action="index" class="nav-link">FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="privacy" asp-action="index" class="nav-link">Privacy Policy</a>
+
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="terms" asp-action="index" class="nav-link">Terms &amp; Conditions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="error" asp-action="index" class="nav-link">404 Error Page</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="dropdown-toggle nav-link">
+                                Shop <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="shop" asp-action="index" class="nav-link">Shop Grid</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a asp-controller="shopr" asp-action="index" class="nav-link">Shop Right Sidebar</a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a asp-controller="cart" asp-action="index" class="nav-link">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="check" asp-action="index" class="nav-link">Checkout</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="wishlist.html" class="nav-link">Wishlist</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="dropdown-toggle nav-link">
+                                Blog <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="blog" asp-action="index" class="nav-link">Blog Grid</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a asp-controller="blogr" asp-action="index" class="nav-link">Blog Right Sidebar</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="contact" asp-action="index" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="others-option">
+                        <div class="d-flex align-items-center">
+                            <ul>
+                                <li>
+                                    <select class="form-select">
+                                        <option selected="">English</option>
+                                        <option value="1">Spanish</option>
+                                        <option value="2">Chinese</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <div class="search-icon">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="profile-authentication.html">
+                                        <i class="fa-solid fa-circle-user"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="cart" asp-action="index">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="others-option-for-responsive">
+        <div class="container">
+            <div class="dot-menu" style="margin-top: 1.5%">
+                <div class="inner" id="inner">
+                    <div class="circle circle-one"></div>
+                    <div class="circle circle-two"></div>
+                    <div class="circle circle-three"></div>
+                </div>
+            </div>
+            <div class="container" id="option-inner">
+                <div class="option-inner">
+                    <div class="others-option">
+                        <ul>
+                            <li>
+                                <select class="form-select">
+                                    <option selected="">English</option>
+                                    <option value="1">Spanish</option>
+                                    <option value="2">Chinese</option>
+                                </select>
+                            </li>
+                            <li>
+                                <a href="profile-authentication.html">
+                                    <i class="fa-solid fa-circle-user"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="cart" asp-action="index">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Navbar End -->

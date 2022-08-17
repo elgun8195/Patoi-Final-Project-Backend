@@ -1,0 +1,49 @@
+﻿@model Bio
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+ 
+    <div class="row">
+        <a class="btn btn-primary justify-content-center" asp-controller="bio" asp-action="Create">Create</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">LogoWhite</th>
+                    <th scope="col">LogoBlack</th>
+                    <th scope="col">Facebook</th>
+                    <th scope="col">Instagram</th>
+                    <th scope="col">Twitter</th>
+                    <th scope="col">YouTube</th>
+                    <th scope="col">Hotline</th>
+                    <th scope="col">Support</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="~/images/@Model.LogoWhite" /></td>
+                    <td><img src="~/images/@Model.LogoWhite" /></td>
+
+                    <td>@Model.Facebook</td>
+                    <td>@Model.Instagram</td>
+                    <td>@Model.Twitter</td>
+                    <td>@Model.YouTube</td>
+                    <td>@Model.Hotline</td>
+                    <td>@Model.Support</td>
+                    <td>@Model.Email</td>
+                    <td>@Model.Address</td>
+                    <td>
+                        <a class="btn btn-danger" asp-area="Admin" asp-controller="bio" asp-action="delete" asp-route-id="@Model.Id">Delete</a>
+                        <a class="btn btn-success" asp-area="Admin" asp-controller="bio" asp-action="update" asp-route-id="@Model.Id">Update</a>
+                        <a class="btn btn-primary" asp-area="Admin" asp-controller="bio" asp-action="detail" asp-route-id="@Model.Id">Detail</a>
+
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>

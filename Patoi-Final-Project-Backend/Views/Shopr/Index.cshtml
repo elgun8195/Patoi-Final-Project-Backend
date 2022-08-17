@@ -1,0 +1,186 @@
+﻿@model Pagination<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<main>
+
+    <section id="page-title">
+        <div class="page-title-area">
+            <div class="container">
+                <div class="page-title-content">
+                    <h1>Shop Right Sidebar</h1>
+                    <ul>
+                        <li><a asp-controller="home" asp-action="index">Home</a></li>
+                        <li><i class="fa-solid fa-angle-right"></i> Shop Right Sidebar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Product Area -->
+    <div class="products-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="patoi-grid-sorting row align-items-center">
+                        <div class="col-lg-6 col-md-6 result-count">
+                            <p>We found <span class="count">@ViewBag.Pcount</span> products available for you</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 ordering">
+                            <div class="select-box">
+                                <label>Sort By:</label>
+                                <select>
+                                    <option>Default</option>
+                                    <option>Popularity</option>
+                                    <option>Latest</option>
+                                    <option>Price: low to high</option>
+                                    <option>Price: high to low</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        @foreach (var item in Model.Items)
+                        {
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="single-products-box">
+                                    <div class="image">
+                                        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
+                                            <img src="~/images/products/@item.Image" alt="products-image">
+                                        </a>
+                                        <ul class="products-button">
+                                            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                            <li><a href="wishlist.html"><i class="fa-solid fa-heart"></i></a></li>
+                                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView"><i class="fa-solid fa-eye"></i></a></li>
+                                            <li><a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id"><i class="fa-solid fa-link"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="content">
+                                        <h3><a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a></h3>
+                                        <div class="price">
+                                            <span class="new-price">$@item.Price</span>
+                                        </div>
+                                        <div class="rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="pagination-area">
+                                <div class="nav-links">
+                                    <a href="shop-right-sidebar.html" class="previous page-numbers" title="Next Page"><i class="fa-solid fa-chevron-left"></i></a>
+                                    <span class="page-numbers current">1</span>
+                                    <a href="shop-right-sidebar.html" class="page-numbers">2</a>
+                                    <a href="shop-right-sidebar.html" class="page-numbers">3</a>
+                                    <a href="shop-right-sidebar.html" class="next page-numbers" title="Next Page"><i class="fa-solid fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <aside class="widget-area right-sidebar">
+                        <div class="widget widget_categories">
+                            <h3 class="widget-title"><span>Categories</span></h3>
+                            <ul>
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <li><a asp-controller="shop" asp-action="index">@item.Name</a></li>
+
+                                }
+
+                            </ul>
+                        </div>
+
+                        @*<div class="widget widget_price_filter">
+                        <h3 class="widget-title"><span>Filter by Price</span></h3>
+                        <div class="collection_filter_by_price">
+                        <div class="wrapper">
+
+                        <div class="price-input">
+                        <div class="field">
+                        <span>Min</span>
+                        <input type="number" class="input-min" value="2500">
+                        </div>
+                        <div class="separator">-</div>
+                        <div class="field">
+                        <span>Max</span>
+                        <input type="number" class="input-max" value="7500">
+                        </div>
+                        </div>
+                        <div class="slider">
+                        <div class="progress" style="left: 0%; right: 25%;"></div>
+                        </div>
+                        <div class="range-input">
+                        <input type="range" class="range-min" min="0" max="10000" value="2500" step="1">
+                        <input type="range" class="range-max" min="0" max="10000" value="7500" step="1">
+                        </div>
+                        </div>
+                        </div>
+                        </div>*@
+                        <div class="widget widget_patoi_posts_thumb">
+                            <h3 class="widget-title"><span>Our Best Sellers</span></h3>
+                            @foreach (var item in Model.Items.Take(4))
+                            {
+                                <article class="item">
+                                    <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="thumb">
+                                        <img src="~/images/products/@item.Image" alt="blog-image">
+                                    </a>
+                                    <div class="info">
+                                        <h4 class="title"><a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a></h4>
+                                        <div class="star-rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="price">$@item.Price</span>
+                                    </div>
+                                </article>
+                            }
+                        </div>
+                        <div class="widget widget_tag_cloud">
+                            <h3 class="widget-title"><span>Tags</span></h3>
+                            <div class="tagcloud">
+                                @foreach (var item in ViewBag.Tags)
+                                {
+
+                                    <a href="shop-right-sidebar.html">@item.Name</a>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="widget widget_follow_us">
+                            <h3 class="widget-title"><span>Follow Us</span></h3>
+                            <ul>
+                                <li><a href="@ViewBag.Bio.Facebook" target="_blank">Facebook</a></li>
+                                <li><a href="@ViewBag.Bio.Twitter" target="_blank">Twitter</a></li>
+                                <li><a href="@ViewBag.Bio.Instagram" target="_blank">Instagram</a></li>
+                                <li><a href="@ViewBag.Bio.Facebook" target="_blank">Pinterest</a></li>
+                                <li><a href="@ViewBag.Bio.YouTube" target="_blank">Linkedin</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product Area -->
+
+
+
+</main>

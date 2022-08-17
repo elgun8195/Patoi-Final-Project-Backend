@@ -1,0 +1,25 @@
+﻿@model Offer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Photo</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="~/images/offers/@Model.ImageUrl" /></td> 
+                    <td>
+                        <a class="btn btn-success" asp-area="Admin" asp-controller="offer" asp-action="index" >Back</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

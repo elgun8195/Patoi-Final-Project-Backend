@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Brands>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="container">
+    <div class="row">
+        <a class="btn btn-primary" asp-controller="brand" asp-action="Create">Create</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Photo</th> 
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td><img src="~/images/brands/@item.ImageUrl" /></td> 
+                        <td>
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="brand" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn btn-success" asp-controller="brand" asp-action="update" asp-route-id="@item.Id">Update</a>
+                            <a class="btn btn-primary" asp-controller="brand" asp-action="detail" asp-route-id="@item.Id">Detail</a>
+
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

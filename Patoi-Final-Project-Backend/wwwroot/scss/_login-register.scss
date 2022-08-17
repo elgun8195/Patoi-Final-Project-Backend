@@ -1,0 +1,157 @@
+.login-form {
+    padding-right: 10px;
+
+    h2 {
+        margin-bottom: 30px;
+        font-size: 35px;
+    }
+    form {
+        .form-group {
+            margin-bottom: 25px;
+
+            label {
+                display: block;
+                margin-bottom: 12px;
+                font: {
+                    size: 15px;
+                    weight: 600;
+                };
+            }
+        }
+        .remember-me-wrap {
+            margin-bottom: 0;
+
+            .form-check {
+                margin-bottom: 0;
+                color: $black;
+    
+                .form-check-input {
+                    margin-top: .20em;
+                    box-shadow: unset !important;
+    
+                    &[type=checkbox] {
+                        border-radius: 0;
+                    }
+                    &:checked {
+                        background-color: $primary-color;
+                        border-color: $primary-color;
+                    }
+                    &:focus {
+                        border-color: $primary-color;
+                    }
+                }
+            }
+        }
+        .lost-your-password-wrap {
+            text-align: end;
+
+            a {
+                display: inline-block;
+                position: relative;
+                line-height: 1.5;
+
+                &::before {
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 1px;
+                    content: '';
+                    position: absolute;
+                    transition:0.5s;
+                    background-color: #eeeeee;
+                }
+                &::after {
+                    left: 0;
+                    width: 0;
+                    bottom: 0;
+                    height: 1px;
+                    content: '';
+                    position: absolute;
+                    transition:0.5s;
+                    background-color: $primary-color;
+                }
+                &:hover {
+                    &::before {
+                        width: 0;
+                    }
+                    &::after {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        button {
+            border: none;
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            background-color: $primary-color;
+            transition:0.5s;
+            border-radius: 5px;
+            padding: 14px 30px;
+            width: 100%;
+            font: {
+                size: 16px;
+                weight: 700;
+            };
+            &:hover {
+                background-color: $black;
+                color: white;
+            }
+        }
+    }
+}
+.register-form {
+    padding-left: 40px;
+    border-left: 1px solid #eeeeee;
+
+    h2 {
+        margin-bottom: 30px;
+        font-size: 35px;
+    }
+    form {
+        .form-group {
+            margin-bottom: 25px;
+
+            label {
+                display: block;
+                margin-bottom: 12px;
+                font: {
+                    size: 15px;
+                    weight: 600;
+                };
+            }
+        }
+        .description {
+            font: {
+                style: italic;
+                size: 14.5px;
+            };
+            margin: {
+                top: -10px;
+                bottom: 0;
+            };
+        }
+        button {
+            border: none;
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            background-color: $primary-color;
+            transition:0.5s;
+            border-radius: 5px;
+            padding: 14px 30px;
+            width: 100%;
+            font: {
+                size: 16px;
+                weight: 700;
+            };
+            &:hover {
+                background-color: $black;
+                color: white;
+            }
+        }
+    }
+}

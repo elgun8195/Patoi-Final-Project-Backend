@@ -1,0 +1,120 @@
+.ptb-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.terms-conditions-content {
+    h6 {
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+
+        &:not(:first-child) {
+            margin-top: 25px;
+        }
+    }
+    h5 {
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+
+        &:not(:first-child) {
+            margin-top: 25px;
+        }
+    }
+    h4 {
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+
+        &:not(:first-child) {
+            margin-top: 25px;
+        }
+    }
+    h3 {
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+
+        &:not(:first-child) {
+            margin-top: 25px;
+        }
+    }
+    h2 {
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+
+        &:not(:first-child) {
+            margin-top: 25px;
+        }
+    }
+    h1 {
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+
+        &:not(:first-child) {
+            margin-top: 25px;
+        }
+    }
+    strong {
+        color: $black !important;
+    }
+    p {
+        a {
+            color: $primary-color;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    ul {
+        li {
+            color: $secondary-color;
+            margin-bottom: 12px;
+
+            a {
+                color: $primary-color;
+    
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    ol {
+        li {
+            color: $secondary-color;
+            margin-bottom: 12px;
+
+            a {
+                color: $primary-color;
+    
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.single-team-member {
+    margin-bottom: 25px;
+    
+    img {
+        margin-bottom: 20px;
+    }
+    h3 {
+        margin-bottom: 8px;
+        font-size: 19px;
+    }
+    span {
+        color: $primary-color;
+        font: {
+            size: 15px;
+            weight: 600;
+        };
+    }
+}

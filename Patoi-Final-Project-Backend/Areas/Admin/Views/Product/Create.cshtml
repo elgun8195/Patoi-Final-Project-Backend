@@ -1,0 +1,73 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Create";
+    
+
+}
+
+<div class="container mt-5">
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.Photo">Image</label>
+            <input asp-for="@Model.Photo" accept="image/*"/>
+            <span asp-validation-for="@Model.Photo"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.Name">Name</label>
+            <input asp-for="@Model.Name"/>
+            <span asp-validation-for="@Model.Name"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.Price">Price</label>
+            <input asp-for="@Model.Price"/>
+            <span asp-validation-for="@Model.Price"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.Stock">Stock</label>
+            <input asp-for="@Model.Stock" />
+            <span asp-validation-for="@Model.Stock"></span>
+        </div>
+         <div class="form-group col-md-3">
+            <label asp-for="@Model.Desc">Description</label>
+            <input asp-for="@Model.Desc"/>
+            <span asp-validation-for="@Model.Desc"></span>
+        </div>
+
+         <div class="form-group col-md-3">
+            <label asp-for="@Model.IsHot">IsHot</label>
+            <input asp-for="@Model.IsHot"/>
+            <span asp-validation-for="@Model.IsHot"></span>
+        </div>
+           <div class="form-group col-md-3">
+            <label asp-for="@Model.OnSale">OnSale</label>
+            <input asp-for="@Model.OnSale"/>
+            <span asp-validation-for="@Model.OnSale"></span>
+        </div>
+
+         <div class="form-group col-md-3">
+            <label asp-for="@Model.IsNew">IsNew</label>
+            <input asp-for="@Model.IsNew"/>
+            <span asp-validation-for="@Model.IsNew"></span>
+        </div>
+
+
+          <div class="form-group col-md-3">
+            <label asp-for="@Model.TagId">Tags</label>
+            <select class="form-control" asp-for="@Model.TagId" asp-items="@(new SelectList(ViewBag.Tags,"Id","Name"))">
+            </select>
+        </div>
+
+
+
+
+         <div class="form-group col-md-3">
+            <label asp-for="@Model.CategoryIds">Categories</label>
+            <select class="form-control" asp-for="@Model.CategoryIds" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success mt-4">Create</button>
+    </form>
+
+
+</div>

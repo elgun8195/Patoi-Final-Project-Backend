@@ -1,0 +1,98 @@
+﻿@model Bio
+<main>
+    <section id="page-title">
+        <div class="page-title-area">
+            <div class="container">
+                <div class="page-title-content">
+                    <h1>Shop Grid</h1>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><i class="fa-solid fa-angle-right"></i> Contact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="contact-area pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="contact-form">
+                        <h3>Get In Touch</h3>
+                        <form id="contactForm" method="post" novalidate="true">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="form-group mb-3">
+                                        <label>Your Name</label>
+                                        <input type="text" name="name" class="form-control" id="name" required="" data-error="Please enter your name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="form-group mb-3">
+                                        <label>Email Address</label>
+                                        <input type="email" name="email" class="form-control" id="email" required="" data-error="Please enter your email">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="form-group mb-3">
+                                        <label>Phone Number</label>
+                                        <input type="text" name="phone_number" class="form-control" id="phone_number" required="" data-error="Please enter your phone number">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="form-group mb-3">
+                                        <label>Subject</label>
+                                        <input type="text" name="msg_subject" class="form-control" id="msg_subject" required="" data-error="Please enter your subject">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group mb-3">
+                                        <label>Message...</label>
+                                        <textarea name="message" id="message" class="form-control" cols="30" rows="4" required="" data-error="Please enter your message"></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="checkme">
+                                        <label class="form-check-label" for="checkme">
+                                            Accept <a href="terms-conditions.html">Terms of Services</a> and <a href="privacy-policy.html">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <button type="submit" class="default-btn disabled" style="pointer-events: all; cursor: pointer;"><span>Send Message</span></button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <ul>
+                            <li><span>Hotline:</span> <a href="tel:@Model.Hotline">@Model.Hotline</a></li>
+                            <li><span>Tech support:</span> <a href="tel:+1514312-5678">@Model.Support</a></li>
+                            <li><span>Email:</span> <a href="mailto:hello@patoi.com">@Model.Email</a></li>
+                            <li><span>Address:</span> @Model.Address</li>
+                            <li><span>Available:</span> Monday - Friday 8:00am - 8:00pm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="maps">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d280.4494094262254!2d45.293116050504736!3d41.11679857108116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbe50f29a0566237!2zNDHCsDA3JzAwLjQiTiA0NcKwMTcnMzQuNyJF!5e1!3m2!1sen!2s!4v1658772523356!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</main>

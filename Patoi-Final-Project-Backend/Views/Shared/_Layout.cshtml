@@ -1,0 +1,367 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Luckiest+Guy&family=Titillium+Web:wght@200&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/c.css" />
+    <link rel="stylesheet" href="~/css/sli.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/mmenu.min.css" />
+    <title>Patoi - Pet Care Shop</title>
+    <link rel="icon" type="image/png" href="~/images/favicon.png" />
+</head>
+
+<body>
+    @await Component.InvokeAsync("Header")
+    <!-- Search Area -->
+    <div class="search-overlay">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="search-overlay-layer"></div>
+                @*<div class="search-overlay-layer"></div>*@
+                @*<div class="search-overlay-layer"></div>*@
+                <div class="search-overlay-close">
+                    <span class="search-overlay-close-line"></span>
+                    <span class="search-overlay-close-line"></span>
+                </div>
+                <div class="search-overlay-form">
+                    <form>
+                        <input id="search-inputt" type="text"
+                               class="input-search"
+                               placeholder="Enter your keywords..." />
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                    <ul id="searchlistt">
+                    </ul>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Area -->
+    @RenderBody()
+    <!-- Footer Area -->
+    @await Component.InvokeAsync("Footer")
+
+    <!-- Footer Area -->
+    <div class="go-top"><i class="fa-solid fa-arrow-up"></i></div>
+    <div class="productsFilterModal modal right fade"
+         id="productsFilterModal"
+         tabindex="-1"
+         style="display: none"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="modal-body">
+                    <aside class="widget-area">
+                        <div class="widget widget_categories">
+                            <h3 class="widget-title"><span>Categories</span></h3>
+                            <ul>
+                                <li><a href="shop-right-sidebar.html">Business</a></li>
+                                <li><a asp-controller="privacy" asp-action="index">Privacy</a></li>
+                                <li><a href="shop-right-sidebar.html">Technology</a></li>
+                                <li><a href="shop-right-sidebar.html">Tips</a></li>
+                                <li><a href="shop-right-sidebar.html">Log in</a></li>
+                                <li><a href="shop-right-sidebar.html">Uncategorized</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget widget_price_filter">
+                            <h3 class="widget-title"><span>Filter by Price</span></h3>
+
+                            <div class="collection_filter_by_price">
+                                <div class="wrapper">
+
+                                    <div class="price-input">
+                                        <div class="field">
+                                            <span>Min</span>
+                                            <input type="number" class="input-min" value="2500">
+                                        </div>
+                                        <div class="separator">-</div>
+                                        <div class="field">
+                                            <span>Max</span>
+                                            <input type="number" class="input-max" value="7500">
+                                        </div>
+                                    </div>
+                                    <div class="slider">
+                                        <div class="progress"></div>
+                                    </div>
+                                    <div class="range-input">
+                                        <input type="range" class="range-min" min="0" max="10000" value="2500" step="1">
+                                        <input type="range" class="range-max" min="0" max="10000" value="7500" step="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget widget_patoi_posts_thumb">
+                            <h3 class="widget-title"><span>Our Best Sellers</span></h3>
+                            <article class="item">
+                                <a href="products-details.html" class="thumb">
+                                    <img src="./assets/images/products/products1.jpg"
+                                         alt="blog-image" />
+                                </a>
+                                <div class="info">
+                                    <h4 class="title">
+                                        <a href="products-details.html">Pet brash</a>
+                                    </h4>
+                                    <div class="star-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="price">$150.00</span>
+                                </div>
+                            </article>
+                            <article class="item">
+                                <a href="products-details.html" class="thumb">
+                                    <img src="./assets/images/products/products2.jpg"
+                                         alt="blog-image" />
+                                </a>
+                                <div class="info">
+                                    <h4 class="title">
+                                        <a href="products-details.html">Automatic dog blue leash</a>
+                                    </h4>
+                                    <div class="star-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="price">$150.00</span>
+                                </div>
+                            </article>
+                            <article class="item">
+                                <a href="products-details.html" class="thumb">
+                                    <img src="./assets/images/products/products3.jpg"
+                                         alt="blog-image" />
+                                </a>
+                                <div class="info">
+                                    <h4 class="title">
+                                        <a href="products-details.html">Cat toilet bowl</a>
+                                    </h4>
+                                    <div class="star-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="price">$150.00</span>
+                                </div>
+                            </article>
+                            <article class="item">
+                                <a href="products-details.html" class="thumb">
+                                    <img src="./assets/images/products/products4.jpg"
+                                         alt="blog-image" />
+                                </a>
+                                <div class="info">
+                                    <h4 class="title">
+                                        <a href="products-details.html">Bowl with rubber toy</a>
+                                    </h4>
+                                    <div class="star-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="price">$150.00</span>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="widget widget_tag_cloud">
+                            <h3 class="widget-title"><span>Tags</span></h3>
+                            <div class="tagcloud">
+                                <a href="shop-right-sidebar.html">Advertisment</a>
+                                <a href="shop-right-sidebar.html">Business</a>
+                                <a href="shop-right-sidebar.html">Life</a>
+                                <a href="shop-right-sidebar.html">Lifestyle</a>
+                                <a href="shop-right-sidebar.html">Fashion</a>
+                                <a href="shop-right-sidebar.html">Ads</a>
+                                <a href="shop-right-sidebar.html">Advertisment</a>
+                            </div>
+                        </div>
+                        <div class="widget widget_follow_us">
+                            <h3 class="widget-title"><span>Follow Us</span></h3>
+                            <ul>
+                                <li><a href="#" target="_blank">Facebook</a></li>
+                                <li><a href="#" target="_blank">Twitter</a></li>
+                                <li><a href="#" target="_blank">Instagram</a></li>
+                                <li><a href="#" target="_blank">Pinterest</a></li>
+                                <li><a href="#" target="_blank">Linkedin</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade productsQuickView" id="productsQuickView" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="image">
+                                <img src="./assets/images/products/products1.jpg" alt="image">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="content">
+                                <h3><a href="products-details.html">Pet Brash</a></h3>
+                                <div class="price">
+                                    <span class="new-price">$150.00</span>
+                                    <span class="old-price">$200.00</span>
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p>Nemo malesuada animi consectetur, cras consectetuer laborum tenetur, cum, lacus nemo imperdiet facilisis aute metus lorem.</p>
+                                <div class="products-add-to-cart">
+                                    <div class="input-counter">
+                                        <span class="minus-btn"><i class="fa-solid fa-minus"></i></span>
+                                        <input type="text" value="0" min="0">
+                                        <span class="plus-btn"><i class="fa-solid fa-plus"></i></span>
+                                    </div>
+                                    <button type="submit" class="default-btn"><span>Add to Cart</span></button>
+                                </div>
+                                <a href="wishlist.html" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
+                                <ul class="products-info">
+                                    <li><span>SKU:</span> 007</li>
+                                    <li><span>Categories:</span> <a href="shop-grid.html">Brash</a></li>
+                                    <li><span>Availability:</span> In stock (7 items)</li>
+                                    <li><span>Tag:</span> Accessories</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(".categories-slides").owlCarousel({
+            nav: true,
+            margin: 25,
+            loop: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            navText: [
+                "<i class='fa-solid fa-chevron-left'></i>",
+                "<i class='fa-solid fa-chevron-right'></i>",
+            ],
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                576: {
+                    items: 2,
+                },
+                768: {
+                    items: 3,
+                },
+                992: {
+                    items: 4,
+                },
+                1200: {
+                    items: 5,
+                },
+            },
+        });
+
+        $(".feedback-slides").owlCarousel({
+            items: 1,
+            nav: false,
+            margin: 25,
+            loop: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            navText: [
+                "<i class='fa-solid fa-chevron-left'></i>",
+                "<i class='fa-solid fa-chevron-right'></i>",
+            ],
+        });
+
+        $(".products-slides").owlCarousel({
+            nav: true,
+            margin: 25,
+            loop: true,
+            dots: false,
+            autoplay: true,
+            autoplayHoverPause: true,
+            navText: [
+                "<i class='fa-solid fa-chevron-left'></i>",
+                "<i class='fa-solid fa-chevron-right'></i>",
+            ],
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                576: {
+                    items: 2,
+                },
+                768: {
+                    items: 2,
+                },
+                992: {
+                    items: 4,
+                },
+                1200: {
+                    items: 4,
+                },
+            },
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+    <script src="~/js/app.js"></script>
+    <script src="~/js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loopcounter("counter-class");
+        });
+    </script>
+</body>
+</html>

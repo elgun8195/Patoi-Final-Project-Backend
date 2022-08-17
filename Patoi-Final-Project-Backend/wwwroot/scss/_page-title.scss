@@ -1,0 +1,56 @@
+.page-title-area {
+  a {
+    color: $black;
+  }
+  a:hover {
+    color: $primary-color;
+    transition: 0.5s;
+  }
+  z-index: 1;
+  position: relative;
+  background-image: url(../images/page-title.jpg);
+  background: {
+    color: #f9f9f9;
+    position: center center;
+    repeat: no-repeat;
+    size: cover;
+  }
+  padding: {
+    top: 130px;
+    bottom: 180px;
+  }
+ 
+}
+.page-title-content {
+  h1 {
+    margin-bottom: 12px;
+    font-size: 45px;
+    color: $black !important;
+    font-weight: 700;
+    font-family: "Fredoka One ", cursive;
+  }
+  ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+
+    li {
+      color: $primary-color;
+      display: inline-block;
+      position: relative;
+      margin-right: 20px;
+      font-weight: 500;
+
+      &:last-child {
+        margin-right: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+      a {
+        display: block;
+      }
+    }
+  }
+}

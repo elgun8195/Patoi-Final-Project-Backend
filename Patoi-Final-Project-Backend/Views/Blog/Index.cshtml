@@ -1,0 +1,86 @@
+﻿@model Pagination<Blog>
+@{
+    ViewData["Title"] = "Index";
+  
+}
+<main>
+
+    <section id="page-title">
+        <div class="page-title-area">
+            <div class="container">
+                <div class="page-title-content">
+                    <h1>Blog Grid</h1>
+                    <ul>
+                        <li><a asp-controller="home" asp-action="index">Home</a></li>
+                        <li><i class="fa-solid fa-angle-right"></i> Blog Grid</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Blog Area -->
+
+    <section id="blog-grid">
+        <div class="blog-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in Model.Items)
+                   {
+                       
+                   
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-blog-post">
+                            <div class="image">
+                                <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="d-block">
+                                    <img src="~/images/blog/@item.ImageUrl" alt="blog-image">
+                                </a>
+                            </div>
+                            <div class="content">
+                                    <span class="date"> <span>@item.Date.ToString("dd MMMM")</span> @item.Date.ToString("yyyy") </span>
+
+                                <a href="blog-grid.html" class="category">@item.Name</a>
+                                    <h3><a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id">@item.Desc</a></h3>
+                                <p>@item.Title</p>
+                            </div>
+                        </div>
+                    </div>
+                  }
+                    <div class="col-lg-12 col-md-12">
+                        <div class="pagination-area">
+                            <div class="nav-links d-flex">
+                                <a href="shop-grid.html"
+                                   class="previous page-numbers"
+                                   title="Next Page">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </a>
+
+                                @for (var i = 1; i <= Model.PageCount; i++)
+                                {
+
+                                    <a class="page-numbers  @(Model.CurrentPage==i? "current":"")" asp-controller="blog" asp-action="index" asp-route-pageSize="@i">@i</a>
+
+                                }
+
+
+
+                                <a href="shop-grid.html"
+                                   class="next page-numbers"
+                                   title="Next Page">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Area -->
+
+
+
+</main>

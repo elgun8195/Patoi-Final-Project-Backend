@@ -1,0 +1,56 @@
+﻿@model Bio
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary=ModelOnly> </div>
+            <div class="mb-3">
+                <input asp-for="BlackPhoto" class="form-control" accept="image/*">
+                <label asp-for="BlackPhoto" class="form-label">BlackPhoto</label>
+            </div>
+            <div class="mb-3">
+                <input asp-for="WhitePhoto" class="form-control" accept="image/*">
+                <label asp-for="WhitePhoto" class="form-label">WhitePhoto</label>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Instagram" class="form-label">Instagram</label>
+                <input asp-for="Instagram" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Facebook" class="form-label">Facebook</label>
+                <input asp-for="Facebook" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Twitter" class="form-label">Twitter</label>
+                <input asp-for="Twitter" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="YouTube" class="form-label">YouTube</label>
+                <input asp-for="YouTube" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Hotline" class="form-label">Hotline</label>
+                <input asp-for="Hotline" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Support" class="form-label">Support</label>
+                <input asp-for="Support" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Address" class="form-label">Address</label>
+                <input asp-for="Address" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+

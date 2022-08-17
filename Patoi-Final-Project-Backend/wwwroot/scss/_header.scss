@@ -1,0 +1,848 @@
+
+.top-header-area {
+  border-bottom: 1px solid #eeeeee;
+  padding: {
+      top: 12px;
+      bottom: 12px;
+  };
+  .search-box {
+      form {
+          position: relative;
+
+          .input-search {
+              background-color: #f9f9f9;
+              color: $black;
+              padding-left: 15px;
+              display: block;
+              height: 50px;
+              width: 100%;
+              border: 0;
+
+              &::placeholder {
+                  color: $secondary-color;
+                  transition: 0.5s;
+              }
+              &:focus {
+                  &::placeholder {
+                      color: transparent;
+                  }
+              }
+          }
+          button {
+              background-color: $primary-color;
+              transition: 0.5s;
+              color: #fff;
+              position: absolute;
+              line-height: 50px;
+              font-size: 20px;
+              height: 50px;
+              width: 50px;
+              padding: 0;
+              border: 0;
+              right: 0;
+              top: 0;
+
+              &:hover {
+                  background-color: $black;
+              }
+          }
+      }
+  }
+  ul {
+      list-style-type: none;
+      margin-bottom: 0;
+      padding-left: 0;
+      text-align: end;
+
+      li {
+          display: inline-block;
+          margin-right: 7px;
+
+          a {
+              display: block;
+              font-size: 20px;
+              color: $secondary-color;
+
+              &:hover {
+                  color: $primary-color;
+              }
+          }
+          &:last-child {
+              margin-right: 0;
+          }
+      }
+  }
+  &.white-color {
+      border-bottom: none;
+      background-color: #1b1c29;
+
+      p {
+          color: #fff;
+      }
+      ul {
+          li {
+              a {
+                  color: #fff;
+
+                  &:hover {
+                      color: $primary-color;
+                  }
+              }
+          }
+      }
+  }
+  .container-fluid {
+      max-width: 1360px;
+  }
+}
+
+/*navbar-area-css*/
+.navbar-area {
+  &.is-sticky {
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      position: fixed;
+      background-color: #fff !important;
+      box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
+      animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  }
+  &.white-color {
+      background-color: #2a2b39;
+
+      &.is-sticky {
+          background-color: #2a2b39 !important;
+      }
+      .patoi-nav {
+          .navbar {
+              .navbar-nav {
+                  .nav-item {
+                      a {
+                          color: #fff;
+                          
+                          &:hover, &.active {
+                              color: $primary-color;
+                          }
+                      }
+                      &:hover, &.active {
+                          a {
+                              color: $primary-color;
+                          }
+                      }
+                      .dropdown-menu {
+                          background-color: #2a2b39;
+      
+                          li {
+                              a {
+                                  color: #fff;
+                                  
+                                  &:hover {
+                                      color: $primary-color;
+                                  }
+                                  &.active {
+                                      color: $primary-color;
+                                  }
+                              }
+                              .dropdown-menu {
+                                  li {
+                                      a {
+                                          color: #fff;
+                                          
+                                          &:hover {
+                                              color: $primary-color;
+                                          }
+                                          &.active {
+                                              color: $primary-color;
+                                          }
+                                      }
+                                      .dropdown-menu {
+                                          li {
+                                              a {
+                                                  color: #fff;
+              
+                                                  &:hover {
+                                                      color: $primary-color;
+                                                  }
+                                                  &.active {
+                                                      color: $primary-color;
+                                                  }
+                                              }
+                                              .dropdown-menu {
+                                                  li {
+                                                      a {
+                                                          color: #fff;
+                      
+                                                          &:hover {
+                                                              color: $primary-color;
+                                                          }
+                                                          &.active {
+                                                              color: $primary-color;
+                                                          }
+                                                      }
+                                                      &.active {
+                                                          a {
+                                                              color: $primary-color;
+                                                          }
+                                                      }
+                                                  }
+                                              }
+                                              &.active {
+                                                  a {
+                                                      color: $primary-color;
+                                                  }
+                                              }
+                                          }
+                                      }
+                                      &.active {
+                                          a {
+                                              color: $primary-color;
+                                          }
+                                      }
+                                  }
+                              }
+                              &.active {
+                                  a {
+                                      color: $primary-color;
+                                      
+                                      &::before {
+                                          transform: scaleY(1);
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+              .others-option {
+                  ul {
+                      li {
+                          color: #fff;
+      
+                          .form-select {
+                              color: #fff;
+                          }
+                          .search-icon {
+                              color: #fff;
+      
+                              &:hover {
+                                  color: $primary-color;
+                              }
+                          }
+                          a {
+                              color: #fff;
+      
+                              &:hover {
+                                  color: $primary-color;
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+      .others-option-for-responsive {
+          .dot-menu {
+              .inner {
+                  .circle {
+                      background-color: #fff;
+                  }
+              }
+              &:hover {
+                  .inner {
+                      .circle {
+                          background-color: $primary-color;
+                      }
+                  }
+              }
+          }
+          .option-inner {
+              background-color: #2a2b39;
+      
+              .others-option {
+                  ul {
+                      li {
+                          color: #fff;
+
+                          .search-icon {
+                              color: #fff;
+      
+                              &:hover {
+                                  color: $primary-color;
+                              }
+                          }
+                          a {
+                              color: #fff;
+      
+                              &:hover {
+                                  color: $primary-color;
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
+.patoi-responsive-nav {
+  display: none;
+}
+.patoi-nav {
+  .container-fluid {
+      max-width: 1360px;
+  }
+  .navbar {
+      padding: 0;
+      position: inherit;
+
+      .navbar-brand {
+          font-size: inherit;
+          line-height: 1;
+          padding: 0;
+      }
+      ul {
+          padding-left: 0;
+          margin-bottom: 0;
+          list-style-type: none;
+      }
+      .navbar-nav {
+          position: relative;
+          margin: {
+              left: auto;
+              right: auto;
+          };
+          .nav-item {
+              position: relative;
+              margin: {
+                  left: 15px;
+                  right: 15px;
+              };
+              a {
+                  position: relative;
+                  color: $black;
+                  transition: 0.5s;
+                  font: {
+                      family: $main-font, cursive;
+                      size: 15px;
+                  };
+                  padding: {
+                      left: 0;
+                      right: 0;
+                      top: 30px;
+                      bottom: 30px;
+                  };
+                  &:hover, &.active {
+                      color: $primary-color;
+                  }
+              }
+              .dropdown-toggle {
+                  padding-right: 19px;
+
+                  &::after {
+                      display: none;
+                  }
+                
+              }
+              &:last-child {
+                  margin-right: 0;
+              }
+              &:first-child {
+                  margin-left: 0;
+              }
+              &:hover, &.active {
+                  a {
+                      color: $primary-color;
+                  }
+              }
+              .dropdown-menu {
+                  left: 0;
+                  top: 80px;
+                  opacity: 0;
+                  z-index: 99;
+                  border: none;
+                  width: 250px;
+                  margin-top: 0;
+                  display: block;
+                  padding: 10px 0;
+                  border-radius: 0;
+                  position: absolute;
+                  visibility: hidden;
+                  background: #fff;
+                  transition: all 0.2s ease-in-out;
+                  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+
+                  li {
+                      margin: 0;
+                      
+                      a {
+                          display: block;
+                          padding: 9px 20px;
+                          position: relative;
+                          color: $black;
+                          font: {
+                              family: $main-font, cursive;
+                              size: 14px;
+                          };
+                          &:hover {
+                              color: $primary-color;
+                          }
+                          &.active {
+                              color: $primary-color;
+                          }
+                      }
+                      .dropdown-toggle {
+                          padding-right: 15px;
+      
+                      }
+                      .dropdown-menu {
+                          top: 0;
+                          opacity: 0;
+                          left: auto;
+                          right: 250px;
+                          margin-top: 0;
+                          visibility: hidden;
+                          
+                          li {
+                              a {
+                                  color: $black;
+                                  
+                                  &:hover {
+                                      color: $primary-color;
+                                  }
+                                  &.active {
+                                      color: $primary-color;
+                                  }
+                              }
+                              .dropdown-menu {
+                                  top: 0;
+                                  opacity: 0;
+                                  right: 250px;
+                                  visibility: hidden;
+      
+                                  li {
+                                      a {
+                                          color: $black;
+      
+                                          &:hover {
+                                              color: $primary-color;
+                                          }
+                                          &.active {
+                                              color: $primary-color;
+                                          }
+                                      }
+                                      .dropdown-menu {
+                                          top: 0;
+                                          opacity: 0;
+                                          right: -250px;
+                                          visibility: hidden;
+              
+                                          li {
+                                              a {
+                                                  color: $black;
+              
+                                                  &:hover {
+                                                      color: $primary-color;
+                                                  }
+                                                  &.active {
+                                                      color: $primary-color;
+                                                  }
+                                              }
+                                              &.active {
+                                                  a {
+                                                      color: $primary-color;
+                                                  }
+                                              }
+                                              &:hover {
+                                                  .dropdown-menu {
+                                                      opacity: 1;
+                                                      visibility: visible;
+                                                  }
+                                              }
+                                          }
+                                      }
+                                      &.active {
+                                          a {
+                                              color: $primary-color;
+                                          }
+                                      }
+                                      &:hover {
+                                          .dropdown-menu {
+                                              opacity: 1;
+                                              visibility: visible;
+                                          }
+                                      }
+                                  }
+                              }
+                              &.active {
+                                  a {
+                                      color: $primary-color;
+                                  }
+                              }
+                              &:hover {
+                                  .dropdown-menu {
+                                      opacity: 1;
+                                      visibility: visible;
+                                  }
+                              }
+                          }
+                      }
+                      &.active {
+                          a {
+                              color: $primary-color;
+                              
+                              &::before {
+                                  transform: scaleY(1);
+                              }
+                          }
+                      }
+                      &:hover {
+                          .dropdown-menu {
+                              opacity: 1;
+                              margin-top: 0;
+                              visibility: visible;
+                          }
+                      }
+                  }
+              }
+              &:hover {
+                  .dropdown-menu {
+                      opacity: 1;
+                      visibility: visible;
+                  }
+              }
+          }
+      }
+      .others-option {
+          ul {
+              padding-left: 0;
+              margin-bottom: 0;
+              list-style-type: none;
+
+              li {
+                  display: inline-block;
+                  margin-right: 15px;
+
+                  .form-select {
+                      background-position: right 0 center;
+                      background-color: transparent;
+                      color: $black;
+                      padding: 0 15px 0 0;
+                      position: relative;
+                      box-shadow: unset;
+                      cursor: pointer;
+                      border: 0;
+                      top: -4px;
+                      font: {
+                          size: 13.5px;
+                          family: $main-font, cursive;
+                      };
+                  }
+                  .search-icon {
+                      line-height: 1;
+                      font-size: 20px;
+                      cursor: pointer;
+                      color: $black;
+                      transition: 0.5s;
+
+                      &:hover {
+                          color: $primary-color;
+                      }
+                  }
+                  a {
+                      display: block;
+                      line-height: 1;
+                      font-size: 22px;
+                      color: $black;
+
+                      &:hover {
+                          color: $primary-color;
+                      }
+                  }
+                  &:last-child {
+                      margin-right: 0;
+                  }
+              }
+          }
+      }
+  }
+}
+.others-option-for-responsive {
+  display: none;
+
+  .dot-menu {
+      top: -42px;
+      right: 55px;
+      height: 30px;
+      z-index: 999;
+      padding: 0 10px;
+      cursor: pointer;
+      position: absolute;
+
+      .inner {
+          align-items: center;
+          display: flex;
+          height: 30px;
+
+          .circle {
+              width: 5px;
+              height: 5px;
+              margin: 0 2px;
+              border-radius: 100%;
+              transition: 0.5s;
+              background-color: $black;
+          }
+      }
+      &:hover {
+          .inner {
+              .circle {
+                  background-color: $primary-color;
+              }
+          }
+      }
+  }
+  .container {
+      position: relative;
+
+      .container {
+          right: 0;
+          top: 15px;
+          opacity: 0;
+          z-index: 2;
+          max-width: 300px;
+          margin-left: auto;
+          visibility: hidden;
+          position: absolute;
+          transform: scaleX(0);
+          transition: 0.5s;
+          padding: {
+              left: 15px;
+              right: 15px;
+          };
+          &.active {
+              opacity: 1;
+              visibility: visible;
+              transform: scaleX(1);
+          }
+      }
+  }
+  .option-inner {
+      padding: 15px 20px;
+      text-align: center;
+      background-color: #fff;
+      box-shadow: 0 15px 40px rgba(0,0,0,.09);
+
+      .others-option {
+          ul {
+              padding-left: 0;
+              margin-bottom: 0;
+              list-style-type: none;
+
+              li {
+                  display: inline-block;
+                  margin: {
+                      left: 10px;
+                      right: 10px;
+                  };
+                  .form-select {
+                      background-position: right 0 center;
+                      background-color: transparent;
+                      color: $black;
+                      padding: 0 15px 0 0;
+                      position: relative;
+                      box-shadow: unset;
+                      cursor: pointer;
+                      border: 0;
+                      top: -4px;
+                      font: {
+                          size: 13.5px;
+                          family: $main-font, cursive;
+                      };
+                  }
+                  .search-icon {
+                      line-height: 1;
+                      font-size: 20px;
+                      cursor: pointer;
+                      color: $black;
+                      transition: 0.5s;
+
+                      &:hover {
+                          color: $primary-color;
+                      }
+                  }
+                  a {
+                      display: block;
+                      line-height: 1;
+                      font-size: 22px;
+                      color: $black;
+
+                      &:hover {
+                          color: $primary-color;
+                      }
+                  }
+                  &:last-child {
+                      margin-right: 0;
+                  }
+                  &:first-child {
+                      margin-left: 0;
+                  }
+              }
+          }
+      }
+  }
+}
+
+/*search-overlay-css*/
+.search-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 99999;
+  position: fixed;
+  overflow: hidden;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+
+  .search-overlay-layer {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      position: absolute;
+      transform: translateX(100%);
+
+      &:nth-child(1) {
+          left: 0;
+          transition: all 0.3s ease-in-out 0s;
+          background-color: rgba(0, 0, 0, 0.5);
+      }
+      &:nth-child(2) {
+          left: 0;
+          transition: all 0.3s ease-in-out 0.3s;
+          background-color: rgba(0, 0, 0, 0.4);
+      }
+      &:nth-child(3) {
+          left: 0;
+          transition: all 0.9s ease-in-out 0.6s;
+          background-color: rgba(0, 0, 0, 0.7);
+      }
+  }
+  .search-overlay-close {
+      top: 40px;
+      right: 40px;
+      width: 50px;
+      z-index: 2;
+      opacity: 0;
+      padding: 10px;
+      cursor: pointer;
+      text-align: center;
+      visibility: hidden;
+      position: absolute;
+      transition: all 0.9s ease-in-out 1.5s;
+
+      .search-overlay-close-line {
+          width: 100%;
+          height: 3px;
+          float: left;
+          margin-bottom: 5px;
+          transition: all 500ms ease;
+          background-color: #fff;
+
+          &:nth-child(1) {
+              transform: rotate(45deg);
+          }
+          &:nth-child(2) {
+              margin-top: -7px;
+              transform: rotate(-45deg);
+          }
+      }
+      &:hover {
+          .search-overlay-close-line {
+              background: red;
+              transform: rotate(180deg);
+          }
+      }
+  }
+  .search-overlay-form {
+      transform: translateY(-50%) translateX(-50%);
+      transition: all 0.9s ease-in-out 1.4s;
+      visibility: hidden;
+      position: absolute;
+      max-width: 600px;
+      width: 600px;
+      opacity: 0;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+
+      form {
+          position: relative;
+
+          .input-search {
+              padding: 0;
+              width: 100%;
+              height: 70px;
+              border: none;
+              display: block;
+              color: #fff;
+              background-color: transparent;
+              transition: 0.5s;
+              border-bottom: 1px solid rgba(255, 255, 255, .40);
+              font-size: 20px;
+              
+              &::placeholder {
+                  transition: 0.5s;
+                  color: #fff;
+              }
+              &:focus {
+                  border-color: #fff;
+
+                  &::placeholder {
+                      color: transparent;
+                  }
+              }
+          }
+          button {
+              right: 0;
+              top: 13px;
+              border: none;
+              opacity: 0.7;
+              font-size: 25px;
+              position: absolute;
+              color: #fff;
+              transition: 0.5s;
+              background-color: transparent;
+
+              &:hover {
+                  opacity: 1;
+              }
+          }
+      }
+  }
+  &.search-overlay-active {
+      &.search-overlay {
+          opacity: 1;
+          visibility: visible;
+  
+          .search-overlay-layer {
+              transform: translateX(0);
+          }
+          .search-overlay-close {
+              opacity: 1;
+              visibility: visible;
+          }
+          .search-overlay-form {
+              opacity: 1;
+              visibility: visible;
+          }
+      }
+  }
+}
+
+ 
+
+ 
+ 
+
