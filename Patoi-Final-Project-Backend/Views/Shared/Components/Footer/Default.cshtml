@@ -52,9 +52,25 @@
                 <div class="single-footer-widget">
                     <h3>Customer service</h3>
                     <ul class="custom-links">
-                        <li>
-                            <a href="profile-authentication.html"><i class="fa-solid fa-angle-right"></i> My Account</a>
-                        </li>
+
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li>
+
+                                <a asp-controller="account" asp-action="login"><i class="fa-solid fa-angle-right"></i> Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+
+                                <a asp-controller="account" asp-action="logout"><i class="fa-solid fa-angle-right"></i> Log Out</a>
+                            </li>
+                        }
+
+
+
                         <li>
                             <a asp-controller="faq" asp-action="index"><i class="fa-solid fa-angle-right"></i> FAQ's</a>
                         </li>
@@ -129,7 +145,7 @@
     <div class="copyright-area">
         <div class="container">
             <p>
-                Copyright 2022 <span>Patoi</span>. Design &amp; Developed by
+                Copyright @DateTime.Now.ToString("yyyy") <span>Patoi</span>. Design &amp; Developed by
                 <a href="https://www.instagram.com/gocayef.f/">Elgun</a>
             </p>
         </div>

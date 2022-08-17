@@ -207,3 +207,5 @@ C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\bin\
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Wish\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Basket\Index.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs

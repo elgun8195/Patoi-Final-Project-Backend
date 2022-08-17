@@ -43,12 +43,13 @@
                     <div class="col-lg-6 col-md-6 ordering">
                         <div class="select-box">
                             <label>Sort By:</label>
-                            <select>
-                                <option>Default</option>
-                                <option>Popularity</option>
-                                <option>Latest</option>
-                                <option>Price: low to high</option>
-                                <option>Price: high to low</option>
+                            <p class="d-none" id="getvalue">@ViewBag.id</p>
+                            <select name="" id="select">
+                                <option value="1">Default</option>
+                                <option value="5">Low to high</option>
+                                <option value="4">High to low</option>
+                                <option value="3">A to Z</option>
+                                <option value="2">Z to A</option>
                             </select>
                         </div>
                     </div>

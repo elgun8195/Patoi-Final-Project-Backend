@@ -72,9 +72,20 @@
                                     <li class="nav-item">
                                         <a asp-controller="order" asp-action="index" class="nav-link">Order Tracking</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="profile-authentication.html" class="nav-link">My Account</a>
-                                    </li>
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="nav-item">
+
+                                            <a asp-controller="account" asp-action="login" class="nav-link">Login</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item">
+
+                                            <a asp-controller="account" asp-action="logout" class="nav-link">Log Out</a>
+                                        </li>
+                                    }
                                     <li class="nav-item">
                                         <a asp-controller="faq" asp-action="index" class="nav-link">FAQ</a>
                                     </li>

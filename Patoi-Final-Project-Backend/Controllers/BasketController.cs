@@ -44,7 +44,6 @@ namespace Patoi_Final_Project_Backend.Controllers
             if (existBasketproduct == null)
             {
                 BasketProduct basketProduct = new BasketProduct();
-
                 basketProduct.Id = dbProdudct.Id;
                 basketProduct.Name = dbProdudct.Name;
                 basketProduct.Count = 1;

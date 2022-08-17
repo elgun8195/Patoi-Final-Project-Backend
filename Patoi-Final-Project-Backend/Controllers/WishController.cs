@@ -70,7 +70,7 @@ namespace Patoi_Final_Project_Backend.Controllers
 
             Response.Cookies.Append("wish", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(60) });
 
-            return RedirectToAction("Index", "Shop");
+            return RedirectToAction(nameof(Index));
 
         }
 
@@ -117,7 +117,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             if (existProduct == null) return NotFound();
             products.Remove(existProduct);
             Response.Cookies.Append("wish", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(60) });
-            return RedirectToAction(nameof(wish));
+            return RedirectToAction(nameof(Index));
         }
 
 

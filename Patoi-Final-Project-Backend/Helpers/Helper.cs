@@ -29,4 +29,8 @@ namespace Patoi_Final_Project_Backend.Helpers
 
         }
     }
+    public enum Roless
+    {
+        Admin, Member, SuperAdmin
+    }
 }
