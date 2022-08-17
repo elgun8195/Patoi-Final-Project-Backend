@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Patoi_Final_Project_Backend.DAL;
-
+using System;
 
 namespace Patoi_Final_Project_Backend
 {
@@ -25,7 +25,10 @@ namespace Patoi_Final_Project_Backend
             {
                 option.UseSqlServer(connectionString);
             });
-
+            services.AddSession(opt =>
+            {
+                opt.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
             services.AddControllersWithViews();
         }
 

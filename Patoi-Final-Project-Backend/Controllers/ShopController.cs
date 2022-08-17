@@ -25,7 +25,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             ViewBag.Tags = _context.Tags.ToList();
 
             List<Product> products = _context.Products.Skip((pagesize - 1) * take).Take(take).ToList();
-            ViewBag.Pcount=products.Count;
+            ViewBag.Pcount= _context.Products.Count();
             Pagination<Product> pagination = new Pagination<Product>(
 
                ReturnPageCount(take), pagesize, products);

@@ -185,7 +185,6 @@ C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Privacy\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Terms\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Check\Index.cshtml.g.cs
-C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Team\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Team\Create.cshtml.g.cs
@@ -201,3 +200,9 @@ C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Blogr\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Search.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Shopr\Index.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Basket\Basket.cshtml.g.cs

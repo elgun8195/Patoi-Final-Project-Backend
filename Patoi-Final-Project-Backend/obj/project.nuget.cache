@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "rgcYt6zl0zvpK7NRMEsG7qnwQNe6uoClTxjNgwsPut0y9aTtmp+ZWNXVgdnd51PCIruUa7flWFgBusCdM+/npw==",
+  "dgSpecHash": "15azmAUvfRpo2+1gVV2LVS9qanUQsmDaiRYTLH6RGuLhiD+IFQaeTkhOiVicMudzXcsjImsNVzIFL4QV7pVhrg==",
   "success": true,
   "projectFilePath": "C:\\Users\\hp\\Desktop\\Patoi-Final-Project-Backend\\Patoi-Final-Project-Backend\\Patoi-Final-Project-Backend.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.28\\microsoft.aspnetcore.cryptography.internal.3.1.28.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.28\\microsoft.aspnetcore.cryptography.keyderivation.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.28\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.razor.runtime\\2.2.0\\microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",
@@ -32,6 +35,8 @@
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.28\\microsoft.extensions.configuration.binder.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.28\\microsoft.extensions.dependencyinjection.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.28\\microsoft.extensions.dependencyinjection.abstractions.3.1.28.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.28\\microsoft.extensions.identity.core.3.1.28.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.28\\microsoft.extensions.identity.stores.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.logging\\3.1.28\\microsoft.extensions.logging.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.28\\microsoft.extensions.logging.abstractions.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.options\\3.1.28\\microsoft.extensions.options.3.1.28.nupkg.sha512",
