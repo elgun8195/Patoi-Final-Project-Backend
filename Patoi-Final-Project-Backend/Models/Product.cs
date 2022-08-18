@@ -20,7 +20,7 @@ namespace Patoi_Final_Project_Backend.Models
         [NotMapped]
         public IFormFile Photo { get; set; }
         public List<ProductCategories> ProductCategories { get; set; }
-
+        public List<BasketItem> BasketItems { get; set; }
         [NotMapped]
         public List<int> CategoryIds { get; set; }
         [NotMapped]

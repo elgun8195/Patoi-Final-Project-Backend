@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Patoi_Final_Project_Backend.DAL;
 using Patoi_Final_Project_Backend.Models;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class TagController : Controller
     {
         private readonly AppDbContext _context;

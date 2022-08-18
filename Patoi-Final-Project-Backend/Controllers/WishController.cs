@@ -8,9 +8,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Patoi_Final_Project_Backend.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin,Member")]
+
     public class WishController : Controller
     {
         private AppDbContext _context;

@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Patoi_Final_Project_Backend.DAL;
 using Patoi_Final_Project_Backend.Extensions;
 using Patoi_Final_Project_Backend.Helpers;
 using Patoi_Final_Project_Backend.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class OfferController : Controller
     {
         private readonly AppDbContext _context;

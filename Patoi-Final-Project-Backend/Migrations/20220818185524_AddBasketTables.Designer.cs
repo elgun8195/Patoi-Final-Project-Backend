@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Patoi_Final_Project_Backend.DAL;
 
 namespace Patoi_Final_Project_Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220818185524_AddBasketTables")]
+    partial class AddBasketTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,9 +232,7 @@ namespace Patoi_Final_Project_Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Baskets");
                 });
@@ -556,8 +556,8 @@ namespace Patoi_Final_Project_Backend.Migrations
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Basket", b =>
                 {
                     b.HasOne("Patoi_Final_Project_Backend.Models.AppUser", "User")
-                        .WithOne("Basket")
-                        .HasForeignKey("Patoi_Final_Project_Backend.Models.Basket", "UserId");
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.BasketItem", b =>
@@ -569,7 +569,7 @@ namespace Patoi_Final_Project_Backend.Migrations
                         .IsRequired();
 
                     b.HasOne("Patoi_Final_Project_Backend.Models.Product", "Product")
-                        .WithMany("BasketItems")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

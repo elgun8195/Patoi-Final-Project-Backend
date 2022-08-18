@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<BasketProduct>
 <main>
     <section id="page-title">
         <div class="page-title-area">
@@ -22,7 +22,7 @@
                     <a href="profile-authentication.html">Click here to login</a>
                 </span>
             </div>
-            <form>
+            <form method="post">
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="billing-details">
@@ -212,38 +212,16 @@
                             <div class="order-table table-responsive">
                                 <table class="table table-bordered">
                                     <tbody>
+                                        @foreach (var item in Model)
+                                       {   
                                         <tr>
                                             <td class="product-name">
-                                                <a href="products-details.html">Pet chair</a>
+                                                <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a>
                                             </td>
                                             <td class="product-total">
-                                                <span class="subtotal-amount">$250.00</span>
+                                                <span class="subtotal-amount">$@item.Price</span>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-name">
-                                                <a href="products-details.html">Pink ceramic cat bowl</a>
-                                            </td>
-                                            <td class="product-total">
-                                                <span class="subtotal-amount">$200.00</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-name">
-                                                <a href="products-details.html">Pet carrier</a>
-                                            </td>
-                                            <td class="product-total">
-                                                <span class="subtotal-amount">$200.00</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-name">
-                                                <a href="products-details.html">Red dog bed</a>
-                                            </td>
-                                            <td class="product-total">
-                                                <span class="subtotal-amount">$150.00</span>
-                                            </td>
-                                        </tr>
+                                        </tr> }
                                         <tr>
                                             <td class="order-subtotal">
                                                 <span>Cart Subtotal</span>

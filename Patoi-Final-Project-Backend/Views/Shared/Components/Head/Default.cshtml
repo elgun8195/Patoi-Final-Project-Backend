@@ -166,11 +166,23 @@
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </div>
                                     </li>
-                                    <li>
-                                        <a href="profile-authentication.html">
-                                            <i class="fa-solid fa-circle-user"></i>
-                                        </a>
-                                    </li>
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+
+                                        <li>
+                                            <a asp-controller="account" asp-action="login">
+                                                <i class="fa-solid fa-circle-user"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-controller="account" asp-action="logout">
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                            </a>
+                                        </li>
+                                    }
                                     <li class="mean-last">
                                         <a asp-controller="basket" asp-action="Index">
                                             <i class="fa-solid fa-cart-shopping"></i>
