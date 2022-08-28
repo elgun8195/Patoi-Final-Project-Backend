@@ -25,22 +25,44 @@ $(document).ready(function () {
         })
     })
 
-   
+    const update = document.getElementById("update");
+    update.addEventListener("click", function () {
+
+
+        const prices = document.querySelectorAll("#total-price");
+        const cem = document.getElementById("cem");
+        const shipping = document.getElementById("shipping");
+        const final = document.getElementById("final");
+
+        var sum = 0;
+        prices.forEach(
+            (x) =>
+                // console.log(parseInt(x.textContent.substring(1)))
+                (sum += parseInt(x.textContent.substring(1)))
+        );
+        cem.innerHTML = "$" + sum;
+        let faiz = (sum * 7) / 100;
+        shipping.innerHTML = "$" + faiz;
+        final.innerHTML = "$" + (sum + faiz);
+    });
 
 
 });
-const prices = document.querySelectorAll("#total-price");
-const cem = document.getElementById("cem");
-const shipping = document.getElementById("shipping");
-const final = document.getElementById("final");
 
-var sum = 0;
-prices.forEach(
+
+
+const price = document.querySelectorAll("#total-pric");
+const ce = document.getElementById("ce");
+const shippin = document.getElementById("shippin");
+const fina = document.getElementById("fina");
+
+var su = 0;
+price.forEach(
     (x) =>
-        // console.log(parseInt(x.textContent.substring(1)))
-        (sum += parseInt(x.textContent.substring(1)))
+         //console.log(parseInt(x.textContent.substring(1)))
+       (su += parseInt(x.textContent))
 );
-cem.innerHTML = "$" + sum;
-let faiz = (sum * 7) / 100;
-shipping.innerHTML = "$" + faiz;
-final.innerHTML = "$" + (sum + faiz);
+ce.innerHTML = "$" + su;
+let fai = (su * 7) / 100;
+shippin.innerHTML = "$" + fai;
+fina.innerHTML = "$" + (su + fai);

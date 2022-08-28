@@ -30,10 +30,14 @@
                             <div class="form-group">
                                 <label asp-for="@Model.Email">Email</label>
                                 <input asp-for="@Model.Email" class="form-control" placeholder="Email">
+                                <span class="text text-danger" asp-validation-for="Email"></span>
+
                             </div>
                             <div class="form-group">
                                 <label asp-for="@Model.Password">Password</label>
                                 <input asp-for="@Model.Password" class="form-control" placeholder="Password">
+                                <span class="text text-danger" asp-validation-for="Password"></span>
+
                             </div> 
                             <div class="row align-items-center">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 remember-me-wrap">

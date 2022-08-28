@@ -404,15 +404,16 @@
                 <aside class="widget-area">
                     <div class="widget widget_categories">
                         <h3 class="widget-title"><span>Categories</span></h3>
-                        <ul class="category">
-                          @*  @foreach (var item in ViewBag.Category)
+                        <ul class="categorys">
+                            <li><a href="" data-id="all">All</a></li>
+                            @foreach (var item in ViewBag.Category)
                            {
 
                                 <li><a href="" data-id="@item.Name.ToLower()">@item.Name</a></li>
-                           }*@
+                           }
                         </ul>
                     </div>
-                    <div class="widget widget_price_filter">
+                   @* <div class="widget widget_price_filter">
                         <h3 class="widget-title"><span>Filter by Price</span></h3>
 
                         <div class="collection_filter_by_price">
@@ -438,17 +439,20 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="widget widget_patoi_posts_thumb">
                         <h3 class="widget-title"><span>Our Best Sellers</span></h3>
+                        @foreach (var item in ViewBag.Poroducts)
+                        {
+                           
                         <article class="item">
                             <a href="products-details.html" class="thumb">
-                                <img src="./assets/images/products/products1.jpg"
+                                <img src="~/images/products/@item.Image"
                                      alt="blog-image" />
                             </a>
                             <div class="info">
                                 <h4 class="title">
-                                    <a href="products-details.html">Pet brash</a>
+                                    <a href="products-details.html">@item.Name</a>
                                 </h4>
                                 <div class="star-rating">
                                     <i class="fa-solid fa-star"></i>
@@ -457,87 +461,30 @@
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
                                 </div>
-                                <span class="price">$150.00</span>
+                                <span class="price">$@item.Price</span>
                             </div>
                         </article>
-                        <article class="item">
-                            <a href="products-details.html" class="thumb">
-                                <img src="./assets/images/products/products2.jpg"
-                                     alt="blog-image" />
-                            </a>
-                            <div class="info">
-                                <h4 class="title">
-                                    <a href="products-details.html">Automatic dog blue leash</a>
-                                </h4>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <span class="price">$150.00</span>
-                            </div>
-                        </article>
-                        <article class="item">
-                            <a href="products-details.html" class="thumb">
-                                <img src="./assets/images/products/products3.jpg"
-                                     alt="blog-image" />
-                            </a>
-                            <div class="info">
-                                <h4 class="title">
-                                    <a href="products-details.html">Cat toilet bowl</a>
-                                </h4>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <span class="price">$150.00</span>
-                            </div>
-                        </article>
-                        <article class="item">
-                            <a href="products-details.html" class="thumb">
-                                <img src="./assets/images/products/products4.jpg"
-                                     alt="blog-image" />
-                            </a>
-                            <div class="info">
-                                <h4 class="title">
-                                    <a href="products-details.html">Bowl with rubber toy</a>
-                                </h4>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <span class="price">$150.00</span>
-                            </div>
-                        </article>
+                       }
+                   
                     </div>
                     <div class="widget widget_tag_cloud">
                         <h3 class="widget-title"><span>Tags</span></h3>
                         <div class="tagcloud">
-                            <a href="shop-right-sidebar.html">Advertisment</a>
-                            <a href="shop-right-sidebar.html">Business</a>
-                            <a href="shop-right-sidebar.html">Life</a>
-                            <a href="shop-right-sidebar.html">Lifestyle</a>
-                            <a href="shop-right-sidebar.html">Fashion</a>
-                            <a href="shop-right-sidebar.html">Ads</a>
-                            <a href="shop-right-sidebar.html">Advertisment</a>
+                            @foreach (var item in ViewBag.Tags)
+                                            {
+                               
+                            <a href="shop-right-sidebar.html">@item.Name</a>
+                           }
                         </div>
                     </div>
                     <div class="widget widget_follow_us">
                         <h3 class="widget-title"><span>Follow Us</span></h3>
                         <ul>
-                            <li><a href="#" target="_blank">Facebook</a></li>
-                            <li><a href="#" target="_blank">Twitter</a></li>
-                            <li><a href="#" target="_blank">Instagram</a></li>
-                            <li><a href="#" target="_blank">Pinterest</a></li>
-                            <li><a href="#" target="_blank">Linkedin</a></li>
+                            <li><a href="@Model.Facebook" target="_blank">Facebook</a></li>
+                            <li><a href="@Model.Twitter" target="_blank">Twitter</a></li>
+                            <li><a href="@Model.Instagram" target="_blank">Instagram</a></li>
+                            <li><a href="@Model.Facebook" target="_blank">Pinterest</a></li>
+                            <li><a href="@Model.Facebook" target="_blank">Linkedin</a></li>
                         </ul>
                     </div>
                 </aside>

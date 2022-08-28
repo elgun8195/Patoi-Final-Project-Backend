@@ -41,8 +41,7 @@ namespace Patoi_Final_Project_Backend.Controllers
                     Id = dbProduct.Id,
                     Price = dbProduct.Price,
                     Name = dbProduct.Name,
-                    //Image = dbProduct.Image,
-                    //Count = item.Count
+                    Count=item.Count
 
                 };
 

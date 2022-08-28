@@ -120,10 +120,11 @@ $(document).ready(function () {
                 $(this).parent().hide();
             }
         })
-        //if (category == 'all') {
-        //    products.parent().fadeIn();
-        //}
+        if (category == 'all') {
+            products.parent().fadeIn();
+        }
     })
+   
 });
 
 //price range

@@ -85,7 +85,17 @@ namespace Patoi_Final_Project_Backend.Controllers
                 return View(loginVM);
             }
             SignInResult result = await _signInManager.PasswordSignInAsync(dbUser, loginVM.Password, loginVM.RememerMe, true);
+            if (!result.Succeeded)
+            {
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError("", "Your account is blocked because you write wrong password or username.You try after 5 minutes");
+                    return View();
+                }
+                ModelState.AddModelError("", "Username or password is incorrect");
+                return View();
 
+            }
 
             if (result.IsLockedOut)
             {
@@ -93,11 +103,12 @@ namespace Patoi_Final_Project_Backend.Controllers
                 return View(loginVM);
             }
 
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError("", "Ya Email ya da Password sehvdir");
-                return View(loginVM);
-            }
+            //if (!result.Succeeded)
+            //{
+            //    ModelState.AddModelError("", "Ya Email ya da Password sehvdir");
+            //    return View(loginVM);
+            //}
+
             if (returnurl == null)
             {
                 return RedirectToAction("index", "home");

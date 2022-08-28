@@ -30,22 +30,31 @@
                             <div class="form-group">
                                 <label asp-for="@Model.Fullname">Fullname</label>
                                 <input asp-for="@Model.Fullname" class="form-control" placeholder="Fullname">
+                                <span class="text-danger text" asp-validation-for="Fullname"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="@Model.Username">Username</label>
                                 <input asp-for="@Model.Username" class="form-control" placeholder="Username">
+                                <span class="text-danger text" asp-validation-for="Username"></span>
+
                             </div>
                             <div class="form-group">
                                 <label asp-for="@Model.Email">Email</label>
                                 <input asp-for="@Model.Email" class="form-control" placeholder="Email">
+                                <span class="text-danger text" asp-validation-for="Email"></span>
+
                             </div>
                             <div class="form-group">
                                 <label asp-for="@Model.Password">Password</label>
                                 <input asp-for="@Model.Password" class="form-control" placeholder="Password">
+                                <span class="text-danger text" asp-validation-for="Password"></span>
+
                             </div>
                             <div class="form-group">
                                 <label asp-for="@Model.CheckPassword">CheckPassword</label>
                                 <input asp-for="@Model.CheckPassword" class="form-control" placeholder="CheckPassword">
+                                <span class="text-danger text" asp-validation-for="CheckPassword"></span>
+
                             </div>
                             <p class="description">The password should be at least eight characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp; )</p>
                             <p class="description"> Already have an account? <a asp-controller="account" asp-action="login" class="text-primary">Login</a></p>

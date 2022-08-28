@@ -64,7 +64,7 @@ namespace Patoi_Final_Project_Backend
             {
                 endpoints.MapControllerRoute(
                      "areas",
-                     "{area:exists}/{controller=dashboard}/{action=Index}/{id?}");
+                     "{area:exists}/{controller=product}/{action=Index}/{id?}");
                 endpoints.MapDefaultControllerRoute();
 
             });

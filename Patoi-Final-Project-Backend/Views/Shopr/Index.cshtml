@@ -1,7 +1,8 @@
 ﻿@model Pagination<Product>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = (Model.CurrentPage - 1) * 8;
 }
 
 <main>
@@ -81,9 +82,12 @@
                             <div class="pagination-area">
                                 <div class="nav-links">
                                     <a href="shop-right-sidebar.html" class="previous page-numbers" title="Next Page"><i class="fa-solid fa-chevron-left"></i></a>
-                                    <span class="page-numbers current">1</span>
-                                    <a href="shop-right-sidebar.html" class="page-numbers">2</a>
-                                    <a href="shop-right-sidebar.html" class="page-numbers">3</a>
+                                    @for (var i = 1; i <= Model.PageCount; i++)
+                                    {
+
+                                        <a class="page-numbers  @(Model.CurrentPage==i? "current":"")" asp-controller="shopr" asp-action="index" asp-route-pageSize="@i">@i</a>
+
+                                    }
                                     <a href="shop-right-sidebar.html" class="next page-numbers" title="Next Page"><i class="fa-solid fa-chevron-right"></i></a>
                                 </div>
                             </div>

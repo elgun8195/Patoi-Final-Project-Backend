@@ -53,18 +53,16 @@
                             </select>
                         </div>
                     </div>
-                </div><ul class="categorys">
-                @foreach (var item in ViewBag.Category)
-                {
-
-                    <li><a href="" data-id="@item.Name.ToLower()">@item.Name</a></li>
-                }</ul>
+                </div>
                 <div class="row justify-content-center">
                     @foreach (var item in Model.Items)
                     {
 
                         <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="product-box" data-id="cat-toys">
+                            <div class="product-box" data-id="@foreach (var ite in item.ProductCategories)
+                                    {
+                                        @ite.Category.Name.ToLower()
+                                    }">
                                 <div class="image">
                                     <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
                                         <img src="~/images/products/@item.Image"
@@ -176,7 +174,7 @@
                                 <li><a asp-controller="blogr" asp-action="index">Uncategorized</a></li>
                             </ul>
                         </div>
-                        <div class="widget widget_price_filter">
+                       @* <div class="widget widget_price_filter">
                             <h3 class="widget-title"><span>Filter by Price</span></h3>
 
                             <div class="collection_filter_by_price">
@@ -202,7 +200,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="widget widget_patoi_posts_thumb">
                             <h3 class="widget-title"><span>Our Best Sellers</span></h3>
                             @foreach (var item in Model.Items.Take(4))

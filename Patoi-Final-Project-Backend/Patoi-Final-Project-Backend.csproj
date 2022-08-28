@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20220815182902_AddTeamAndUserTable.cs" />
     <Compile Remove="Migrations\20220815182902_AddTeamAndUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20220828140942_AddCategory.cs" />
+    <Compile Remove="Migrations\20220828140942_AddCategory.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

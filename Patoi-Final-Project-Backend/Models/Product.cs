@@ -26,6 +26,6 @@ namespace Patoi_Final_Project_Backend.Models
         [NotMapped]
         public List<int> TagIds { get; set; }
 
-        
+
     }
 }

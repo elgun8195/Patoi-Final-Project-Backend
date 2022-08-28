@@ -97,8 +97,8 @@
                         <p>
                             @ViewBag.Product.Desc
                         </p>
-                        <div class="products-add-to-cart">
-                            <div class="input-counter">
+                       
+                          @*  <div class="input-counter">
                                 <span class="minus-btn">
                                     <i class="fa-solid fa-minus"></i>
                                 </span>
@@ -106,11 +106,9 @@
                                 <span class="plus-btn">
                                     <i class="fa-solid fa-plus"></i>
                                 </span>
-                            </div>
-                            <button type="submit" class="default-btn">
-                                <span>Add to Cart</span>
-                            </button>
-                        </div>
+                            </div>*@
+                        <a asp-controller="basket" asp-action="AddBasket" asp-route-id="@ViewBag.Product.Id" class="default-btn"><span>Add to Cart</span></a><br />
+                        
 
 
 
@@ -123,7 +121,7 @@
                         <ul class="products-info">
                             <li><span>SKU:</span> @ViewBag.Product.Image.Substring(0,8)</li>
                             <li>
-                                <span>Categories:</span> <a href="shop-grid.html">
+                                <span>Categories:</span> <a asp-controller="shop" asp-action="detail" asp-route-id="@ViewBag.Product.Id">
                                     @foreach (var item in ViewBag.Product.ProductCategories)
                                     {
                                         @item.Category.Name

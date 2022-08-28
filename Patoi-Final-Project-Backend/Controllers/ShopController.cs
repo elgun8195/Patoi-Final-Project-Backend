@@ -27,14 +27,18 @@ namespace Patoi_Final_Project_Backend.Controllers
             ViewBag.Bio= _context.Bio.FirstOrDefault();
             ViewBag.Tags = _context.Tags.ToList();
             ViewBag.Category = _context.Categories.ToList();
-            List<Product> products = _context.Products.Skip((pagesize - 1) * take).Take(take).ToList();
+            List<Product> products = _context.Products.Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((pagesize - 1) * take).Take(take).ToList();
             ViewBag.Pcount= _context.Products.Count();
 
 
             Pagination<Product> pagination = new Pagination<Product>(ReturnPageCount(take), pagesize, products);
             return View(pagination);
         }
-
+        //public IActionResult LoadMore(int skip)
+        //{
+        //    List<Product> product = _context.Products.Skip(skip).Take(2).ToList();
+        //    return PartialView("_ProductPartial", product);
+        //}
 
         public IActionResult Search(string search)
         {
@@ -47,11 +51,9 @@ namespace Patoi_Final_Project_Backend.Controllers
             return PartialView("_Search", products);
         }
 
-        public async Task<IActionResult> Detail(int id)
+        public  IActionResult Detail(int id)
         {
-            //string username = User.Identity.Name;
-            //AppUser user =await _userManager.FindByNameAsync(username);
-            //ViewBag.Username = user.Email;
+            
             ViewBag.Bio = _context.Bio.FirstOrDefault();
             ViewBag.Product = _context.Products.Include(pt => pt.Tag).Include(pc=>pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
             ViewBag.ProCount = _context.Products.Count();

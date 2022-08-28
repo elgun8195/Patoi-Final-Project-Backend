@@ -219,7 +219,7 @@
                                                 <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a>
                                             </td>
                                             <td class="product-total">
-                                                <span class="subtotal-amount">$@item.Price</span>
+                                                    <span class="subtotal-amount" id="total-pric">@{@(item.Price*@item.Count)}</span>
                                             </td>
                                         </tr> }
                                         <tr>
@@ -227,19 +227,19 @@
                                                 <span>Cart Subtotal</span>
                                             </td>
                                             <td class="order-subtotal-price">
-                                                <span class="order-subtotal-amount">$1683.50</span>
+                                                <span class="order-subtotal-amount" id="ce"></span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="order-shipping"><span>Shipping</span></td>
+                                            <td class="order-shipping"><span >Shipping</span></td>
                                             <td class="shipping-price">
-                                                <span>$30.00</span>
+                                                <span id="shippin"></span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="total-price"><span>Order Total</span></td>
                                             <td class="product-subtotal">
-                                                <span class="subtotal-amount">$750.00</span>
+                                                <span class="subtotal-amount" id="fina"></span>
                                             </td>
                                         </tr>
                                     </tbody>

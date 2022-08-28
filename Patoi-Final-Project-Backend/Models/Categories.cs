@@ -13,5 +13,6 @@ namespace Patoi_Final_Project_Backend.Models
         public IFormFile Photo { get; set; }
         public List<ProductCategories> ProductCategories { get; set; }
 
+
     }
 }
