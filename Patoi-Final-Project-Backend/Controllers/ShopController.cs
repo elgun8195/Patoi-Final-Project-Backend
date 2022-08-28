@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Patoi_Final_Project_Backend.DAL;
 using Patoi_Final_Project_Backend.Models;
@@ -6,15 +7,17 @@ using Patoi_Final_Project_Backend.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Patoi_Final_Project_Backend.Controllers
 {
     public class ShopController : Controller
     {
         private readonly AppDbContext _context;
-
-        public ShopController(AppDbContext context)
+        private UserManager<AppUser> _userManager;
+        public ShopController(AppDbContext context, UserManager<AppUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -23,7 +26,7 @@ namespace Patoi_Final_Project_Backend.Controllers
           
             ViewBag.Bio= _context.Bio.FirstOrDefault();
             ViewBag.Tags = _context.Tags.ToList();
-             
+            ViewBag.Category = _context.Categories.ToList();
             List<Product> products = _context.Products.Skip((pagesize - 1) * take).Take(take).ToList();
             ViewBag.Pcount= _context.Products.Count();
 
@@ -44,14 +47,19 @@ namespace Patoi_Final_Project_Backend.Controllers
             return PartialView("_Search", products);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            HomeVM home = new HomeVM();
-            home.Bio = _context.Bio.FirstOrDefault();
-            home.Product = _context.Products.Include(pt => pt.Tag).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
+            //string username = User.Identity.Name;
+            //AppUser user =await _userManager.FindByNameAsync(username);
+            //ViewBag.Username = user.Email;
+            ViewBag.Bio = _context.Bio.FirstOrDefault();
+            ViewBag.Product = _context.Products.Include(pt => pt.Tag).Include(pc=>pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
             ViewBag.ProCount = _context.Products.Count();
-            return View(home);
+
+            return View();
+        
         }
+      
         private int ReturnPageCount(int take)
         {
             int product = _context.Products.Count();

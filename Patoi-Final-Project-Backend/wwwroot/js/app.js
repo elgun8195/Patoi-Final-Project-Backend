@@ -25,6 +25,8 @@ $(document).ready(function () {
         })
     })
 
+   
+
 
 });
 const prices = document.querySelectorAll("#total-price");

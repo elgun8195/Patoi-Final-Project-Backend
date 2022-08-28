@@ -43,16 +43,15 @@
                 </div>
                 <div class="search-overlay-form">
                     <form>
-                        <input id="search-inputt" type="text"
+                        <input id="search-inputt2" type="text"
                                class="input-search"
                                placeholder="Enter your keywords..." />
                         <button type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
-                    <ul id="searchlistt">
+                    <ul id="searchlistt2">
                     </ul>
-                
                 </div>
             </div>
         </div>
@@ -65,165 +64,9 @@
 
     <!-- Footer Area -->
     <div class="go-top"><i class="fa-solid fa-arrow-up"></i></div>
-    <div class="productsFilterModal modal right fade"
-         id="productsFilterModal"
-         tabindex="-1"
-         style="display: none"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div class="modal-body">
-                    <aside class="widget-area">
-                        <div class="widget widget_categories">
-                            <h3 class="widget-title"><span>Categories</span></h3>
-                            <ul>
-                                <li><a href="shop-right-sidebar.html">Business</a></li>
-                                <li><a asp-controller="privacy" asp-action="index">Privacy</a></li>
-                                <li><a href="shop-right-sidebar.html">Technology</a></li>
-                                <li><a href="shop-right-sidebar.html">Tips</a></li>
-                                <li><a href="shop-right-sidebar.html">Log in</a></li>
-                                <li><a href="shop-right-sidebar.html">Uncategorized</a></li>
-                            </ul>
-                        </div>
-                        <div class="widget widget_price_filter">
-                            <h3 class="widget-title"><span>Filter by Price</span></h3>
+   
 
-                            <div class="collection_filter_by_price">
-                                <div class="wrapper">
 
-                                    <div class="price-input">
-                                        <div class="field">
-                                            <span>Min</span>
-                                            <input type="number" class="input-min" value="2500">
-                                        </div>
-                                        <div class="separator">-</div>
-                                        <div class="field">
-                                            <span>Max</span>
-                                            <input type="number" class="input-max" value="7500">
-                                        </div>
-                                    </div>
-                                    <div class="slider">
-                                        <div class="progress"></div>
-                                    </div>
-                                    <div class="range-input">
-                                        <input type="range" class="range-min" min="0" max="10000" value="2500" step="1">
-                                        <input type="range" class="range-max" min="0" max="10000" value="7500" step="1">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget widget_patoi_posts_thumb">
-                            <h3 class="widget-title"><span>Our Best Sellers</span></h3>
-                            <article class="item">
-                                <a href="products-details.html" class="thumb">
-                                    <img src="./assets/images/products/products1.jpg"
-                                         alt="blog-image" />
-                                </a>
-                                <div class="info">
-                                    <h4 class="title">
-                                        <a href="products-details.html">Pet brash</a>
-                                    </h4>
-                                    <div class="star-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <span class="price">$150.00</span>
-                                </div>
-                            </article>
-                            <article class="item">
-                                <a href="products-details.html" class="thumb">
-                                    <img src="./assets/images/products/products2.jpg"
-                                         alt="blog-image" />
-                                </a>
-                                <div class="info">
-                                    <h4 class="title">
-                                        <a href="products-details.html">Automatic dog blue leash</a>
-                                    </h4>
-                                    <div class="star-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <span class="price">$150.00</span>
-                                </div>
-                            </article>
-                            <article class="item">
-                                <a href="products-details.html" class="thumb">
-                                    <img src="./assets/images/products/products3.jpg"
-                                         alt="blog-image" />
-                                </a>
-                                <div class="info">
-                                    <h4 class="title">
-                                        <a href="products-details.html">Cat toilet bowl</a>
-                                    </h4>
-                                    <div class="star-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <span class="price">$150.00</span>
-                                </div>
-                            </article>
-                            <article class="item">
-                                <a href="products-details.html" class="thumb">
-                                    <img src="./assets/images/products/products4.jpg"
-                                         alt="blog-image" />
-                                </a>
-                                <div class="info">
-                                    <h4 class="title">
-                                        <a href="products-details.html">Bowl with rubber toy</a>
-                                    </h4>
-                                    <div class="star-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <span class="price">$150.00</span>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="widget widget_tag_cloud">
-                            <h3 class="widget-title"><span>Tags</span></h3>
-                            <div class="tagcloud">
-                                <a href="shop-right-sidebar.html">Advertisment</a>
-                                <a href="shop-right-sidebar.html">Business</a>
-                                <a href="shop-right-sidebar.html">Life</a>
-                                <a href="shop-right-sidebar.html">Lifestyle</a>
-                                <a href="shop-right-sidebar.html">Fashion</a>
-                                <a href="shop-right-sidebar.html">Ads</a>
-                                <a href="shop-right-sidebar.html">Advertisment</a>
-                            </div>
-                        </div>
-                        <div class="widget widget_follow_us">
-                            <h3 class="widget-title"><span>Follow Us</span></h3>
-                            <ul>
-                                <li><a href="#" target="_blank">Facebook</a></li>
-                                <li><a href="#" target="_blank">Twitter</a></li>
-                                <li><a href="#" target="_blank">Instagram</a></li>
-                                <li><a href="#" target="_blank">Pinterest</a></li>
-                                <li><a href="#" target="_blank">Linkedin</a></li>
-                            </ul>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade productsQuickView" id="productsQuickView" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

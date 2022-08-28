@@ -53,13 +53,18 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                </div><ul class="categorys">
+                @foreach (var item in ViewBag.Category)
+                {
+
+                    <li><a href="" data-id="@item.Name.ToLower()">@item.Name</a></li>
+                }</ul>
                 <div class="row justify-content-center">
                     @foreach (var item in Model.Items)
                     {
 
                         <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="product-box">
+                            <div class="product-box" data-id="cat-toys">
                                 <div class="image">
                                     <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
                                         <img src="~/images/products/@item.Image"

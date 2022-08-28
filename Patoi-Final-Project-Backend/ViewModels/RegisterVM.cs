@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Patoi_Final_Project_Backend.ViewModels
 {
@@ -13,6 +15,5 @@ namespace Patoi_Final_Project_Backend.ViewModels
         public string Password { get; set; }
         [Required, DataType(DataType.Password), Compare(nameof(Password))]
         public string CheckPassword { get; set; }
-
     }
 }

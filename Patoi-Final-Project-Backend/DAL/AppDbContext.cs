@@ -20,10 +20,10 @@ namespace Patoi_Final_Project_Backend.DAL
         public DbSet<Bio> Bio { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Comment> Comment { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<BasketItem> BasketItems { get; set; }
-        public DbSet<Basket> Baskets { get; set; }
         public DbSet<ProductCategories> ProductCategories { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
 
     }
 }

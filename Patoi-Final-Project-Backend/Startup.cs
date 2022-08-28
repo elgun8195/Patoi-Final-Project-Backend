@@ -29,7 +29,7 @@ namespace Patoi_Final_Project_Backend
             });
             services.AddSession(opt =>
             {
-                opt.IdleTimeout = TimeSpan.FromMinutes(20);
+                opt.IdleTimeout = TimeSpan.FromDays(100);
             });
             services.AddControllersWithViews();
             services.AddIdentity<AppUser, IdentityRole>(op =>

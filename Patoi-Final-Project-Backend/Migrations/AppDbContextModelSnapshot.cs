@@ -218,25 +218,6 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Basket", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
-
-                    b.ToTable("Baskets");
-                });
-
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.BasketItem", b =>
                 {
                     b.Property<int>("Id")
@@ -244,20 +225,17 @@ namespace Patoi_Final_Project_Backend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BasketId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("BasketId");
-
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("BasketItems");
                 });
@@ -362,6 +340,27 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Desc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Offer", b =>
@@ -553,26 +552,17 @@ namespace Patoi_Final_Project_Backend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Basket", b =>
-                {
-                    b.HasOne("Patoi_Final_Project_Backend.Models.AppUser", "User")
-                        .WithOne("Basket")
-                        .HasForeignKey("Patoi_Final_Project_Backend.Models.Basket", "UserId");
-                });
-
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.BasketItem", b =>
                 {
-                    b.HasOne("Patoi_Final_Project_Backend.Models.Basket", "Basket")
-                        .WithMany("BasketItems")
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Patoi_Final_Project_Backend.Models.Product", "Product")
                         .WithMany("BasketItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Patoi_Final_Project_Backend.Models.AppUser", "User")
+                        .WithMany("BasketItems")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Product", b =>

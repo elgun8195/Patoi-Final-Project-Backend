@@ -19,12 +19,13 @@ namespace Patoi_Final_Project_Backend.Models
         public string Image { get; set; }
         [NotMapped]
         public IFormFile Photo { get; set; }
-        public List<ProductCategories> ProductCategories { get; set; }
         public List<BasketItem> BasketItems { get; set; }
+        public List<ProductCategories> ProductCategories { get; set; }
         [NotMapped]
         public List<int> CategoryIds { get; set; }
         [NotMapped]
         public List<int> TagIds { get; set; }
 
+        
     }
 }

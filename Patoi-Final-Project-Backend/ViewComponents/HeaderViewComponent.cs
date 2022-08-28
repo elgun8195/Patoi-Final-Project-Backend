@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Patoi_Final_Project_Backend.DAL;
 using Patoi_Final_Project_Backend.Models;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Patoi_Final_Project_Backend.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            ViewBag.Category = _db.Categories.ToList();
 
             Bio model = _db.Bio.FirstOrDefault();
             return View(await Task.FromResult(model));

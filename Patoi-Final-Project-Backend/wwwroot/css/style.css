@@ -1853,12 +1853,12 @@ a {
 .products-details-tabs .tab-content .tab-pane .products-review-comments {
   margin-top: 40px;
 }
-.products-details-tabs .tab-content .tab-pane .products-review-comments .user-review {
-  position: relative;
-  margin-bottom: 20px;
-  padding: 0 0 20px 110px;
-  border-bottom: 1px solid #eeeeee;
-}
+    .products-details-tabs .tab-content .tab-pane .products-review-comments .user-review {
+        position: relative;
+        margin-bottom: 20px;
+        padding: 0 0 20px 110px;
+        border-bottom: 1px solid #eeeeee;
+    }
 .products-details-tabs .tab-content .tab-pane .products-review-comments .user-review img {
   top: 0;
   left: 0;

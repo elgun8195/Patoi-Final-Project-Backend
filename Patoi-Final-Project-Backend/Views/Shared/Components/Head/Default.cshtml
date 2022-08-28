@@ -224,9 +224,23 @@
                                 <li class="nav-item">
                                     <a asp-controller="order" asp-action="index" class="nav-link">Order Tracking</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="profile-authentication.html" class="nav-link">My Account</a>
-                                </li>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+
+                                    <li>
+                                        <a asp-controller="account" asp-action="login">
+                                            <i class="fa-solid fa-circle-user"></i>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a asp-controller="account" asp-action="logout">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </a>
+                                    </li>
+                                }
                                 <li class="nav-item">
                                     <a asp-controller="faq" asp-action="index" class="nav-link">FAQ</a>
                                 </li>
@@ -300,11 +314,23 @@
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="profile-authentication.html">
-                                        <i class="fa-solid fa-circle-user"></i>
-                                    </a>
-                                </li>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+
+                                    <li>
+                                        <a asp-controller="account" asp-action="login">
+                                            <i class="fa-solid fa-circle-user"></i>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a asp-controller="account" asp-action="logout">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </a>
+                                    </li>
+                                }
                                 <li>
                                     <a asp-controller="basket" asp-action="Index">
                                         <i class="fa-solid fa-cart-shopping"></i>

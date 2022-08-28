@@ -64,7 +64,7 @@
                                         <td class="product-quantity">
                                             <div class="input-counter d-flex">
                                                 <a asp-controller="basket" asp-action="minus" asp-route-id="@item.Id" class="minus-btn ml-2">-</a>
-                                                <div class="ml-3">@item.Count    </div>
+                                                <div class="ml-3">@item.Count</div>
                                                 <a class="plus-btn ml-3" asp-controller="basket" asp-action="plus" asp-route-id="@item.Id">+</a>
                                             </div>
                                            
@@ -103,7 +103,7 @@
                             <li>Shipping <span id="shipping"></span></li>
                             <li>Total <span id="final"></span></li>
                         </ul>
-                        <a href="checkout.html" class="default-btn"><span>Proceed to Checkout</span></a>
+                        <a asp-controller="check" asp-action="index" class="default-btn"><span>Proceed to Checkout</span></a>
                     </div>
                 </form>
             </div>

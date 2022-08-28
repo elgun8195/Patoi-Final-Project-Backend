@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 using System;
 using Patoi_Final_Project_Backend.Helpers;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+using Microsoft.EntityFrameworkCore;
+using Patoi_Final_Project_Backend.DAL;
+using System.Linq;
+using Microsoft.Extensions.Configuration;
+using System.Security.Claims;
+using Patoi_Final_Project_Backend.Extensions;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Patoi_Final_Project_Backend.Controllers
 {
@@ -13,7 +20,7 @@ namespace Patoi_Final_Project_Backend.Controllers
     {
         private UserManager<AppUser> _userManager;
         private SignInManager<AppUser> _signInManager;
-        private RoleManager<IdentityRole> _roleManager;
+        private RoleManager<IdentityRole> _roleManager; 
         public AccountController(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
@@ -40,13 +47,10 @@ namespace Patoi_Final_Project_Backend.Controllers
             {
                 return View();
             }
-
-            AppUser appUser = new AppUser()
-            {
-                Fullname = registerVM.Fullname,
-                UserName = registerVM.Username,
-                Email = registerVM.Email
-            };
+            AppUser appUser = new AppUser();
+            appUser.Fullname = registerVM.Fullname;
+            appUser.UserName=registerVM.Username;
+            appUser.Email = registerVM.Email;
             IdentityResult result = await _userManager.CreateAsync(appUser, registerVM.Password);
             if (!result.Succeeded)
             {
@@ -57,7 +61,7 @@ namespace Patoi_Final_Project_Backend.Controllers
                 return View(registerVM);
             }
 
-            await _userManager.AddToRoleAsync(appUser, Roless.Member.ToString());
+            await _userManager.AddToRoleAsync(appUser, Roless.Admin.ToString());
             await _signInManager.SignInAsync(appUser, true);
             return RedirectToAction("index", "home");
         }

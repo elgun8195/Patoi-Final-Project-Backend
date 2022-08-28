@@ -107,6 +107,23 @@ $(document).ready(function () {
             }
         })
     })
+    $(document).on('click', '.categorys li a', function (e) {
+        e.preventDefault();
+        let category = $(this).attr('data-id');
+        let products = $('.product-box');
+
+        products.each(function () {
+            if (category == $(this).attr('data-id')) {
+                $(this).parent().fadeIn();
+            }
+            else {
+                $(this).parent().hide();
+            }
+        })
+        //if (category == 'all') {
+        //    products.parent().fadeIn();
+        //}
+    })
 });
 
 //price range
