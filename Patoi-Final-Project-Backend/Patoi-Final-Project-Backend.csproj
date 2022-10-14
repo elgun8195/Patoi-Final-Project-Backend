@@ -10,6 +10,10 @@
     <Compile Remove="Migrations\20220815182902_AddTeamAndUserTable.Designer.cs" />
     <Compile Remove="Migrations\20220828140942_AddCategory.cs" />
     <Compile Remove="Migrations\20220828140942_AddCategory.Designer.cs" />
+    <Compile Remove="Migrations\20221014114610_updatedcommenttable.cs" />
+    <Compile Remove="Migrations\20221014114610_updatedcommenttable.Designer.cs" />
+    <Compile Remove="Migrations\20221014151912_updatedtabl.cs" />
+    <Compile Remove="Migrations\20221014151912_updatedtabl.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

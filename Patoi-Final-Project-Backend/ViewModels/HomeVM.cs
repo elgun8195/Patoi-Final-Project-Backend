@@ -14,7 +14,7 @@ namespace Patoi_Final_Project_Backend.ViewModels
         public IEnumerable<Offer> Offers { get; set; }
         public Blog Blog { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
-        public IEnumerable<Comment> Comments { get; set; }
+        public IEnumerable<Comments> Comments { get; set; }
         public Bio Bio { get; set; }
         public Product Product { get; set; }
     }

@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using Patoi_Final_Project_Backend.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using System.Net.Mail;
+using System.Net;
 
 namespace Patoi_Final_Project_Backend.Controllers
 {
@@ -138,5 +140,157 @@ namespace Patoi_Final_Project_Backend.Controllers
                 }
             }
         }
+
+        public async Task<IActionResult> VerifyEmail(string email, string token)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(email);
+            if (user == null) return BadRequest();
+            await _userManager.ConfirmEmailAsync(user, token);
+
+            await _signInManager.SignInAsync(user, true);
+            TempData["Verified"] = true;
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(AccountVM account)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(account.AppUser.Email);
+            if (user == null) return BadRequest();
+
+            string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("tu741rmps@code.edu.az", "BookShop");
+            mail.To.Add(new MailAddress(user.Email));
+
+            mail.Subject = "Reset Password";
+            mail.Body = $"<a href='{link}'>Please click here to reset your password</a>";
+            mail.IsBodyHtml = true;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+
+            smtp.Credentials = new NetworkCredential("tu741rmps@code.edu.az", "elgun689a3");
+            smtp.Send(mail);
+            return RedirectToAction("index", "home");
+        }
+
+
+
+
+        public async Task<IActionResult> ResetPassword(string email, string token)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(email);
+            if (user == null) return BadRequest();
+            AccountVM model = new AccountVM
+            {
+                AppUser = user,
+                Token = token
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(AccountVM account)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(account.AppUser.Email);
+            AccountVM model = new AccountVM
+            {
+                AppUser = user,
+                Token = account.Token
+            };
+            if (!ModelState.IsValid) return View(model);
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, account.Token, account.Password);
+            if (!result.Succeeded)
+            {
+                foreach (IdentityError error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View(model);
+
+            }
+            await _signInManager.SignInAsync(user, true);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> Edit()
+        {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("login", "account");
+
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            UserEditVM editedUser = new UserEditVM
+            {
+                Username = user.UserName,
+                Email = user.Email
+            };
+
+            return View(editedUser);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(UserEditVM editedUser)
+        {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("login", "account");
+
+            if (!ModelState.IsValid) return View();
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserEditVM eUser = new UserEditVM
+            {
+                Username = user.UserName,
+                Email = user.Email
+
+            };
+
+            if (user.UserName != editedUser.Username && await _userManager.FindByNameAsync(editedUser.Username) != null)
+            {
+                ModelState.AddModelError("", $"{editedUser.Username} has already taken");
+                return View(eUser);
+            }
+
+            if (string.IsNullOrWhiteSpace(editedUser.CurrentPassword))
+            {
+                user.UserName = editedUser.Username;
+                user.Email = editedUser.Email; 
+                await _userManager.UpdateAsync(user);
+                await _signInManager.SignInAsync(user, true);
+            }
+            else
+            {
+                user.UserName = editedUser.Username;
+                user.Email = editedUser.Email; 
+                IdentityResult result = await _userManager.ChangePasswordAsync(user, editedUser.CurrentPassword, editedUser.Password);
+
+                if (!result.Succeeded)
+                {
+                    foreach (IdentityError error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+
+                    }
+                    return View(eUser);
+                }
+                await _signInManager.PasswordSignInAsync(user, editedUser.Password, true, true);
+            }
+
+
+            return RedirectToAction("index", "home");
+
+        }
+
     }
 }

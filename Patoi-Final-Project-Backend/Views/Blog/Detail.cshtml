@@ -16,7 +16,7 @@
                             <div class="post-meta">
                                 <ul>
                                     <li><i class="fa-solid fa-calendar"></i> July 30, 2022</li>
-                                    <li><i class="fa-solid fa-comment"></i> <a href="blog-details.html">4 Comments</a></li>
+                                    <li><i class="fa-solid fa-comment"></i> <a href="blog-details.html">@Model.Comments.Where(c=>c.IsAccess==true).Count() Comments</a></li>
                                 </ul>
                             </div>
                             <p>Quuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quia non numquam eius modi tempora incidunt ut labore et dolore magnam dolor sit amet, consectetur adipisicing.</p>
@@ -30,16 +30,16 @@
                             <p>Quuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quia non numquam eius modi tempora incidunt ut labore et dolore magnam dolor sit amet, consectetur adipisicing.</p>
                             <ul class="wp-block-gallery columns-3">
                                 @foreach (var item in Model.Blogs.Take(3))
-                               {
-                                   
-                               
-                                <li class="blocks-gallery-item">
-                                    <figure>
+                                {
 
-                                        <img src="~/images/blog/@item.ImageUrl" alt="image">
-                                    </figure>
-                                </li>
-                               }
+
+                                    <li class="blocks-gallery-item">
+                                        <figure>
+
+                                            <img src="~/images/blog/@item.ImageUrl" alt="image">
+                                        </figure>
+                                    </li>
+                                }
                             </ul>
                             <h4>Four major elements that we offer:</h4>
                             <p>Quuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quia non numquam eius modi tempora incidunt ut labore et dolore magnam dolor sit amet, consectetur adipisicing.</p>
@@ -78,65 +78,75 @@
                             </div>
                         </div>
                         <div class="comments-area">
-                            <h3 class="comments-title">@Model.Users.Count() Comments:</h3>
+                            <h3 class="comments-title">@Model.Comments.Where(c=>c.IsAccess==true).Count() Comments:</h3>
                             <ol class="comment-list">
                                 <li class="comment">
-                                    @foreach (var item in Model.Users)
-                                   {
-                                       
-                                   
-                                    <div class="comment-body">
-                                        <footer class="comment-meta">
-                                            <div class="comment-author vcard">
-                                                <img src="~/images/user/@item.ImageUrl" class="avatar" alt="user">
-                                                <b class="fn">@item.Name</b>
+
+                                    @foreach (var comment in Model.Comments.Where(f => f.IsAccess == true).OrderBy(f => f.Date))
+                                    {
+                                        @if (comment.AppUser.UserName == User.Identity.Name)
+                                        {
+
+                                            <div class="comment-body">
+                                                <footer class="comment-meta">
+                                                    <div class="comment-author vcard">
+                                                        @*<img src="~/images/user/@item.ImageUrl" class="avatar" alt="user">*@
+                                                        <b class="fn">@comment.AppUser.Fullname.ToUpper()</b>
+                                                    </div>
+                                                    <div class="comment-metadata">
+                                                        <span>@comment.Date.ToString("MMMM dd yyyy HH:mm")</span>
+                                                    </div>
+                                                </footer>
+                                                <div class="comment-content">
+                                                    <p>@comment.Message</p>
+                                                </div>
+                                                <div class="reply">
+                                                    <a asp-controller="blog" asp-action="deletecomment" asp-route-id="@comment.Id" class="comment-reply-link">Delete</a>
+                                                </div>
                                             </div>
-                                            <div class="comment-metadata">
-                                                <span>January 01, 2022 at 10:59 am</span>
+                                        }else
+                                        {
+                                            <div class="comment-body">
+                                                <footer class="comment-meta">
+                                                    <div class="comment-author vcard">
+                                                        @*<img src="~/images/user/@item.ImageUrl" class="avatar" alt="user">*@
+                                                        <b class="fn">@comment.AppUser.Fullname.ToUpper()</b>
+                                                    </div>
+                                                    <div class="comment-metadata">
+                                                        <span>@comment.Date.ToString("MMMM dd yyyy HH:mm")</span>
+                                                    </div>
+                                                </footer>
+                                                <div class="comment-content">
+                                                    <p>@comment.Message</p>
+                                                </div>
+                                             @*   <div class="reply">
+                                                    <a asp-controller="blog" asp-action="deletecomment" asp-route-id="@comment.Id" class="comment-reply-link">Delete</a>
+                                                </div>*@
                                             </div>
-                                        </footer>
-                                        <div class="comment-content">
-                                            <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</p>
-                                        </div>
-                                        <div class="reply">
-                                            <a href="blog-details.html" class="comment-reply-link">Reply</a>
-                                        </div>
-                                    </div>
-                                   }
+                                        }
+                                    }
                                 </li>
-                            
+
                             </ol>
                             <div class="comment-respond">
                                 <h3 class="comment-reply-title">Leave A Reply</h3>
-                                <form method="post" class="comment-form">
+                                <form method="post" asp-controller="blog" asp-action="addcomment" class="comment-form">
                                     <p class="comment-notes">
                                         <span id="email-notes">Your email address will not be published.</span>
                                         Required fields are marked <span class="required">*</span>
                                     </p>
-                                    <p class="comment-form-author">
-                                        <label>Name <span class="required">*</span></label>
-                                        <input type="text" id="author" placeholder="Your Name*" name="author" required="required">
-                                    </p>
-                                    <p class="comment-form-email">
-                                        <label>Email <span class="required">*</span></label>
-                                        <input type="email" id="email" placeholder="Your Email*" name="email" required="required">
-                                    </p>
-                                    <p class="comment-form-url">
-                                        <label>Website</label>
-                                        <input type="url" id="url" placeholder="Website" name="url">
-                                    </p>
                                     <p class="comment-form-comment">
                                         <label>Comment</label>
-                                        <textarea name="comment" id="comment" cols="45" placeholder="Your Comment..." rows="5" maxlength="65525" required="required"></textarea>
-                                    </p>
-                                    <p class="comment-form-cookies-consent">
-                                        <input type="checkbox" value="yes" name="wp-comment-cookies-consent" id="wp-comment-cookies-consent">
-                                        <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="Message"></textarea>
+
+                                        <input type="hidden" name="BlogId" value="@Model.Blog.Id" />
+
                                     </p>
                                     <p class="form-submit">
                                         <input type="submit" name="submit" id="submit" class="submit" value="Post A Comment">
                                     </p>
                                 </form>
+
                             </div>
                         </div>
                     </div>
@@ -149,16 +159,16 @@
                                 </form>
                             </div>
                             @foreach (var item in Model.Teams.Take(1))
-                           { 
-                            <div class="widget widget_author">
-                                <img src="~/images/team/@item.ImageUrl" alt="author">
-                                <h3>@item.Name</h3>
-                                <span>@item.Position</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                                <img src="~/images/signature.png" alt="signature">
+                            {
+                                <div class="widget widget_author">
+                                    <img src="~/images/team/@item.ImageUrl" alt="author">
+                                    <h3>@item.Name</h3>
+                                    <span>@item.Position</span>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                    <img src="~/images/signature.png" alt="signature">
                                 </div>
-                                 }
-                                <div class="widget widget_follow_us">
+                            }
+                            <div class="widget widget_follow_us">
                                 <h3 class="widget-title"><span>Follow Us</span></h3>
                                 <ul>
                                     <li><a href="@Model.Bio.Facebook" target="_blank">Facebook</a></li>
@@ -171,38 +181,38 @@
                             <div class="widget widget_patoi_posts_thumb">
                                 <h3 class="widget-title"><span>Popular Posts</span></h3>
                                 @foreach (var item in Model.Blogs.Take(4))
-                               {
-                                <article class="item">
-                                    <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="thumb">
-                                        <img src="~/images/blog/@item.ImageUrl" alt="blog-image">
-                                    </a>
-                                    <div class="info">
+                                {
+                                    <article class="item">
+                                        <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="thumb">
+                                            <img src="~/images/blog/@item.ImageUrl" alt="blog-image">
+                                        </a>
+                                        <div class="info">
                                             <h4 class="title"><a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id">@item.Desc</a></h4>
-                                        <span class="date">@item.Date.ToString("MMMM dd"),@item.Date.ToString("yyyy")</span>
-                                    </div>
-                                </article> 
+                                            <span class="date">@item.Date.ToString("MMMM dd"),@item.Date.ToString("yyyy")</span>
+                                        </div>
+                                    </article>
                                 }
                             </div>
                             <div class="widget widget_categories">
                                 <h3 class="widget-title"><span>Categories</span></h3>
                                 <ul>
                                     @foreach (var item in Model.Categories)
-                                   {
-                                       
-                                    <li><a asp-controller="blogr" asp-action="index">@item.Name</a></li>
-                                   }
-                                    
+                                    {
+
+                                        <li><a asp-controller="blogr" asp-action="index">@item.Name</a></li>
+                                    }
+
                                 </ul>
                             </div>
                             <div class="widget widget_tag_cloud">
                                 <h3 class="widget-title"><span>Tags</span></h3>
                                 <div class="tagcloud">
                                     @foreach (var item in Model.Tags)
-                                   {
+                                    {
                                         <a asp-controller="blogr" asp-action="index">@item.Name</a>
-                                       
-                                   }
-                                
+
+                                    }
+
                                 </div>
                             </div>
                         </aside>

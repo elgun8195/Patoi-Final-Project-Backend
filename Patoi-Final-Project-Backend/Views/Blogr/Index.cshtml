@@ -36,7 +36,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="single-blog-post">
                                     <div class="image">
-                                        <a href="blog-details.html" class="d-block">
+                                        <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="d-block">
                                             <img src="~/images/blog/@item.ImageUrl" alt="blog-image">
                                         </a>
                                     </div>
@@ -44,7 +44,7 @@
                                         <span class="date">
                                                 <span>@item.Date.ToString("dd MMMM")</span> @item.Date.ToString("yyyy")
                                         </span>
-                                        <a href="blog-grid.html" class="category">@item.Name</a>
+                                            <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="category">@item.Name</a>
                                         <h3><a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id">@item.Desc</a></h3>
                                         <p>@item.Title</p>
                                     </div>

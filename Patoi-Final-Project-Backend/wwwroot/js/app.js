@@ -26,9 +26,9 @@ $(document).ready(function () {
     })
 
     const update = document.getElementById("update");
-    update.addEventListener("click", function () {
+    update.addEventListener("mouseout", function () {
 
-
+        console.log("ss");
         const prices = document.querySelectorAll("#total-price");
         const cem = document.getElementById("cem");
         const shipping = document.getElementById("shipping");

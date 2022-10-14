@@ -12,6 +12,7 @@ namespace Patoi_Final_Project_Backend.DAL
         {
 
         }
+        public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Brands> Brands { get; set; }
         public DbSet<Blog> Blog { get; set; }
         public DbSet<Categories> Categories { get; set; }
@@ -20,7 +21,7 @@ namespace Patoi_Final_Project_Backend.DAL
         public DbSet<Bio> Bio { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Comment> Comment { get; set; }
+        public DbSet<Comments> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ProductCategories> ProductCategories { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }

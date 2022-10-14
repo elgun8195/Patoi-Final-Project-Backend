@@ -225,17 +225,20 @@ namespace Patoi_Final_Project_Backend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("AppUserId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("BasketItems");
                 });
@@ -324,6 +327,21 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Campaign", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DiscountPercent")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Campaigns");
+                });
+
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Categories", b =>
                 {
                     b.Property<int>("Id")
@@ -342,25 +360,42 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Comment", b =>
+            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Comments", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Desc")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("BlogId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAccess")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Comment");
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("BlogId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Offer", b =>
@@ -385,6 +420,9 @@ namespace Patoi_Final_Project_Backend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CampaignId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Desc")
                         .HasColumnType("nvarchar(max)");
 
@@ -403,8 +441,8 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.Property<bool>("OnSale")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
@@ -413,6 +451,8 @@ namespace Patoi_Final_Project_Backend.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
 
                     b.HasIndex("TagId");
 
@@ -554,19 +594,38 @@ namespace Patoi_Final_Project_Backend.Migrations
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.BasketItem", b =>
                 {
-                    b.HasOne("Patoi_Final_Project_Backend.Models.Product", "Product")
+                    b.HasOne("Patoi_Final_Project_Backend.Models.AppUser", "AppUser")
                         .WithMany("BasketItems")
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Patoi_Final_Project_Backend.Models.Product", "Product")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.HasOne("Patoi_Final_Project_Backend.Models.AppUser", "User")
-                        .WithMany("BasketItems")
-                        .HasForeignKey("UserId");
+            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Comments", b =>
+                {
+                    b.HasOne("Patoi_Final_Project_Backend.Models.AppUser", "AppUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Patoi_Final_Project_Backend.Models.Blog", "Blog")
+                        .WithMany("Comments")
+                        .HasForeignKey("BlogId");
+
+                    b.HasOne("Patoi_Final_Project_Backend.Models.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Product", b =>
                 {
+                    b.HasOne("Patoi_Final_Project_Backend.Models.Campaign", "Campaign")
+                        .WithMany("Products")
+                        .HasForeignKey("CampaignId");
+
                     b.HasOne("Patoi_Final_Project_Backend.Models.Tag", "Tag")
                         .WithMany("Products")
                         .HasForeignKey("TagId");

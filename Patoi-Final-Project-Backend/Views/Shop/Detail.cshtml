@@ -1,4 +1,4 @@
-﻿@model HomeVM
+﻿@model ShopVM
 @{
     ViewData["Title"] = "Detail";
 }
@@ -97,18 +97,18 @@
                         <p>
                             @ViewBag.Product.Desc
                         </p>
-                       
-                          @*  <div class="input-counter">
-                                <span class="minus-btn">
-                                    <i class="fa-solid fa-minus"></i>
-                                </span>
-                                <input type="text" value="1" />
-                                <span class="plus-btn">
-                                    <i class="fa-solid fa-plus"></i>
-                                </span>
-                            </div>*@
-                        <a asp-controller="basket" asp-action="AddBasket" asp-route-id="@ViewBag.Product.Id" class="default-btn"><span>Add to Cart</span></a><br />
-                        
+
+                        @*  <div class="input-counter">
+                        <span class="minus-btn">
+                        <i class="fa-solid fa-minus"></i>
+                        </span>
+                        <input type="text" value="1" />
+                        <span class="plus-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        </span>
+                        </div>*@
+                        <a asp-controller="basket" asp-action="AddBasket" asp-route-id="@ViewBag.Product.Id" class="default-btn addToCart"><span>Add to Cart</span></a><br />
+
 
 
 
@@ -191,7 +191,7 @@
                                         type="button"
                                         role="tab"
                                         aria-controls="reviews">
-                                    Reviews
+                                    Reviews(@Model.Comments.Where(c=>c.IsAccess==true).Count())
                                 </button>
                             </li>
                         </ul>
@@ -266,79 +266,50 @@
                             </div>
                             <div class="tab-pane fade" id="reviews" role="tabpanel">
                                 <div class="products-review-comments">
-                                    <div class="user-review">
-                                        <img src="~/images/user/user1.jpg" alt="image" />
-                                        <div class="review-rating">
-                                            <div class="review-stars">
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
+                                    @foreach (var comment in Model.Comments.Where(f => f.IsAccess == true).OrderBy(f => f.Date))
+                                    {
+                                        if (comment.AppUser.UserName == User.Identity.Name)
+                                        {
+                                            <div class="user-review">
+                                                <img src="~/images/user/user1.jpg" alt="image" />
+                                                <div class="review-rating d-flex">
+                                                    <div class="review-stars">
+                                                        <i class="fa-solid fa-star checked"></i>
+                                                        <i class="fa-solid fa-star checked"></i>
+                                                        <i class="fa-solid fa-star checked"></i>
+                                                        <i class="fa-solid fa-star checked"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                    <a asp-controller="shop" asp-action="deletecomment" asp-route-id="@comment.Id" class="text-danger" style="position:absolute;right:2%;top: 5%;"><i class="far fa-times-circle" style="font-size:20px;"></i></a>
+                                                </div>
+                                                <span class="d-block sub-name">@comment.AppUser.Fullname.ToUpper()</span>
+                                                <p>
+                                                    @comment.Message
+                                                </p>
                                             </div>
-                                        </div>
-                                        <span class="d-block sub-name">James Anderson</span>
-                                        <p>
-                                            Very well built theme, couldn't be happier with it.
-                                            Can't wait for future updates to see what else they
-                                            add in.
-                                        </p>
-                                    </div>
-                                    <div class="user-review">
-                                        <img src="~/images/user/user2.jpg" alt="image" />
-                                        <div class="review-rating">
-                                            <div class="review-stars">
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
+
+                                        }
+                                        else
+                                        {
+                                            <div class="user-review">
+                                                <img src="~/images/user/user1.jpg" alt="image" />
+                                                <div class="review-rating d-flex">
+                                                    <div class="review-stars">
+                                                        <i class="fa-solid fa-star checked"></i>
+                                                        <i class="fa-solid fa-star checked"></i>
+                                                        <i class="fa-solid fa-star checked"></i>
+                                                        <i class="fa-solid fa-star checked"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
+                                                </div>
+                                                <span class="d-block sub-name">@comment.AppUser.Fullname.ToUpper()</span>
+                                                <p>
+                                                    @comment.Message
+                                                </p>
                                             </div>
-                                        </div>
-                                        <span class="d-block sub-name">Sarah Taylor</span>
-                                        <p>
-                                            Santiago who travels from his homeland in Spain to the
-                                            Egyptian desert in search of a treasure buried near
-                                            the Pyramids. Lorem ipsum dolor sit amet, consectetur
-                                            elit, sed do eiusmod tempor incididunt ut labore et.
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                                            elitet.
-                                        </p>
-                                    </div>
-                                    <div class="user-review">
-                                        <img src="~/images/user/user3.jpg" alt="image" />
-                                        <div class="review-rating">
-                                            <div class="review-stars">
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                            </div>
-                                        </div>
-                                        <span class="d-block sub-name">David Warner</span>
-                                        <p>
-                                            Stunning design, very dedicated crew who welcome new
-                                            ideas suggested by customers, nice support.
-                                        </p>
-                                    </div>
-                                    <div class="user-review">
-                                        <img src="~/images/user/user1.jpg" alt="image" />
-                                        <div class="review-rating">
-                                            <div class="review-stars">
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star checked"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <span class="d-block sub-name">King Kong</span>
-                                        <p>
-                                            Stunning design, very dedicated crew who welcome new
-                                            ideas suggested by customers, nice support.
-                                        </p>
-                                    </div>
+                                        }
+
+                                    }
                                 </div>
                                 <div class="review-form-wrapper">
                                     <h3>Add a review</h3>
@@ -346,59 +317,15 @@
                                         Your email address will not be published. Required
                                         fields are marked <span>*</span>
                                     </p>
-                                    <form method="post">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="rating">
-                                                    <input type="radio"
-                                                           id="star5"
-                                                           name="rating"
-                                                           value="5" /><label for="star5"></label>
-                                                    <input type="radio"
-                                                           id="star4"
-                                                           name="rating"
-                                                           value="4" /><label for="star4"></label>
-                                                    <input type="radio"
-                                                           id="star3"
-                                                           name="rating"
-                                                           value="3" /><label for="star3"></label>
-                                                    <input type="radio"
-                                                           id="star2"
-                                                           name="rating"
-                                                           value="2" /><label for="star2"></label>
-                                                    <input type="radio"
-                                                           id="star1"
-                                                           name="rating"
-                                                           value="1" /><label for="star1"></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           placeholder="Name *" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group">
-                                                    <input type="email"
-                                                           class="form-control"
-                                                           placeholder="Email *" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <textarea placeholder="Your review"
-                                                              class="form-control"
-                                                              cols="30"
-                                                              rows="6"></textarea>
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="col-lg-12 col-md-12">
-                                                <button type="submit">SUBMIT</button>
-                                            </div>
+                                    <form method="post" asp-controller="shop" asp-action="addcomment">
+                                        <div class="input">
+
+                                            <p>Your review *</p>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Message" style="font-size:15px;"></textarea>
+                                            <input type="hidden" name="ProductId" value="@ViewBag.Product.Id" />
                                         </div>
+
+                                        <button type="submit" class="btn">Submit</button>
                                     </form>
                                 </div>
                             </div>

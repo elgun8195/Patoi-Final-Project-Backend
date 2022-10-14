@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BasketProduct>
+﻿@model OrderVM
 @{
     ViewData["Title"] = "Basket";
     Layout = "~/Views/Shared/_Layout2.cshtml";
@@ -43,7 +43,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.BasketItems)
                                 {
 
 
@@ -55,23 +55,24 @@
                                         </td>
                                         <td class="product-thumbnail">
                                             <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
-                                                <img src="~/images/products/@item.Image"
+                                                <img src="~/images/products/@item.Product.Image"
                                                  alt="item" />
-                                                <h3>@item.Name</h3>
+                                                <h3>@item.Product.Name</h3>
                                             </a>
                                         </td>
-                                        <td>$@item.Price</td>
+                                        <td>$@item.Product.Price</td>
                                         <td class="product-quantity">
                                             <div class="input-counter d-flex">
-                                                <a asp-controller="basket" asp-action="minus" asp-route-id="@item.Id" class="minus-btn ml-2">-</a>
-                                                <div class="ml-3">@item.Count</div>
-                                                <a class="plus-btn ml-3" asp-controller="basket" asp-action="plus" asp-route-id="@item.Id">+</a>
+                                                <a data-id="@item.Product.Id" class="down" id="downbtn"><i class="fas fa-chevron-left"></i></a>
+                                                <div class="ml-3">@item.Count</div>            
+                                                <a data-id="@item.Product.Id" class="up" id="upbtn"><i class="fas fa-chevron-right"></i></a>
+
                                             </div>
                                            
                                         </td>
                                         <td id="total-price">
                                             @{
-                                                @(item.Price * @item.Count)
+                                                @(item.Product.Price * @item.Count)
                                             }
                                         </td>
                                     </tr>
@@ -113,13 +114,100 @@
 </main>
 
 @section Scripts{
+
     <script>
+        $(document).ready(function () {
+
+            $(document).on("click", ".down", function (e) {
+                e.preventDefault();
+                var id = $(this).attr("data-id")
+                var total = document.querySelector("#cem")
+                var money = document.querySelectorAll(".total-price")
+                console.log(id)
+                $.ajax({
+                    url: "/basket/minus",
+                    data: {
+                        id: id
+                    },
+                    type: "post",
+                    datatype: "json",
+                    success: function (data) {
+                        money.forEach(mon => {
+                            if (id == mon.getAttribute("data-id")) {
+                                mon.innerHTML = data.price
+                                console.log(data.price)
+                            }
+                        })
+                        total.innerHTML += `${data.totalPrice}`
+
+                    }
+                })
+
+            })
 
 
-        let alertDiv = document.getElementById("failAlert");
-        setTimeout(function () {
-            alertDiv.remove()
-        }, 4000)
+            $(document).on("click", ".up", function (e) {
+                e.preventDefault();
+                var id = $(this).attr("data-id")
+                var total = document.querySelector("#cem")
+                var money = document.querySelectorAll(".total-price")
+                console.log(id)
+                $.ajax({
+                    url: "/basket/plus",
+                    data: {
+                        id: id
+                    },
+                    type: "post",
+                    datatype: "json",
+                    success: function (data) {
+                        money.forEach(mon => {
+                            if (id == mon.getAttribute("data-id")) {
+                                mon.innerHTML = data.price
+                                console.log(data.price)
+                            }
+                        })
+                        total.innerHTML += `${data.totalPrice}`
+
+                    }
+                })
+
+            })
+
+
+        })
+
+        // Input count
+        var myInp = document.querySelectorAll(".inp-num .inp-value");
+        var increaseBtn = document.querySelectorAll(".inp-num .up");
+        var decreaseBtn = document.querySelectorAll(".inp-num .down");
+        for (let elem of decreaseBtn) {
+
+            elem.addEventListener("click", function (e) {
+                e.preventDefault()
+                countst = this.nextElementSibling.innerText
+                countstn = Number(countst)
+
+                if (countstn > 1) {
+                    count = this.nextElementSibling.innerText
+                    countn = Number(count)
+                    countn -= 1;
+                    this.nextElementSibling.innerText = countn;
+                }
+            })
+        }
+        for (let elem of increaseBtn) {
+
+            elem.addEventListener("click", function (e) {
+                e.preventDefault()
+                count = this.previousElementSibling.innerText
+                countn = Number(count)
+                countn += 1;
+                this.previousElementSibling.innerText = countn;
+
+
+            })
+        }
+
 
     </script>
 }
