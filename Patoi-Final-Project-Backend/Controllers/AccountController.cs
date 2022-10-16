@@ -119,7 +119,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             {
                 if (item.Contains(Roless.Admin.ToString()))
                 {
-                    return RedirectToAction("index", "Dashboard", new { area = "Admin" });
+                    return RedirectToAction(nameof(Index));
                 }
             }
             return Redirect(returnurl);

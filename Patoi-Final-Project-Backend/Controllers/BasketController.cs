@@ -144,5 +144,27 @@ namespace Patoi_Final_Project_Backend.Controllers
 
             return Json(new { totalPrice = TotalPrice, Price });
         }
-    } 
+
+        public async Task<IActionResult> removecartitem(int Id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+                List<BasketItem> basketItems = _context.BasketItems.Where(b => b.ProductId == Id && b.AppUserId == user.Id).ToList();
+                if (basketItems == null) return Json(new { status = 404 });
+                foreach (var item in basketItems)
+                {
+
+                    _context.BasketItems.Remove(item);
+                }
+            }
+
+            _context.SaveChanges();
+
+
+            return Json(new { status = 200 });
+        }
+
+    }
 }

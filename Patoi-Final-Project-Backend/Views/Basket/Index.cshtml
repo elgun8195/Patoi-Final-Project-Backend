@@ -49,7 +49,7 @@
 
                                     <tr>
                                         <td>
-                                            <a asp-controller="Basket" asp-action="removeitem" asp-route-id="@item.Id" class="remove">
+                                            <a asp-controller="basket" asp-action="removecartitem" asp-route-id="@item.Product.Id" class="remove cart-remove-btn">
                                                 <i class="fa-solid fa-trash"></i>
                                             </a>
                                         </td>
@@ -64,13 +64,13 @@
                                         <td class="product-quantity">
                                             <div class="input-counter d-flex">
                                                 <a data-id="@item.Product.Id" class="down" id="downbtn"><i class="fas fa-chevron-left"></i></a>
-                                                <div class="ml-3">@item.Count</div>            
+                                                <div class="ml-3 inp-value">@item.Count</div>
                                                 <a data-id="@item.Product.Id" class="up" id="upbtn"><i class="fas fa-chevron-right"></i></a>
 
                                             </div>
                                            
                                         </td>
-                                        <td id="total-price">
+                                        <td id="total-price" data-id="@item.Product.Id">
                                             @{
                                                 @(item.Product.Price * @item.Count)
                                             }
@@ -114,8 +114,10 @@
 </main>
 
 @section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+
         $(document).ready(function () {
 
             $(document).on("click", ".down", function (e) {
@@ -134,11 +136,11 @@
                     success: function (data) {
                         money.forEach(mon => {
                             if (id == mon.getAttribute("data-id")) {
-                                mon.innerHTML = data.price
-                                console.log(data.price)
+                                mon.innerHTML += data.price
+                               // console.log(data.price)
                             }
                         })
-                        total.innerHTML += `${data.totalPrice}`
+                        money.innerHTML += `${data.totalPrice}`
 
                     }
                 })
@@ -166,7 +168,7 @@
                                 console.log(data.price)
                             }
                         })
-                        total.innerHTML += `${data.totalPrice}`
+                        money.innerHTML += `${data.totalPrice}`
 
                     }
                 })
@@ -174,12 +176,43 @@
             })
 
 
+
+            $(".cart-remove-btn").click(function (e) {
+                e.preventDefault()
+                console.log($(this).attr("href"))
+                Swal.fire({
+                    title: 'Eminsiniz mi?',
+                    text: "Bunun geri donusu yoxdur!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Beli, sil!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var link = $(this).attr("href");
+                        fetch(link).then(response => response.json()).then(data => {
+                            if (data.status == 200) {
+                                location.reload(true)
+                            } else {
+                                Swal.fire(
+                                    'Not found!',
+                                    'Your file can not be deleted.',
+                                    'Failed'
+                                )
+                            }
+                        });
+                    }
+                })
+            })
+
         })
 
+
         // Input count
-        var myInp = document.querySelectorAll(".inp-num .inp-value");
-        var increaseBtn = document.querySelectorAll(".inp-num .up");
-        var decreaseBtn = document.querySelectorAll(".inp-num .down");
+        var myInp = document.querySelectorAll(".inp-value");
+        var increaseBtn = document.querySelectorAll(".up");
+        var decreaseBtn = document.querySelectorAll(".down");
         for (let elem of decreaseBtn) {
 
             elem.addEventListener("click", function (e) {

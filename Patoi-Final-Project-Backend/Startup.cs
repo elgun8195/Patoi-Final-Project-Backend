@@ -43,7 +43,7 @@ namespace Patoi_Final_Project_Backend
 
 
                 op.Lockout.AllowedForNewUsers = true;
-                op.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20000);
+                op.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(20);
                 op.Lockout.MaxFailedAccessAttempts = 3;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
         }
