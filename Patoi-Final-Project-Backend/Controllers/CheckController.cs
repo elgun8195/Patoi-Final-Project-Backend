@@ -89,20 +89,19 @@ namespace Patoi_Final_Project_Backend.Controllers
 
             if (model.BasketItems.Count == 0) return RedirectToAction("index", "home");
             Order order = new Order
-            {
-                Country = orderVM.Country,
+            { 
                 CompanyName = orderVM.CompanyName,
                 Region = orderVM.Region,
-                City=orderVM.City,
-                StreetAddress=orderVM.StreetAddress,
+                City=orderVM.City, 
                 Apartment=orderVM.Apartment,
                 PostCode=orderVM.PostCode,
-                Phone=orderVM.Phone,
-                EmailAddress=orderVM.Email,
-                BankTransfer=orderVM.BankTransfer,
-                CheckPayments=orderVM.CheckPayments,
-                CashOnDelivery=orderVM.CashOnDelivery,
-                Paypal=orderVM.Paypal,
+                Phone = orderVM.Phone,
+                BankTransfer = orderVM.BankTransfer,
+                CheckPayments = orderVM.CheckPayments,
+                CashOnDelivery = orderVM.CashOnDelivery,
+                Paypal = orderVM.Paypal,
+                Country = orderVM.Country, 
+                Address = orderVM.Address,
                 TotalPrice = 0,
                 Date = DateTime.Now,
                 AppUserId = user.Id
@@ -119,10 +118,10 @@ namespace Patoi_Final_Project_Backend.Controllers
                     ProduuctId = item.Product.Id,
                     Order = order
                 };
-                _context.OrderItems.Add(orderItem);
+                _context.OrderItem.Add(orderItem);
             }
             _context.BasketItems.RemoveRange(model.BasketItems);
-            _context.Orders.Add(order);
+            _context.Order.Add(order);
             _context.SaveChanges();
             TempData["Succeeded"] = true;
 

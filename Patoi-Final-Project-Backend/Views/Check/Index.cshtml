@@ -33,6 +33,8 @@
                                     <div class="form-group">
                                         <label>User name <span class="required">*</span></label>
                                         <input asp-for="Username" class="form-control" />
+                                        <span asp-validation-for="Username" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -45,15 +47,19 @@
                                     <div class="form-group">
                                         <label>Company name (optional)</label>
                                         <input asp-for="CompanyName" class="form-control" />
+                                        <span asp-validation-for="CompanyName" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
+                                        <input asp-for="Country" id="gizli" style="width: 0px; height:0px; border:none;">
+                                        <span asp-validation-for="Country" class="text text-danger"></span>
+
                                         <label>
                                             Country / Region
                                             <span class="required">*</span>
                                         </label>
-                                        <input asp-for="Country" style="display:none"  class="form-control" />
                                         <div class="country-select  inside d-flex" id="main-container">
                                             <div id="flag-container">
                                                 <img src="" alt="">
@@ -70,9 +76,11 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label>Street address <span class="required">*</span></label>
-                                        <input asp-for="StreetAddress"
+                                        <input asp-for="Address"
                                                class="form-control"
                                                placeholder="House number and street name" />
+                                        <span asp-validation-for="Address" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
@@ -80,36 +88,48 @@
                                         <input asp-for="Apartment"
                                                class="form-control"
                                                placeholder="Apartment, suite, unit, etc. (optional)" />
+                                        <span asp-validation-for="Apartment" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label>Town / City <span class="required">*</span></label>
                                         <input asp-for="City" class="form-control" />
+                                        <span asp-validation-for="City" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <label>County (optional)</label>
-                                        <input asp-for="Country" class="form-control" />
+                                        <label>Region (optional)</label>
+                                        <input asp-for="Region" class="form-control" />
+                                        <span asp-validation-for="Region" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label>Postcode <span class="required">*</span></label>
                                         <input asp-for="PostCode" class="form-control" />
+                                        <span asp-validation-for="PostCode" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label>Phone <span class="required">*</span></label>
                                         <input asp-for="Phone" class="form-control" />
+                                        <span asp-validation-for="Phone" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label>Email address <span class="required">*</span></label>
                                         <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
@@ -125,7 +145,7 @@
                     </div>
 
 
-                   
+
                     <div class="col-lg-12 col-md-12">
                         <div class="order-details">
                             <h3>Your order</h3>
@@ -133,15 +153,18 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         @foreach (var item in Model.BasketItems)
-                                       {   
-                                        <tr>
-                                            <td class="product-name">
-                                                <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Product.Name</a>
-                                            </td>
-                                            <td class="product-total">
-                                                    <span class="subtotal-amount" id="total-pric">@{@(item.Product.Price*@item.Count)}</span>
-                                            </td>
-                                        </tr> }
+                                        {
+                                            <tr>
+                                                <td class="product-name">
+                                                    <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Product.Name</a>
+                                                </td>
+                                                <td class="product-total">
+                                                    <span class="subtotal-amount" id="total-pric">@{
+                                                            @(item.Product.Price * @item.Count)
+                                                        }</span>
+                                                </td>
+                                            </tr>
+                                        }
                                         <tr>
                                             <td class="order-subtotal">
                                                 <span>Cart Subtotal</span>
@@ -151,7 +174,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="order-shipping"><span >Shipping</span></td>
+                                            <td class="order-shipping"><span>Shipping</span></td>
                                             <td class="shipping-price">
                                                 <span id="shippin"></span>
                                             </td>
@@ -166,44 +189,44 @@
                                 </table>
                             </div>
                             <div class="payment-box">
-                                <div class="payment-method">
-                                    <p>
-                                        <input asp-for="BankTransfer"
-                                               id="direct-bank-transfer"
-                                               name="radio-group"
-                                               checked="" />
-                                        <label for="direct-bank-transfer">Direct bank transfer</label>
-                                        Make your payment directly into our bank account. Please
-                                        use your Order ID as the payment reference. Your order
-                                        will not be shipped until the funds have cleared in our
-                                        account.
-                                    </p>
-                                    <p>
-                                        <input asp-for="CheckPayments"
-                                               id="check-payments"
-                                               name="radio-group" />
-                                        <label for="check-payments">Check payments</label>
-                                        Please send a check to Store Name, Store Street, Store
-                                        Town, Store State / County, Store Postcode.
-                                    </p>
-                                    <p>
-                                        <input asp-for="Paypal" id="paypal" name="radio-group" />
-                                        <label for="paypal">PayPal</label>
-                                        <img src="~/images/paypal.png" alt="paypal" />
-                                        Your personal data will be used to process your order,
-                                        support your experience throughout this website, and for
-                                        other purposes described in our
-                                        <a href="privacy-policy.html">privacy policy</a>.
-                                    </p>
-                                    <p>
-                                        <input asp-for="CashOnDelivery"
-                                               id="cash-on-delivery"
-                                               name="radio-group" />
-                                        <label for="cash-on-delivery">Cash on delivery</label>
-                                        Pay with cash upon delivery.
-                                    </p>
+                                 <div class="payment-method">
+                                <p>
+                                <input asp-for="BankTransfer"
+                                id="direct-bank-transfer"
+                                name="radio-group"
+                                checked="" />
+                                <label for="direct-bank-transfer">Direct bank transfer</label>
+                                Make your payment directly into our bank account. Please
+                                use your Order ID as the payment reference. Your order
+                                will not be shipped until the funds have cleared in our
+                                account.
+                                </p>
+                                <p>
+                                <input asp-for="CheckPayments"
+                                id="check-payments"
+                                name="radio-group" />
+                                <label for="check-payments">Check payments</label>
+                                Please send a check to Store Name, Store Street, Store
+                                Town, Store State / County, Store Postcode.
+                                </p>
+                                <p>
+                                <input asp-for="Paypal" id="paypal" name="radio-group" />
+                                <label for="paypal">PayPal</label>
+                                <img src="~/images/paypal.png" alt="paypal" />
+                                Your personal data will be used to process your order,
+                                support your experience throughout this website, and for
+                                other purposes described in our
+                                <a href="privacy-policy.html">privacy policy</a>.
+                                </p>
+                                <p>
+                                <input asp-for="CashOnDelivery"
+                                id="cash-on-delivery"
+                                name="radio-group" />
+                                <label for="cash-on-delivery">Cash on delivery</label>
+                                Pay with cash upon delivery.
+                                </p>
                                 </div>
-                                <button type="submit" class="default-btn">
+                                 <button type="submit" class="default-btn">
                                     <span>Place Order</span>
                                 </button>
                             </div>
@@ -214,3 +237,14 @@
         </div>
     </div>
 </main>
+@section Scripts{
+    <script>
+
+        var sec = document.getElementById("countries");
+        sec.addEventListener("change", (event) => {
+            var key = sec.options[sec.selectedIndex].text;
+            console.log(key);
+            document.querySelector("#gizli").innerText = key;
+        });
+    </script>
+}

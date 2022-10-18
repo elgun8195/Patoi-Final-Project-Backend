@@ -17,5 +17,7 @@ namespace Patoi_Final_Project_Backend.ViewModels
         public IEnumerable<Comments> Comments { get; set; }
         public Bio Bio { get; set; }
         public Product Product { get; set; }
+        public SubscribeVM SubscribeVM { get; set; }
+
     }
 }

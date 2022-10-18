@@ -420,6 +420,10 @@ namespace Patoi_Final_Project_Backend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Apartment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -445,18 +449,10 @@ namespace Patoi_Final_Project_Backend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Paypal")
                         .HasColumnType("bit");
@@ -475,10 +471,6 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.Property<bool?>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("StreetAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
 
@@ -486,7 +478,7 @@ namespace Patoi_Final_Project_Backend.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.OrderItem", b =>
@@ -522,7 +514,7 @@ namespace Patoi_Final_Project_Backend.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Product", b =>
@@ -591,6 +583,23 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductCategories");
+                });
+
+            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Subscribe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subscribes");
                 });
 
             modelBuilder.Entity("Patoi_Final_Project_Backend.Models.Tag", b =>

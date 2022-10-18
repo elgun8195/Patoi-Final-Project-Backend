@@ -339,4 +339,9 @@ function displayCountryInfoe(countryByAlpha3Cod) {
 }
 
 ////////////////////////////
-
+//var sec = document.getElementById("countries");
+//sec.addEventListener("change", () => {
+//    var key = sec.options[sec.selectedIndex].text;
+//    console.log(key);
+//    document.getElementById("gizli").innerText = key;
+//});
