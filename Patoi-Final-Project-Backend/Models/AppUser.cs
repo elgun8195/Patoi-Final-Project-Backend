@@ -10,6 +10,7 @@ namespace Patoi_Final_Project_Backend.Models
         public string Fullname { get; set; }
         public List<BasketItem> BasketItems { get; set; }
         public List<Comments> Comments { get; set; }
+        public List<WishListItem> WishListItems { get; set; }
 
     }
 }

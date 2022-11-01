@@ -10,13 +10,16 @@ using Patoi_Final_Project_Backend.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin,SuperAdmin")]
+   // [Authorize(Roles = "Admin,SuperAdmin")]
     public class ProductController : Controller
     {
 
@@ -105,7 +108,37 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 
             _context.Products.Add(product);
             _context.SaveChanges();
+            List<AppUser> subscribes =new List<AppUser>();
 
+            foreach (var sub in subscribes)
+            {
+                string link = "https://localhost:44352/shop/detail/" + product.Id + $"?categoryId={product.ProductCategories.FirstOrDefault().CategoryId}";
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("qolaelo@gmail.com", "Booky");
+                mail.To.Add(new MailAddress(sub.Email));
+
+
+                mail.Subject = "New book";
+                string body = string.Empty;
+
+                using (StreamReader reader = new StreamReader("wwwroot/Assets/Template/NewSubscribe.html"))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                string about = $"<strong>Hello</strong><br /> a new <strong>{product.Name} {product.Name}</strong> book added to our shop <br/>click the link down below to discover new book";
+                body = body.Replace("{{link}}", link);
+                mail.Body = body.Replace("{{about}}", about);
+                mail.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+
+                smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
+                smtp.Send(mail);
+            } 
             return RedirectToAction("Index");
         }
 

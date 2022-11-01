@@ -27,6 +27,7 @@ namespace Patoi_Final_Project_Backend
             {
                 option.UseSqlServer(connectionString);
             });
+
             services.AddSession(opt =>
             {
                 opt.IdleTimeout = TimeSpan.FromDays(100);

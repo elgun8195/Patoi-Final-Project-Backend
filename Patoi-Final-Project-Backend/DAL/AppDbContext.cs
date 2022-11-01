@@ -12,6 +12,7 @@ namespace Patoi_Final_Project_Backend.DAL
         {
 
         }
+        public DbSet<WishListItem> WishListItems { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Brands> Brands { get; set; }
         public DbSet<Blog> Blog { get; set; }

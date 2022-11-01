@@ -454,6 +454,9 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Paypal")
                         .HasColumnType("bit");
 
@@ -662,6 +665,31 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.WishListItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("WishListItems");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -786,6 +814,19 @@ namespace Patoi_Final_Project_Backend.Migrations
 
                     b.HasOne("Patoi_Final_Project_Backend.Models.Product", "Product")
                         .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Patoi_Final_Project_Backend.Models.WishListItem", b =>
+                {
+                    b.HasOne("Patoi_Final_Project_Backend.Models.AppUser", "AppUser")
+                        .WithMany("WishListItems")
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Patoi_Final_Project_Backend.Models.Product", "Product")
+                        .WithMany("WishListItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

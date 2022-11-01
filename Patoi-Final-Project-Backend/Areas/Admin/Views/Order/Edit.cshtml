@@ -1,0 +1,106 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div style="display:flex;flex-direction:column">
+
+    <ul style="list-style:none">
+        <li>UserName: @Model.AppUser.UserName</li> 
+        <li>Email: @Model.AppUser.Email</li>
+        <li>Country: @Model.Country</li>
+        <li>Apartment   : @Model.Apartment</li>
+        <li>Address: @Model.Address</li>
+        <li>Date: @Model.Date.ToString("HH:mm dd,MMMM,yyyy")</li>
+        <li>
+            <h3>Order items</h3>
+            <ul>
+                @foreach (OrderItem item in Model.OrderItems)
+                {
+                    <li>
+                        @item.Name
+                    </li>
+                    <li>
+                        $@item.Price
+                        <hr />
+                    </li>
+                }
+            </ul>
+        </li>
+        <li>
+            @if (Model.Status == null)
+            {
+
+                <span style="background:orange;display:inline-block; padding:3px 7px">Pending</span>
+
+            }
+            else if (Model.Status == true)
+            {
+
+
+                <span style="background:green;display:inline-block; padding:3px 7px">Accepted</span>
+
+            }
+            else
+            {
+
+                <span style="background:red;display:inline-block; padding:3px 7px">Rejected</span>
+
+            }
+        </li>
+        <li>
+            Total price: $@Model.TotalPrice
+        </li>
+    </ul>
+
+
+    <div>
+        <h4>Message</h4>
+
+        <form method="post">
+            <input class="Message" cols="60" rows="10" />
+        </form>
+        <div>
+            <a asp-controller="order" asp-action="Accept" asp-route-id="@Model.Id" class="accept btn btn-success btn-icon-text">
+                <i class="mdi mdi-file-check btn-icon-append"></i>
+                Accept
+            </a>
+            <a asp-controller="order" asp-action="Reject" asp-route-id="@Model.Id" class="reject btn btn-danger btn-icon-text">
+                <i class="mdi mdi-file-check btn-icon-append"></i>
+                Reject
+            </a>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".accept").click(function (e) {
+                e.preventDefault();
+                var message = $(".Message").val();
+                var link = $(this).attr("href") + "/?message=" + message
+                fetch(link).then(res => res.json()).then(data => {
+                    if (data.status == 200) {
+                        location.href = "https://localhost:44352/admin/order"
+                    } else {
+
+                    }
+                })
+            })
+            $(".reject").click(function (e) {
+                e.preventDefault();
+                var message = $(".Message").val();
+                var link = $(this).attr("href") + "/?message=" + message
+                fetch(link).then(res => res.json()).then(data => {
+                    if (data.status == 200) {
+                        location.href = "https://localhost:44352/admin/order"
+                    } else {
+                    }
+                })
+            })
+        })
+    </script>
+}

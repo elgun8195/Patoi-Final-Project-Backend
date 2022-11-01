@@ -31,7 +31,7 @@
                             <div class="product-imgs">
                                 <div class="img-display">
                                     <div class="img-showcase">
-                                        <img src="~/images/products/@ViewBag.Product.Image"
+                                        <img src="~/images/products/@Model.Product.Image"
                                              alt="product image" />
                                         <img src="~/images/products/products5.jpg"
                                              alt="product image" />
@@ -47,7 +47,7 @@
                                 <div class="img-select">
                                     <div class="img-item">
                                         <a href="#" data-id="1">
-                                            <img src="~/images/products/@ViewBag.Product.Image"
+                                            <img src="~/images/products/@Model.Product.Image"
                                                  alt="product image" />
                                         </a>
                                     </div>
@@ -82,9 +82,9 @@
                 </div>
                 <div class="col-lg-7 col-md-12">
                     <div class="products-details-desc">
-                        <h3>@ViewBag.Product.Name</h3>
+                        <h3>@Model.Product.Name</h3>
                         <div class="price">
-                            <span class="new-price">$@ViewBag.Product.Price</span>
+                            <span class="new-price">$@Model.Product.Price</span>
                             <span class="old-price">$55.00</span>
                         </div>
                         <div class="rating">
@@ -95,7 +95,7 @@
                             <i class="fa-solid fa-star"></i>
                         </div>
                         <p>
-                            @ViewBag.Product.Desc
+                            @Model.Product.Desc
                         </p>
 
                         @*  <div class="input-counter">
@@ -107,7 +107,7 @@
                         <i class="fa-solid fa-plus"></i>
                         </span>
                         </div>*@
-                        <a asp-controller="basket" asp-action="AddBasket" asp-route-id="@ViewBag.Product.Id" class="default-btn addToCart"><span>Add to Cart</span></a><br />
+                        <a asp-controller="basket" asp-action="AddBasket" asp-route-id="@Model.Product.Id" class="default-btn addToCart"><span>Add to Cart</span></a><br />
 
 
 
@@ -117,19 +117,19 @@
 
 
 
-                        <a asp-controller="wish" asp-action="AddWish" asp-route-id="@ViewBag.Product.Id" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
+                        <a asp-controller="wish" asp-action="AddWish" asp-route-id="@Model.Product.Id" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
                         <ul class="products-info">
-                            <li><span>SKU:</span> @ViewBag.Product.Image.Substring(0,8)</li>
+                            <li><span>SKU:</span> @Model.Product.Image.Substring(0,8)</li>
                             <li>
-                                <span>Categories:</span> <a asp-controller="shop" asp-action="detail" asp-route-id="@ViewBag.Product.Id">
-                                    @foreach (var item in ViewBag.Product.ProductCategories)
+                                <span>Categories:</span> <a asp-controller="shop" asp-action="detail" asp-route-id="@Model.Product.Id">
+                                    @foreach (var item in Model.Product.ProductCategories)
                                     {
                                         @item.Category.Name
                                     }
                                 </a>
                             </li>
-                            <li><span>Availability:</span> In stock @ViewBag.Product.Stock</li>
-                            <li><span>Tag:</span> @ViewBag.Product.Tag.Name</li>
+                            <li><span>Availability:</span> In stock @Model.Product.Stock</li>
+                            <li><span>Tag:</span> @Model.Product.Tag.Name</li>
                         </ul>
                         <div class="products-share">
                             <ul class="social">
@@ -322,7 +322,7 @@
 
                                             <p>Your review *</p>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Message" style="font-size:15px;"></textarea>
-                                            <input type="hidden" name="ProductId" value="@ViewBag.Product.Id" />
+                                            <input type="hidden" name="ProductId" value="@Model.Product.Id" />
                                         </div>
 
                                         <button type="submit" class="btn">Submit</button>

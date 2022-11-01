@@ -9,120 +9,90 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
 
 namespace Patoi_Final_Project_Backend.Controllers
 {
-    [Authorize(Roles = "Admin,SuperAdmin,Member")]
+    //[Authorize(Roles = "Admin,SuperAdmin,Member")]
 
     public class WishController : Controller
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public WishController(AppDbContext context)
+        public WishController(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-
-        
-        public async Task<IActionResult> AddWish(int? id)
+        public async Task<IActionResult> Index()
         {
-            if (id == null) return NotFound();
-            Product dbProdudct = await _context.Products.FindAsync(id);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            if (dbProdudct == null) return NotFound();
-            List<WishProduct> products;
-
-            string existBasket = Request.Cookies["wish"];
-
-            if (existBasket == null)
+            if (User.Identity.IsAuthenticated)
             {
-                products = new List<WishProduct>();
-
+            List<WishListItem> WishListItems = _context.WishListItems.Include(b => b.Product).Where(b => b.AppUserId == user.Id).ToList();
+          
+            return View(WishListItems);
             }
             else
             {
-                products = JsonConvert.DeserializeObject<List<WishProduct>>(Request.Cookies["wish"]);
-
+                return RedirectToAction("login","account");
             }
-            WishProduct existWishProduct = products.FirstOrDefault(p => p.Id == dbProdudct.Id);
-            if (existWishProduct == null)
-            {
-                WishProduct WishProduct = new WishProduct();
 
-                WishProduct.Id = dbProdudct.Id;
-                WishProduct.Name = dbProdudct.Name;
-                WishProduct.OnSale = dbProdudct.OnSale;
-                WishProduct.Count = 1;
 
-                products.Add(WishProduct);
-            }
-            else
+
+        }
+ 
+
+        public async Task<IActionResult> AddWish(int id)
+        {
+            Product product = _context.Products.Include(p => p.Campaign).FirstOrDefault(p => p.Id == id);
+
+            if (User.Identity.IsAuthenticated)
             {
-                if (dbProdudct.Stock <= existWishProduct.Count)
+                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+                WishListItem wishlistItem = _context.WishListItems.FirstOrDefault(b => b.ProductId == product.Id && b.AppUserId == user.Id);
+                if (wishlistItem == null)
                 {
-                    TempData["Fail"] = "Satisda bundan artiq yoxdur!";
-                    return RedirectToAction(nameof(Index));
+                    wishlistItem = new WishListItem
+                    {
+                        AppUserId = user.Id,
+                        ProductId = product.Id,
+                        Count = 1,
+                    };
+                    _context.WishListItems.Add(wishlistItem);
                 }
                 else
                 {
-                    existWishProduct.Count++;
+                    wishlistItem.Count = 1;
                 }
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
             }
-
-
-
-            Response.Cookies.Append("wish", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(60) });
-
-            return RedirectToAction(nameof(Index));
-
-        }
-
-        public IActionResult Index()
-        {
-            List<WishProduct> products = JsonConvert.DeserializeObject<List<WishProduct>>(Request.Cookies["wish"]);
-
-            List<WishProduct> updatedProducts = new List<WishProduct>();
-
-            foreach (var item in products)
+            else
             {
-                Product dbProduct = _context.Products.FirstOrDefault(p => p.Id == item.Id);
-                WishProduct WishProduct = new WishProduct()
-                {
-                    Id = dbProduct.Id,
-                    Price = dbProduct.Price,
-                    Name = dbProduct.Name,
-                    Image = dbProduct.Image,
-                    OnSale = dbProduct.OnSale,
-                    Count = item.Count
-
-                };
-
-
-                updatedProducts.Add(WishProduct);
-
-              
+                return RedirectToAction("login", "account");
             }
-            return View(updatedProducts);
         }
 
 
 
-        public IActionResult RemoveItem(int? id)
+        public async Task<IActionResult> RemoveItem(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            string wish = Request.Cookies["wish"];
-            List<WishProduct> products = JsonConvert.DeserializeObject<List<WishProduct>>(wish);
 
-            WishProduct existProduct = products.FirstOrDefault(p => p.Id == id);
-            if (existProduct == null) return NotFound();
-            products.Remove(existProduct);
-            Response.Cookies.Append("wish", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(60) });
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            List<WishListItem> wishlistItems = _context.WishListItems.Where(b => b.ProductId == id && b.AppUserId == user.Id).ToList();
+            foreach (var item in wishlistItems)
+            {
+                _context.WishListItems.Remove(item);
+            }
+
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
-
-
     }
 }

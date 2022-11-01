@@ -27,6 +27,7 @@ namespace Patoi_Final_Project_Backend.Models
         public int? CampaignId { get; set; }
         public Campaign Campaign { get; set; }
         public List<Comments> Comments { get; set; }
+        public List<WishListItem> WishListItems { get; set; }
 
     }
 }

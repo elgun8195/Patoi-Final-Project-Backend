@@ -227,6 +227,8 @@
                                 <li class="nav-item"> <a class="nav-link" asp-area="admin" asp-controller="bio" asp-action="index"> Bio </a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-area="admin" asp-controller="user" asp-action="index"> User </a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-area="admin" asp-controller="team" asp-action="index"> Team </a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-area="admin" asp-controller="campaign" asp-action="index"> Campaign</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-area="admin" asp-controller="order" asp-action="index"> Order</a></li>
 
 
                                 <li class="nav-item"> <a class="nav-link" asp-area="admin" asp-controller="brand" asp-action="index"> Brand </a></li>
@@ -291,5 +293,5 @@
     <script src="~/admin/js/dataTables.bootstrap4.js"></script>
     <!-- End custom js for this page-->
 </body>
-
+@RenderSection("Scripts",required:false)
 </html>

@@ -209,3 +209,10 @@ C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Basket\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Campaign\Index.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Campaign\Create.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Campaign\Edit.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPassword.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Order\Index.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Order\Edit.cshtml.g.cs

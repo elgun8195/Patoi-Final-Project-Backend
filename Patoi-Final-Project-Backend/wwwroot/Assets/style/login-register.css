@@ -1,0 +1,529 @@
+.body {
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.signIn .login form {
+  height: 520px;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(100px);
+          backdrop-filter: blur(100px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+          box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+}
+
+.signIn .login form h3 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+.signIn .login form label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.signIn .login form input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.signIn .login form ::-webkit-input-placeholder {
+  color: #e5e5e5;
+}
+
+.signIn .login form :-ms-input-placeholder {
+  color: #e5e5e5;
+}
+
+.signIn .login form ::-ms-input-placeholder {
+  color: #e5e5e5;
+}
+
+.signIn .login form ::placeholder {
+  color: #e5e5e5;
+}
+
+.signIn .login form .check-remember {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1.5rem;
+}
+
+.signIn .login form .check-remember .checkbox {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+.signIn .login form .check-remember span {
+  font-size: 12px;
+}
+
+.signIn .login form .check-remember .remember {
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.signIn .login form .check-remember .forget {
+  font-size: 12px;
+}
+
+.signIn .login form .need-account {
+  font-size: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 20px 0 10px 0;
+}
+
+.signIn .login form .need-account a {
+  text-decoration: none;
+}
+
+.signIn .login form .need-account a:hover {
+  color: greenyellow;
+}
+
+.signIn .login form button {
+  margin-top: 50px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signIn .login form * {
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+.signUp .register form {
+  height: 41rem;
+  width: 50rem;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(40px);
+          backdrop-filter: blur(40px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+          box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+}
+
+.signUp .register form h3 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+.signUp .register form label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.signUp .register form input {
+  display: block;
+  height: 50px;
+  width: 20rem;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.signUp .register form .name-surname {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signUp .register form .name-surname .name {
+  width: 100%;
+}
+
+.signUp .register form .name-surname .surname {
+  width: 100%;
+}
+
+.signUp .register form .username-email {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signUp .register form .username-email .username {
+  width: 100%;
+}
+
+.signUp .register form .username-email .mail {
+  width: 100%;
+}
+
+.signUp .register form .password-confirm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signUp .register form .password-confirm .password {
+  width: 100%;
+}
+
+.signUp .register form .password-confirm .confirm {
+  width: 100%;
+}
+
+.signUp .register form ::-webkit-input-placeholder {
+  color: black;
+}
+
+.signUp .register form :-ms-input-placeholder {
+  color: black;
+}
+
+.signUp .register form ::-ms-input-placeholder {
+  color: black;
+}
+
+.signUp .register form ::placeholder {
+  color: black;
+}
+
+.signUp .register form .terms-conditions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1.5rem;
+}
+
+.signUp .register form .terms-conditions .checkbox {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+.signUp .register form .terms-conditions span {
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+.signUp .register form .need-account {
+  font-size: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 20px 0 10px 0;
+}
+
+.signUp .register form .need-account a {
+  text-decoration: none;
+}
+
+.signUp .register form .need-account a:hover {
+  color: greenyellow;
+}
+
+.signUp .register form button {
+  margin-top: 50px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signUp .register form * {
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+@media (max-width: 913px) {
+  .regstr {
+    background-size: 73rem;
+    height: 43rem;
+  }
+  .signIn .login form {
+    width: 357px;
+  }
+  .signUp .register form {
+    width: 47rem;
+  }
+}
+
+@media (max-width: 821px) {
+  .regstr {
+    background-size: 73rem;
+    height: 43rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .body {
+    background-size: 55rem;
+    height: 28rem;
+  }
+  .regstr {
+    background-size: 73rem;
+    height: 43rem;
+  }
+  .signIn .login form {
+    width: 357px;
+  }
+  .signUp .register form {
+    width: 25rem;
+    height: 60rem;
+  }
+  .signUp .register form .password-confirm {
+    display: block;
+  }
+  .signUp .register form .username-email {
+    display: block;
+  }
+  .signUp .register form .name-surname {
+    display: block;
+  }
+}
+
+@media (max-width: 560px) {
+  .body {
+    background-size: 55rem;
+    height: 28rem;
+  }
+  .signIn .login form {
+    width: 357px;
+  }
+  .signUp .register form .password-confirm {
+    display: block;
+  }
+  .signUp .register form .username-email {
+    display: block;
+  }
+  .signUp .register form .name-surname {
+    display: block;
+  }
+}
+
+@media (max-width: 500px) {
+  .body {
+    background-size: 55rem;
+    height: 28rem;
+  }
+  .signIn .login form {
+    width: 357px;
+  }
+  .signUp .register form .password-confirm {
+    display: block;
+  }
+  .signUp .register form .username-email {
+    display: block;
+  }
+  .signUp .register form .name-surname {
+    display: block;
+  }
+}
+
+@media (max-width: 450px) {
+  .body {
+    background-size: 55rem;
+    height: 28rem;
+  }
+  .signIn .login form {
+    width: 357px;
+  }
+  .signUp .register form .password-confirm {
+    display: block;
+  }
+  .signUp .register form .username-email {
+    display: block;
+  }
+  .signUp .register form .name-surname {
+    display: block;
+  }
+  .signUp .register form {
+    width: 21rem;
+  }
+  .signUp .register form input {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 415px) {
+  .body {
+    background-size: 55rem;
+    height: 28rem;
+  }
+  .signIn .login form {
+    width: 357px;
+  }
+  .signUp .register form .password-confirm {
+    display: block;
+  }
+  .signUp .register form .username-email {
+    display: block;
+  }
+  .signUp .register form .name-surname {
+    display: block;
+  }
+  .signUp .register form {
+    width: 21rem;
+  }
+  .signUp .register form input {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 391px) {
+  .body {
+    background-size: 55rem;
+    height: 28rem;
+  }
+  .signIn .login form {
+    width: 357px;
+  }
+  .signUp .register form .password-confirm {
+    display: block;
+  }
+  .signUp .register form .username-email {
+    display: block;
+  }
+  .signUp .register form .name-surname {
+    display: block;
+  }
+  .signUp .register form {
+    width: 21rem;
+  }
+  .signUp .register form input {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 376px) {
+  .body {
+    background-size: 55rem;
+    height: 28rem;
+  }
+  .signIn .login form {
+    width: 340px;
+  }
+  .signUp .register form .password-confirm {
+    display: block;
+  }
+  .signUp .register form .username-email {
+    display: block;
+  }
+  .signUp .register form .name-surname {
+    display: block;
+  }
+  .signUp .register form {
+    width: 21rem;
+  }
+  .signUp .register form input {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 361px) {
+  .body {
+    background-size: 55rem;
+    height: 28rem;
+  }
+  .signIn .login form {
+    width: 300px;
+  }
+  .signUp .register form .password-confirm {
+    display: block;
+  }
+  .signUp .register form .username-email {
+    display: block;
+  }
+  .signUp .register form .name-surname {
+    display: block;
+  }
+  .signUp .register form {
+    width: 21rem;
+  }
+  .signUp .register form input {
+    width: 16rem;
+  }
+}
+/*# sourceMappingURL=login-register.css.map */

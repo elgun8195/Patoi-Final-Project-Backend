@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <div class="mt-2 d-flex" style="justify-content:flex-end">
+        <a asp-controller="campaign" asp-action="create" class="btn btn-success btn-icon-text">
+            <i class="mdi mdi-upload btn-icon-prepend"></i>
+            Create
+        </a>
+    </div>
+    <table class="table table-dark mt-4">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Discount Percent
+                </th>
+
+                <th style="text-align:center;">
+                    Settings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Campaign campaign in Model)
+            {
+                <tr>
+                    <td>
+                        @campaign.Id
+                    </td>
+                    <td>
+                        @campaign.DiscountPercent
+                    </td>
+
+                    <td style="text-align:center;">
+                        <a asp-controller="campaign" asp-action="edit" asp-route-id="@campaign.Id" class="btn btn-primary" style="margin-right:3rem;text-decoration:none;">
+
+                            Edit
+
+                        </a>
+                        <a asp-controller="campaign" asp-action="delete" asp-route-id="@campaign.Id" class="delete-item btn btn-danger">
+
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <div class="row justify-content-center mt-4">
+        <nav aria-label="...">
+            <ul class="pagination" style="justify-content:center">
+
+                <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-controller="campaign" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="campaign" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                    <a class="page-link" asp-controller="campaign" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+@*@section Scripts{
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(".delete-item").click(function (e) {
+            e.preventDefault()
+            console.log($(this).attr("href"))
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var link = $(this).attr("href");
+                    fetch(link).then(response => response.json()).then(data => {
+                        if (data.status == 200) {
+                            location.reload(true)
+                        } else {
+                            Swal.fire(
+                                'Not found!',
+                                'Your file can not be deleted.',
+                                'Failed'
+                            )
+                        }
+                    }
+                    );
+                }
+            })
+        })
+    </script>
+}
+*@

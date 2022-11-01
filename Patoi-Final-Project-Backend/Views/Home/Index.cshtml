@@ -3,6 +3,21 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (TempData["Succeeded"] != null)
+{
+    <input type="hidden" id="toastrJs" data-succeed="@TempData["Succeeded"]" />
+}
+
+@if (TempData["Verify"] != null)
+{
+    <input type="hidden" id="verifyJS" />
+}
+
+
+@if (TempData["Verified"] != null)
+{
+    <input type="hidden" id="verifiedJS" />
+}
 <main>
     <!-- Banner Area  -->
     <section id="banner">
@@ -74,7 +89,7 @@
                         <div class="owl-stage">
                             @foreach (var item in Model.Categories)
                             {
-                                <div class="owl-item" 
+                                <div class="owl-item"
                                  style="width: 239.2px; margin-right: 25px">
                                     <div class="single-categories-box">
                                         <a asp-controller="shop" asp-action="index" class="d-block">
@@ -175,15 +190,15 @@
 
                                                     </a>
                                                 </li>
-                                              @*  <li>
-                                                    <a href="#"
-                                                   data-bs-toggle="modal"
-                                                   data-bs-target="#productsQuickView">
+                                                @*  <li>
+                                            <a href="#"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#productsQuickView">
 
-                                                        <i class="fa-solid fa-eye"></i>
+                                            <i class="fa-solid fa-eye"></i>
 
-                                                    </a>
-                                                </li>*@
+                                            </a>
+                                            </li>*@
                                                 <li>
                                                     <a href="products-details.html">
 
@@ -354,15 +369,15 @@
 
                                             </a>
                                         </li>
-                                    @*    <li>
-                                            <a href="#"
-                                           data-bs-toggle="modal"
-                                           data-bs-target="#productsQuickView">
+                                        @*    <li>
+                                    <a href="#"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#productsQuickView">
 
-                                                <i class="fa-solid fa-eye"></i>
+                                    <i class="fa-solid fa-eye"></i>
 
-                                            </a>
-                                        </li>*@
+                                    </a>
+                                    </li>*@
                                         <li>
                                             <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
 
@@ -503,3 +518,91 @@
     </div>
 
 </main>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            if ($("#toastrJs").length) {
+                if ($("#toastrJs").attr("data-succeeded").toLowerCase() == "true") {
+                    Command: toastr["success"]("Your order has been succesfully created")
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "000",
+                        "timeOut": "10000",
+                        "extendedTimeOut": "10000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                } else {
+                    Command: toastr["error"]("Basket is empty")
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "10000",
+                        "timeOut": "10000",
+                        "extendedTimeOut": "10000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                }
+            }
+            if ($("#verifyJS").length) {
+                Command: toastr["success"]("Please verify your email")
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "10000",
+                    "timeOut": "10000",
+                    "extendedTimeOut": "10000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+            if ($("#verifiedJS").length) {
+                Command: toastr["success"]("Your email has been verified")
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "10000",
+                    "timeOut": "10000",
+                    "extendedTimeOut": "10000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        })
+    </script>
+        }

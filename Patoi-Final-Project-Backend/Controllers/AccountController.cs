@@ -15,6 +15,8 @@ using Patoi_Final_Project_Backend.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Patoi_Final_Project_Backend.Controllers
 {
@@ -22,15 +24,19 @@ namespace Patoi_Final_Project_Backend.Controllers
     {
         private UserManager<AppUser> _userManager;
         private SignInManager<AppUser> _signInManager;
-        private RoleManager<IdentityRole> _roleManager; 
+        private RoleManager<IdentityRole> _roleManager;
+        private readonly IWebHostEnvironment _env;
+
         public AccountController(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            IWebHostEnvironment env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _env = env;
         }
         public IActionResult Index()
         {
@@ -43,29 +49,62 @@ namespace Patoi_Final_Project_Backend.Controllers
         //123456Aa!
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterVM registerVM)
+        public async Task<IActionResult> Register(RegisterVM register)
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            AppUser appUser = new AppUser();
-            appUser.Fullname = registerVM.Fullname;
-            appUser.UserName=registerVM.Username;
-            appUser.Email = registerVM.Email;
-            IdentityResult result = await _userManager.CreateAsync(appUser, registerVM.Password);
+            if (!ModelState.IsValid) return View();
+
+            AppUser user = new AppUser
+            { 
+                UserName = register.Username,
+                Email = register.Email
+            };
+             
+            IdentityResult result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)
             {
-                foreach (var error in result.Errors)
+                foreach (IdentityError error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-                return View(registerVM);
+                return View();
             }
+           
 
-            await _userManager.AddToRoleAsync(appUser, Roless.Admin.ToString());
-            await _signInManager.SignInAsync(appUser, true);
-            return RedirectToAction("index", "home");
+            await _signInManager.SignInAsync(user, isPersistent: true);
+
+
+
+            await _userManager.AddToRoleAsync(user, "Admin");
+
+
+            //string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //string link = Url.Action(nameof(VerifyEmail), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
+            //MailMessage mail = new MailMessage();
+            //mail.From = new MailAddress("booky@gmail.com", "BookShop");
+            //mail.To.Add(new MailAddress(user.Email));
+
+            //mail.Subject = "Verify Email";
+            //string body = string.Empty;
+            //using (StreamReader reader = new StreamReader("wwwroot/Assets/Template/verifyemail.html"))
+            //{
+            //    body = reader.ReadToEnd();
+            //}
+            //string about = $"Welcome <strong>{user.UserName}</strong> to our company, please click the link in below to verify your account";
+
+            //body = body.Replace("{{link}}", link);
+            //mail.Body = body.Replace("{{About}}", about);
+            //mail.IsBodyHtml = true;
+
+            //SmtpClient smtp = new SmtpClient();
+            //smtp.Host = "smtp.gmail.com";
+            //smtp.Port = 587;
+            //smtp.EnableSsl = true;
+
+            //smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
+            //smtp.Send(mail);
+            //TempData["Verify"] = true;
+
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult Login()
         {
@@ -168,7 +207,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             string token = await _userManager.GeneratePasswordResetTokenAsync(user);
             string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("tu741rmps@code.edu.az", "BookShop");
+            mail.From = new MailAddress("qolaelo@gmail.com", "BookShop");
             mail.To.Add(new MailAddress(user.Email));
 
             mail.Subject = "Reset Password";
@@ -180,7 +219,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             smtp.Port = 587;
             smtp.EnableSsl = true;
 
-            smtp.Credentials = new NetworkCredential("tu741rmps@code.edu.az", "elgun689a3");
+            smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
             smtp.Send(mail);
             return RedirectToAction("index", "home");
         }

@@ -1,0 +1,104 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+
+    <table class="mt-3 table table-dark">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Country
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Total price
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Settings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Order order in Model.OrderByDescending(o => o.Id).ToList())
+            {
+                <tr>
+                    <td>
+                        @order.Id
+                    </td>
+
+                    <td>
+                        @order.Country
+                    </td>
+
+
+
+
+                    <td>
+                        @order.Date.ToString("HH:mm dd,MMMM,yyyy")
+                    </td>
+
+                    <td>
+                        @order.TotalPrice.ToString("f2")
+                    </td>
+                    @if (order.Status == null)
+                    {
+                        <td>
+
+                            <span style="background:orange;display:inline-block; padding:3px 7px">Pending</span>
+                        </td>
+                    }
+                    else if (order.Status == true)
+                    {
+                        <td>
+
+                            <span style="background:green;display:inline-block; padding:3px 7px">Accepted</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+
+                            <span style="background:red;display:inline-block; padding:3px 7px">Rejected</span>
+                        </td>
+                    }
+
+                    <td>
+                        <a asp-controller="order" asp-action="edit" asp-route-id="@order.Id" class="btn btn-warning btn-icon-text">
+                            <i class="mdi mdi-file-check btn-icon-append"></i>
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row justify-content-center mt-4">
+        <nav aria-label="...">
+            <ul class="pagination" style="justify-content:center">
+
+                <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-controller="order" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="order" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                    <a class="page-link" asp-controller="order" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

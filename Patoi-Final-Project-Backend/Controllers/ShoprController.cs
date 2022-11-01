@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Patoi_Final_Project_Backend.DAL;
 using Patoi_Final_Project_Backend.Models;
 using Patoi_Final_Project_Backend.ViewModels;
@@ -18,18 +19,42 @@ namespace Patoi_Final_Project_Backend.Controllers
             _context = context;
         }
 
-        public IActionResult Index(int take = 6, int pagesize = 1)
+        public IActionResult Index(int sortId,int page = 1)
         {
 
+            ViewBag.Categories= _context.Categories.ToList();
             ViewBag.Bio = _context.Bio.FirstOrDefault();
             ViewBag.Tags = _context.Tags.ToList();
-            ViewBag.Categories= _context.Categories.ToList();
-            List<Product> products = _context.Products.Skip((pagesize - 1) * take).Take(take).ToList();
-            ViewBag.Pcount = _context.Products.Count();
-            Pagination<Product> pagination = new Pagination<Product>(
+            ViewBag.Best = _context.Products.Take(4).ToList();
 
-               ReturnPageCount(take), pagesize, products);
-            return View(pagination);
+            ViewBag.Pcount = _context.Products.Count();
+            ViewBag.id = sortId;
+
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 6);
+            ViewBag.CurrentPage = page;
+            List<Product> model = _context.Products.Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).ToList();
+            switch (sortId)
+            {
+                case 1:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).ToList();
+                    break;
+                case 2:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderByDescending(s => s.Name).ToList();
+                    break;
+                case 3:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderBy(s => s.Name).ToList();
+                    break;
+                case 4:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderByDescending(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
+                    break;
+                case 5:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderBy(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
+                    break;
+                default:
+
+                    break;
+            }
+            return View(model);
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Patoi_Final_Project_Backend.DAL;
 using Patoi_Final_Project_Backend.Models;
@@ -24,18 +25,39 @@ namespace Patoi_Final_Project_Backend.Controllers
             _context = context;
         }
 
-        public IActionResult Index(int take = 8, int pagesize = 1)
+        public IActionResult Index(int sortId, int page = 1)
         {
-
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 6);
+            ViewBag.CurrentPage = page;
             ViewBag.Bio = _context.Bio.FirstOrDefault();
             ViewBag.Tags = _context.Tags.ToList();
             ViewBag.Category = _context.Categories.ToList();
-            List<Product> products = _context.Products.Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((pagesize - 1) * take).Take(take).ToList();
+            List<Product> model = _context.Products.Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).ToList();
             ViewBag.Pcount = _context.Products.Count();
+            ViewBag.id = sortId;
 
+            switch (sortId)
+            {
+                case 1:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).ToList();
+                    break;
+                case 2:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderByDescending(s => s.Name).ToList();
+                    break;
+                case 3:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderBy(s => s.Name).ToList();
+                    break;
+                case 4:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderByDescending(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
+                    break;
+                case 5:
+                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderBy(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
+                    break;
+                default:
 
-            Pagination<Product> pagination = new Pagination<Product>(ReturnPageCount(take), pagesize, products);
-            return View(pagination);
+                    break;
+            }
+            return View(model);
         }
 
 
@@ -62,7 +84,7 @@ namespace Patoi_Final_Project_Backend.Controllers
                 user = await _userManager.FindByNameAsync(User.Identity.Name);
             }
             ViewBag.Bio = _context.Bio.FirstOrDefault();
-            ViewBag.Product = _context.Products.Include(pt => pt.Tag).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
+            //ViewBag.Product = _context.Products.Include(pt => pt.Tag).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
             ViewBag.ProCount = _context.Products.Count();
             Product dbProcduct = _context.Products.Include(pt => pt.Tag).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
             ShopVM shopVM = new ShopVM();

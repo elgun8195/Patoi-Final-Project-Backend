@@ -27,6 +27,7 @@ namespace Patoi_Final_Project_Backend.Models
         public bool Paypal { get; set; }
 
         public bool CashOnDelivery { get; set; }
+        public string Message { get; set; }
 
         public string Country { get; set; }
          
