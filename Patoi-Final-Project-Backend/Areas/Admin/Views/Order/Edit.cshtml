@@ -84,7 +84,7 @@
                 var link = $(this).attr("href") + "/?message=" + message
                 fetch(link).then(res => res.json()).then(data => {
                     if (data.status == 200) {
-                        location.href = "https://localhost:44352/admin/order"
+                        location.href = "https://localhost:5001/admin/order"
                     } else {
 
                     }
@@ -96,7 +96,7 @@
                 var link = $(this).attr("href") + "/?message=" + message
                 fetch(link).then(res => res.json()).then(data => {
                     if (data.status == 200) {
-                        location.href = "https://localhost:44352/admin/order"
+                        location.href = "https://localhost:5001/admin/order"
                     } else {
                     }
                 })

@@ -58,11 +58,11 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 
             string body = string.Empty;
 
-            using (StreamReader reader = new StreamReader("wwwroot/Assets/Template/OrderMessage.html"))
+            using (StreamReader reader = new StreamReader("wwwroot/Template/index.html"))
             {
                 body = reader.ReadToEnd();
             }
-            string aboutText = $"Hello Mr/Mrs <strong>{user.UserName}</strong>";
+            string aboutText = $"{user.UserName}";
             string messageTxt = $"{message}";
             body = body.Replace("{{message}}", messageTxt);
             mail.Body = body.Replace("{{aboutText}}", aboutText);
@@ -85,18 +85,18 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
             order.Message = message;
             _context.SaveChanges();
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hasanng@code.edu.az", "Booky");
+            mail.From = new MailAddress("qolaelo@gmail.com", "Patoi");
             mail.To.Add(new MailAddress(user.Email));
 
             mail.Subject = "Order";
 
             string body = string.Empty;
 
-            using (StreamReader reader = new StreamReader("wwwroot/assets/template/OrderMessage.html"))
+            using (StreamReader reader = new StreamReader("wwwroot/Template/index.html"))
             {
                 body = reader.ReadToEnd();
             }
-            string aboutText = $"Hello Mr/Mrs <strong>{user.UserName}</strong>";
+            string aboutText = $"{user.UserName}";
             string messageTxt = $"{message}";
             body = body.Replace("{{message}}", messageTxt);
             mail.Body = body.Replace("{{aboutText}}", aboutText);
@@ -106,7 +106,7 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("hasanng@code.edu.az", "Hasan0557578407");
+            smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
             smtp.Send(mail);
             return Json(new { status = 200 });
         }

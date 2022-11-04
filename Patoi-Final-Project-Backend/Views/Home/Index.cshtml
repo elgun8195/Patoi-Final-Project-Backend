@@ -53,29 +53,6 @@
     </section>
 
     <!-- Banner Area -->
-    <!-- Offer Area -->
-
-    <section id="offer">
-        <div class="offer-area pt-100 pb-75">
-            <div class="container">
-                <div class="row justify-content-center">
-                    @*   @foreach (var item in Model.Offers.Take(3))
-                    {
-
-                    <div class="col-lg-4 col-md-4">
-                    <div class="single-offer-box">
-                    <a href="" class="d-block">
-                    <img src="~/images/offers/@item.ImageUrl" alt="" />
-                    </a>
-                    </div>
-                    </div>
-                    }*@
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Offer Area -->
     <!-- Category Area -->
 
     <section id="category">
@@ -171,7 +148,7 @@
                                 <div class="owl-item" style="width: 305.25px; margin-right: 25px">
                                     <div class="single-products-box">
                                         <div class="image">
-                                            <a href="products-details.html" class="d-block">
+                                            <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
                                                 <img src="~/images/products/@item.Image"
                                                  alt="products-image" />
                                             </a>
@@ -200,7 +177,7 @@
                                             </a>
                                             </li>*@
                                                 <li>
-                                                    <a href="products-details.html">
+                                                    <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
 
                                                         <i class="fa-solid fa-link"></i>
 
@@ -210,7 +187,7 @@
                                         </div>
                                         <div class="content">
                                             <h3>
-                                                <a href="products-details.html">@item.Name</a>
+                                                <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a>
                                             </h3>
                                             <div class="price">
                                                 <span class="new-price">$@item.Price</span>

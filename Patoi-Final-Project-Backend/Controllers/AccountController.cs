@@ -77,32 +77,32 @@ namespace Patoi_Final_Project_Backend.Controllers
             await _userManager.AddToRoleAsync(user, "Admin");
 
 
-            //string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            //string link = Url.Action(nameof(VerifyEmail), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
-            //MailMessage mail = new MailMessage();
-            //mail.From = new MailAddress("booky@gmail.com", "BookShop");
-            //mail.To.Add(new MailAddress(user.Email));
+            string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            string link = Url.Action(nameof(VerifyEmail), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("qolaelo@gmail.com", "Patoi");
+            mail.To.Add(new MailAddress(user.Email));
 
-            //mail.Subject = "Verify Email";
-            //string body = string.Empty;
-            //using (StreamReader reader = new StreamReader("wwwroot/Assets/Template/verifyemail.html"))
-            //{
-            //    body = reader.ReadToEnd();
-            //}
-            //string about = $"Welcome <strong>{user.UserName}</strong> to our company, please click the link in below to verify your account";
+            mail.Subject = "Verify Email";
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader("wwwroot/Assets/Template/verifyemail.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            string about = $"Welcome <strong>{user.UserName}</strong> to our company, please click the link in below to verify your account";
 
-            //body = body.Replace("{{link}}", link);
-            //mail.Body = body.Replace("{{About}}", about);
-            //mail.IsBodyHtml = true;
+            body = body.Replace("{{link}}", link);
+            mail.Body = body.Replace("{{About}}", about);
+            mail.IsBodyHtml = true;
 
-            //SmtpClient smtp = new SmtpClient();
-            //smtp.Host = "smtp.gmail.com";
-            //smtp.Port = 587;
-            //smtp.EnableSsl = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
 
-            //smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
-            //smtp.Send(mail);
-            //TempData["Verify"] = true;
+            smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
+            smtp.Send(mail);
+            TempData["Verify"] = true;
 
             return RedirectToAction("Index", "Home");
         }

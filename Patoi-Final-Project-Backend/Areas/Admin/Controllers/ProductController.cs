@@ -108,17 +108,16 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 
             _context.Products.Add(product);
             _context.SaveChanges();
-            List<AppUser> subscribes =new List<AppUser>();
-
+            List<Subscribe> subscribes = _context.Subscribes.ToList();
             foreach (var sub in subscribes)
             {
-                string link = "https://localhost:44352/shop/detail/" + product.Id + $"?categoryId={product.ProductCategories.FirstOrDefault().CategoryId}";
+                string link = "https://localhost:5001/shop/detail/" + product.Id;
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("qolaelo@gmail.com", "Booky");
+                mail.From = new MailAddress("qolaelo@gmail.com", "patoi");
                 mail.To.Add(new MailAddress(sub.Email));
 
 
-                mail.Subject = "New book";
+                mail.Subject = "New Product";
                 string body = string.Empty;
 
                 using (StreamReader reader = new StreamReader("wwwroot/Assets/Template/NewSubscribe.html"))
@@ -126,7 +125,7 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
                     body = reader.ReadToEnd();
                 }
 
-                string about = $"<strong>Hello</strong><br /> a new <strong>{product.Name} {product.Name}</strong> book added to our shop <br/>click the link down below to discover new book";
+                string about = $"<strong>Hello</strong><br /> a new <strong>{product.Name} </strong> product added to our shop <br/>click the link down below to discover new product!!!";
                 body = body.Replace("{{link}}", link);
                 mail.Body = body.Replace("{{about}}", about);
                 mail.IsBodyHtml = true;
@@ -138,7 +137,7 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 
                 smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
                 smtp.Send(mail);
-            } 
+            }
             return RedirectToAction("Index");
         }
 
