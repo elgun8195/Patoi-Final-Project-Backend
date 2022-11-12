@@ -40,6 +40,7 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
             Order order = _context.Order.Include(o => o.OrderItems).Include(o => o.AppUser).FirstOrDefault(o => o.Id == id);
             if (order == null) return NotFound();
             return View(order);
+            ViewBag.offer = _context.Offers.ToList();
         }
 
         public async Task<IActionResult> Accept(int id, string message)
@@ -49,8 +50,10 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
             if (order == null) return Json(new { status = 400 });
             order.Status = true;
             order.Message = message;
+            
             _context.SaveChanges();
             MailMessage mail = new MailMessage();
+
             mail.From = new MailAddress("qolaelo@gmail.com", "Patoi");
             mail.To.Add(new MailAddress(user.Email));
 

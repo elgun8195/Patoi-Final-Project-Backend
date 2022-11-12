@@ -70,7 +70,7 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 
 
             Offer db = new Offer();
-            string filename = await Offer.Photo.SaveImage(_env, "images/offers");
+            string filename = await Offer.Photo.SaveImage(_env, "Template/images/");
             db.ImageUrl = filename;
 
             _context.Offers.Add(db);
