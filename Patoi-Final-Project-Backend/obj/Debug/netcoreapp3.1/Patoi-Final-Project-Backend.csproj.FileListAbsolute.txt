@@ -216,3 +216,4 @@ C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPassword.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Order\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Order\Edit.cshtml.g.cs
+C:\Users\hp\Desktop\Patoi-Final-Project-Backend\Patoi-Final-Project-Backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ModalProduct.cshtml.g.cs

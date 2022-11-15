@@ -107,7 +107,7 @@
                                     <li class="nav-item">
                                         <a asp-controller="shopr" asp-action="index" class="nav-link">Shop Right Sidebar</a>
                                     </li>
-                                 
+
                                     <li class="nav-item">
                                         <a asp-controller="basket" asp-action="Index" class="nav-link">Cart</a>
                                     </li>
@@ -133,7 +133,7 @@
                                     <li class="nav-item">
                                         <a asp-controller="blogr" asp-action="index" class="nav-link">Blog Right Sidebar</a>
                                     </li>
-                                
+
                                 </ul>
                                 <a class="mean-expand"
                                    id="mexpand4"
@@ -159,10 +159,10 @@
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </div>
                                     </li>
-                                   
+
                                     @if (!User.Identity.IsAuthenticated)
                                     {
-                                         
+
                                         <li>
                                             <a asp-controller="account" asp-action="login">
                                                 <i class="fa-solid fa-circle-user"></i>
@@ -259,7 +259,7 @@
                                 <li class="nav-item">
                                     <a asp-controller="shopr" asp-action="index" class="nav-link">Shop Right Sidebar</a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a asp-controller="basket" asp-action="Index" class="nav-link">Cart</a>
                                 </li>
@@ -283,7 +283,7 @@
                                 <li class="nav-item">
                                     <a asp-controller="blogr" asp-action="index" class="nav-link">Blog Right Sidebar</a>
                                 </li>
-                                 
+
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -405,15 +405,15 @@
                     <div class="widget widget_categories">
                         <h3 class="widget-title"><span>Categories</span></h3>
                         <ul class="categorys">
-                            <li><a href="" data-id="all">All</a></li>
+                            <li><a data-id="all">All</a></li>
                             @foreach (var item in ViewBag.Category)
-                           {
+                            {
 
-                                <li><a href="" data-id="@item.Name.ToLower()">@item.Name</a></li>
-                           }
+                                <li><a data-id="@item.Name.ToLower()">@item.Name</a></li>
+                            }
                         </ul>
                     </div>
-                   @* <div class="widget widget_price_filter">
+                    <div class="widget widget_price_filter">
                         <h3 class="widget-title"><span>Filter by Price</span></h3>
 
                         <div class="collection_filter_by_price">
@@ -439,42 +439,42 @@
                                 </div>
                             </div>
                         </div>
-                    </div>*@
+                    </div>
                     <div class="widget widget_patoi_posts_thumb">
                         <h3 class="widget-title"><span>Our Best Sellers</span></h3>
                         @foreach (var item in ViewBag.Poroducts)
                         {
-                           
-                        <article class="item">
-                            <a href="products-details.html" class="thumb">
-                                <img src="~/images/products/@item.Image"
+
+                            <article class="item">
+                                <a href="products-details.html" class="thumb">
+                                    <img src="~/images/products/@item.Image"
                                      alt="blog-image" />
-                            </a>
-                            <div class="info">
-                                <h4 class="title">
-                                    <a href="products-details.html">@item.Name</a>
-                                </h4>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                                </a>
+                                <div class="info">
+                                    <h4 class="title">
+                                        <a href="products-details.html">@item.Name</a>
+                                    </h4>
+                                    <div class="star-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="price">$@item.Price</span>
                                 </div>
-                                <span class="price">$@item.Price</span>
-                            </div>
-                        </article>
-                       }
-                   
+                            </article>
+                        }
+
                     </div>
                     <div class="widget widget_tag_cloud">
                         <h3 class="widget-title"><span>Tags</span></h3>
                         <div class="tagcloud">
                             @foreach (var item in ViewBag.Tags)
-                                            {
-                               
-                            <a href="shop-right-sidebar.html">@item.Name</a>
-                           }
+                            {
+
+                                <a data-id="@item.Name.ToLower()">@item.Name</a>
+                            }
                         </div>
                     </div>
                     <div class="widget widget_follow_us">

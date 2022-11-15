@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Patoi_Final_Project_Backend.DAL;
 using Patoi_Final_Project_Backend.Models;
@@ -8,10 +7,7 @@ using Patoi_Final_Project_Backend.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Patoi_Final_Project_Backend.Controllers
 {
@@ -27,36 +23,36 @@ namespace Patoi_Final_Project_Backend.Controllers
 
         public IActionResult Index(int sortId, int page = 1)
         {
-            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 6);
             ViewBag.CurrentPage = page;
             ViewBag.Bio = _context.Bio.FirstOrDefault();
             ViewBag.Tags = _context.Tags.ToList();
             ViewBag.Category = _context.Categories.ToList();
-            List<Product> model = _context.Products.Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).ToList();
-            ViewBag.Pcount = _context.Products.Count();
+            List<Product> model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).ToList();
+            ViewBag.Pcount = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Count();
             ViewBag.id = sortId;
 
             switch (sortId)
             {
                 case 1:
-                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).ToList();
                     break;
                 case 2:
-                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderByDescending(s => s.Name).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).OrderByDescending(s => s.Name).ToList();
                     break;
                 case 3:
-                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderBy(s => s.Name).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).OrderBy(s => s.Name).ToList();
                     break;
                 case 4:
-                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderByDescending(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).OrderByDescending(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
                     break;
                 case 5:
-                    model = _context.Products.Include(f => f.ProductCategories).ThenInclude(fc => fc.Category).Include(f => f.Campaign).OrderBy(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).OrderBy(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
                     break;
                 default:
 
                     break;
             }
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 6);
             return View(model);
         }
 
@@ -84,7 +80,6 @@ namespace Patoi_Final_Project_Backend.Controllers
                 user = await _userManager.FindByNameAsync(User.Identity.Name);
             }
             ViewBag.Bio = _context.Bio.FirstOrDefault();
-            //ViewBag.Product = _context.Products.Include(pt => pt.Tag).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
             ViewBag.ProCount = _context.Products.Count();
             Product dbProcduct = _context.Products.Include(pt => pt.Tag).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
             ShopVM shopVM = new ShopVM();
@@ -119,6 +114,40 @@ namespace Patoi_Final_Project_Backend.Controllers
             _context.Comments.Add(cmnt);
             _context.SaveChanges();
             return RedirectToAction("Detail", "Shop", new { id = comment.ProductId });
+        }
+        public async Task<IActionResult> AddBasket(int id, int count)
+        {
+            Product product = _context.Products.Include(f => f.Campaign).FirstOrDefault(f => f.Id == id);
+
+
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+                BasketItem basketItem = _context.BasketItems.FirstOrDefault(b => b.ProductId == product.Id && b.AppUserId == user.Id);
+                if (basketItem == null)
+                {
+                    basketItem = new BasketItem
+                    {
+                        AppUserId = user.Id,
+                        ProductId = product.Id,
+                        Count = count
+                    };
+                    _context.BasketItems.Add(basketItem);
+                }
+                else
+                {
+                    basketItem.Count++;
+                }
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+
+                //return View("_basketPartial");
+            }
+
+
+
+            return RedirectToAction("account", "login");
         }
 
 

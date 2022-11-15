@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Basket";
     Layout = "~/Views/Shared/_Layout2.cshtml";
-
 }
 
 <main>
@@ -24,10 +23,10 @@
     <section id="cart">
         <div class="cart-area ptb-100">
             <div class="container">
-                @if (TempData["Fail"] != null)
+                @if (TempData["Succeeded"] == null)
                 {
                     <div class="alert alert-danger ml-5 pl-5 mr-5 pr-5" id="failAlert" role="alert">
-                        @TempData["Fail"]
+                       Stokda bundan artiq yoxdur !!!
                     </div>
                 }
                 <form method="post">

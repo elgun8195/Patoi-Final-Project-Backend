@@ -574,6 +574,9 @@ namespace Patoi_Final_Project_Backend.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsHot")
                         .HasColumnType("bit");
 

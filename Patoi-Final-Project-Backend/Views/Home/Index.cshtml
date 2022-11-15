@@ -153,13 +153,17 @@
                                                  alt="products-image" />
                                             </a>
                                             <ul class="products-button">
-                                                <li>
-                                                    <a asp-controller="basket" class="addToCart" asp-action="addbasket" asp-route-id="@item.Id">
+                                                @if (item.Stock > 0)
+                                                {
+                                                    <li>
 
-                                                        <i class="fa-solid fa-cart-shopping"></i>
+                                                        <a asp-controller="basket" class="addToCart" asp-action="addbasket" asp-route-id="@item.Id">
 
-                                                    </a>
-                                                </li>
+                                                            <i class="fa-solid fa-cart-shopping"></i>
+
+                                                        </a>
+                                                    </li>
+                                                }
                                                 <li>
                                                     <a asp-controller="wish" asp-action="addwish" asp-route-id="@item.Id">
 
@@ -167,15 +171,15 @@
 
                                                     </a>
                                                 </li>
-                                                @*  <li>
-                                            <a href="#"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#productsQuickView">
+                                                <li>
+                                                    <a asp-controller="home" asp-action="index" asp-route-id="@item.Id"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#productsQuickView">
 
-                                            <i class="fa-solid fa-eye"></i>
+                                                        <i class="fa-solid fa-eye"></i>
 
-                                            </a>
-                                            </li>*@
+                                                    </a>
+                                                </li>
                                                 <li>
                                                     <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
 
@@ -184,6 +188,15 @@
                                                     </a>
                                                 </li>
                                             </ul>
+                                            @if (item.Stock <= 0)
+                                            {
+                                                <span class="sold">Sold!</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="on-sale">On Sale!</span>
+
+                                            }
                                         </div>
                                         <div class="content">
                                             <h3>
@@ -219,24 +232,6 @@
         </div>
     </section>
     <!-- Best Seller Area -->
-    <!-- Offer Area -->
-
-    <section id="offer2">
-        <div class="offer-area pb-75">
-            <div class="container">
-                @*  @foreach (var item in Model.Offers.Skip(5).Take(1))
-                {
-
-                <div class="single-offer-box">
-                <a asp-controller="shop" asp-action="index" class="d-block">
-                <img src="~/images/offers/@item.ImageUrl" alt="" />
-                </a>
-                </div>
-                }*@
-            </div>
-        </div>
-    </section>
-    <!-- Offer Area -->
     <!-- Brands Area -->
     <section id="brands">
         <div class="brands pb-75">
@@ -426,6 +421,7 @@
         </div>
     </section>
     <!-- Blog Area -->
+
     <div class="modal fade productsQuickView" id="productsQuickView" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -439,7 +435,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="image">
-                                <img src="~/images/products/products1.jpg"
+                                <img src="~/images/products/Model.Product.Image"
                                      alt="image" />
                             </div>
                         </div>
@@ -447,7 +443,7 @@
                             <div class="content">
                                 <h3><a href="idii">Pet Brash</a></h3>
                                 <div class="price">
-                                    <span class="new-price">$150.00</span>
+                                    <span class="new-price">$Model.Product.Price</span>
                                     <span class="old-price">$200.00</span>
                                 </div>
                                 <div class="rating">
@@ -458,9 +454,7 @@
                                     <i class="fa-solid fa-star"></i>
                                 </div>
                                 <p>
-                                    Nemo malesuada animi consectetur, cras consectetuer laborum
-                                    tenetur, cum, lacus nemo imperdiet facilisis aute metus
-                                    lorem.
+                                    Model.Product.Desc
                                 </p>
                                 <div class="products-add-to-cart">
                                     <div class="input-counter">

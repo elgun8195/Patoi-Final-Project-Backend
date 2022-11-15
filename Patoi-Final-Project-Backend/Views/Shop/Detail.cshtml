@@ -1,6 +1,7 @@
 ﻿@model ShopVM
 @{
     ViewData["Title"] = "Detail";
+    int count = 1;
 }
 
 
@@ -97,26 +98,19 @@
                         <p>
                             @Model.Product.Desc
                         </p>
+                        <div class="products-add-to-cart">
+                            <div class="input-counter">
+                                <span class="minus-btn">
+                                    <i class="fa-solid fa-minus"></i>
+                                </span>
+                                <input type="number" min="1" id="i-count" value="@count" />
+                                <span class="plus-btn">
+                                    <i class="fa-solid fa-plus"></i>
+                                </span>
+                            </div>
 
-                        @*  <div class="input-counter">
-                        <span class="minus-btn">
-                        <i class="fa-solid fa-minus"></i>
-                        </span>
-                        <input type="text" value="1" />
-                        <span class="plus-btn">
-                        <i class="fa-solid fa-plus"></i>
-                        </span>
-                        </div>*@
-                        <a asp-controller="basket" asp-action="AddBasket" asp-route-id="@Model.Product.Id" class="default-btn addToCart"><span>Add to Cart</span></a><br />
-
-
-
-
-
-
-
-
-
+                            <a asp-controller="shop" asp-action="AddBasket" asp-route-count="@count" asp-route-id="@Model.Product.Id" class="default-btn addToCart"><span>Add to Cart</span></a><br />
+                        </div>
                         <a asp-controller="wish" asp-action="AddWish" asp-route-id="@Model.Product.Id" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
                         <ul class="products-info">
                             <li><span>SKU:</span> @Model.Product.Image.Substring(0,8)</li>
@@ -337,3 +331,13 @@
     </div>
     <!-- Wishlist Area -->
 </main>
+@section Scripts{
+    <script>
+        var count = document.querySelector("#i-count");
+        var add = document.querySelector(".addToCart");
+        add.addEventListener("mouseout", () => {
+
+            console.log(add.getAttribute("asp-route-count"))
+        })
+    </script>
+}

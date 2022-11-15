@@ -17,7 +17,7 @@ using System.Net.Http;
 namespace Patoi_Final_Project_Backend.Controllers
 {
     [Authorize(Roles = "Admin,SuperAdmin,Member")]
-     
+
     public class BasketController : Controller
     {
         private AppDbContext _context;
@@ -29,7 +29,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             _httpContext = httpContextAccessor;
             _userManager = userManager;
         }
-         
+
         public async Task<IActionResult> Index()
         {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -46,7 +46,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             return View(model);
 
         }
-  
+
 
         public async Task<IActionResult> AddBasket(int id)
         {
@@ -80,7 +80,7 @@ namespace Patoi_Final_Project_Backend.Controllers
 
 
 
-            return RedirectToAction("account","login");
+            return RedirectToAction("account", "login");
         }
 
 
@@ -88,27 +88,37 @@ namespace Patoi_Final_Project_Backend.Controllers
         {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
             BasketItem basket = _context.BasketItems.Include(b => b.Product).ThenInclude(b => b.Campaign).FirstOrDefault(b => b.ProductId == Id && b.AppUserId == user.Id);
-            basket.Count ++;
-            _context.SaveChanges();
-            double TotalPrice = 0;
-            double Price = basket.Count * (basket.Product.CampaignId == null ? basket.Product.Price : basket.Product.Price * (100 - basket.Product.Campaign.DiscountPercent) / 100);
-            List<BasketItem> basketItems = _context.BasketItems.Include(b => b.AppUser).Include(b => b.Product).Where(b => b.AppUserId == user.Id).ToList();
-            foreach (BasketItem item in basketItems)
+            if (basket.Count < basket.Product.Stock)
             {
-                Product product = _context.Products.Include(b => b.Campaign).FirstOrDefault(b => b.Id == item.ProductId);
+                basket.Count++;
 
-                BasketItemVM basketItemVM = new BasketItemVM
+                _context.SaveChanges();
+                double TotalPrice = 0;
+                double Price = basket.Count * (basket.Product.CampaignId == null ? basket.Product.Price : basket.Product.Price * (100 - basket.Product.Campaign.DiscountPercent) / 100);
+                List<BasketItem> basketItems = _context.BasketItems.Include(b => b.AppUser).Include(b => b.Product).Where(b => b.AppUserId == user.Id).ToList();
+                foreach (BasketItem item in basketItems)
                 {
-                    Product = product,
-                    Count = item.Count
-                };
-                basketItemVM.Price = product.CampaignId == null ? product.Price : product.Price * (100 - product.Campaign.DiscountPercent) / 100;
+                    Product product = _context.Products.Include(b => b.Campaign).FirstOrDefault(b => b.Id == item.ProductId);
 
-                TotalPrice += basketItemVM.Price * basketItemVM.Count;
+                    BasketItemVM basketItemVM = new BasketItemVM
+                    {
+                        Product = product,
+                        Count = item.Count
+                    };
+                    basketItemVM.Price = product.CampaignId == null ? product.Price : product.Price * (100 - product.Campaign.DiscountPercent) / 100;
+
+                    TotalPrice += basketItemVM.Price * basketItemVM.Count;
+
+                }
+
+                return Json(new { totalPrice = TotalPrice, Price });
+            }
+            else
+            {
+                TempData["Succeeded"] = false;
 
             }
-
-            return Json(new { totalPrice = TotalPrice, Price });
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Minus(int Id)

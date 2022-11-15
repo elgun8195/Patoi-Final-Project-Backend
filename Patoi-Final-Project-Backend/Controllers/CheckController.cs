@@ -26,34 +26,6 @@ namespace Patoi_Final_Project_Backend.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Indesx()
-        {
-            string username = User.Identity.Name;
-            AppUser appUser = await _userManager.FindByNameAsync(username);
-            List<BasketProduct> products = JsonConvert.DeserializeObject<List<BasketProduct>>(Request.Cookies[$"{appUser.Id}"]);
-
-            List<BasketProduct> updatedProducts = new List<BasketProduct>();
-
-            foreach (var item in products)
-            {
-                Product dbProduct = _context.Products.FirstOrDefault(p => p.Id == item.Id);
-                BasketProduct basketProduct = new BasketProduct()
-                {
-                    Id = dbProduct.Id,
-                    Price = dbProduct.Price,
-                    Name = dbProduct.Name,
-                    Count = item.Count
-
-                };
-
-
-                updatedProducts.Add(basketProduct);
-
-                //ViewBag.Total = dbProduct.Price * basketProduct.Count;
-            }
-            return View(updatedProducts);
-
-        }
 
         public async Task<IActionResult> Index()
         {
@@ -118,6 +90,11 @@ namespace Patoi_Final_Project_Backend.Controllers
                     ProduuctId = item.Product.Id,
                     Order = order
                 };
+                item.Product.Stock -= item.Count;
+                if (item.Product.Stock==0)
+                {
+                    item.Product.OnSale =false ;
+                }
                 _context.OrderItem.Add(orderItem);
             }
             _context.BasketItems.RemoveRange(model.BasketItems);

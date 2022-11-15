@@ -14,6 +14,8 @@ namespace Patoi_Final_Project_Backend.Models
         public bool IsHot { get; set; }
         public bool OnSale { get; set; }
         public bool IsNew { get; set; }
+        public bool IsDeleted { get; set; }
+
         public int? TagId { get; set; }
         public Tag Tag { get; set; }
         public string Image { get; set; }
