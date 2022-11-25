@@ -81,11 +81,12 @@ namespace Patoi_Final_Project_Backend.Controllers
             }
             ViewBag.Bio = _context.Bio.FirstOrDefault();
             ViewBag.ProCount = _context.Products.Count();
-            Product dbProcduct = _context.Products.Include(pt => pt.Tag).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).FirstOrDefault(p => p.Id == id);
+            Product dbProcduct = _context.Products.Include(pt => pt.Tag).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Include(pt => pt.ProductImages).FirstOrDefault(p => p.Id == id);
+        
             ShopVM shopVM = new ShopVM();
             shopVM.Comments = _context.Comments.Include(c => c.Product).Include(c => c.AppUser).Where(c => c.ProductId == id).ToList();
-
             shopVM.Product = dbProcduct;
+
             return View(shopVM);
 
         }

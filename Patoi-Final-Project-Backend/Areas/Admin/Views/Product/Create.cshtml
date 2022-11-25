@@ -1,26 +1,27 @@
 ﻿@model Product
+
 @{
     ViewData["Title"] = "Create";
-    
+    List<Campaign> campaigns = (List<Campaign>)ViewBag.Campaigns;
 
 }
-
 <div class="container mt-5">
-    <form method="post" enctype="multipart/form-data">
+    <form class="forms-sample" method="post" enctype="multipart/form-data">
+
 
         <div class="form-group col-md-3">
-            <label asp-for="@Model.Photo">Image</label>
-            <input asp-for="@Model.Photo" accept="image/*"/>
-            <span asp-validation-for="@Model.Photo"></span>
+            <label asp-for="Photo"></label>
+            <input asp-for="Photo" class="form-control">
+            <span style="color: red;" asp-validation-for="Photo"></span>
         </div>
         <div class="form-group col-md-3">
             <label asp-for="@Model.Name">Name</label>
-            <input asp-for="@Model.Name"/>
+            <input asp-for="@Model.Name" />
             <span asp-validation-for="@Model.Name"></span>
         </div>
         <div class="form-group col-md-3">
             <label asp-for="@Model.Price">Price</label>
-            <input asp-for="@Model.Price"/>
+            <input asp-for="@Model.Price" />
             <span asp-validation-for="@Model.Price"></span>
         </div>
         <div class="form-group col-md-3">
@@ -28,31 +29,27 @@
             <input asp-for="@Model.Stock" />
             <span asp-validation-for="@Model.Stock"></span>
         </div>
-         <div class="form-group col-md-3">
+        <div class="form-group col-md-3">
             <label asp-for="@Model.Desc">Description</label>
-            <input asp-for="@Model.Desc"/>
+            <input asp-for="@Model.Desc" />
             <span asp-validation-for="@Model.Desc"></span>
         </div>
 
-         <div class="form-group col-md-3">
+        <div class="form-group col-md-3">
             <label asp-for="@Model.IsHot">IsHot</label>
-            <input asp-for="@Model.IsHot"/>
+            <input asp-for="@Model.IsHot" />
             <span asp-validation-for="@Model.IsHot"></span>
         </div>
-           <div class="form-group col-md-3">
-            <label asp-for="@Model.OnSale">OnSale</label>
-            <input asp-for="@Model.OnSale"/>
-            <span asp-validation-for="@Model.OnSale"></span>
-        </div>
+       
 
-         <div class="form-group col-md-3">
+        <div class="form-group col-md-3">
             <label asp-for="@Model.IsNew">IsNew</label>
-            <input asp-for="@Model.IsNew"/>
-            <span asp-validation-for="@Model.IsNew" ></span>
+            <input asp-for="@Model.IsNew" />
+            <span asp-validation-for="@Model.IsNew"></span>
         </div>
 
 
-          <div class="form-group col-md-3">
+        <div class="form-group col-md-3">
             <label asp-for="@Model.TagId">Tags</label>
             <select class="form-control" asp-for="@Model.TagId" asp-items="@(new SelectList(ViewBag.Tags,"Id","Name"))">
             </select>
@@ -61,10 +58,17 @@
 
 
 
-         <div class="form-group col-md-3">
-            <label asp-for="@Model.CategoryIds">Categories</label>
-            <select class="form-control" asp-for="@Model.CategoryIds" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.CategoryId">Categories</label>
+            <select class="form-control" asp-for="@Model.CategoryId" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
             </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.CampaignId" class="form-label">Campaign</label>
+            <select asp-for="@Model.CampaignId" class="form-select" asp-items="@(new SelectList(campaigns,"Id","DiscountPercent"))">
+                <option value="0">Select campaign</option>
+            </select>
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.CampaignId"></span>
         </div>
         <button type="submit" class="btn btn-success mt-4">Create</button>
     </form>

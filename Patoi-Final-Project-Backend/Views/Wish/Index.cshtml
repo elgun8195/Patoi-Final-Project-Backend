@@ -43,7 +43,7 @@
                                 <tr>
                                     <td>
                                         <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Product.Id">
-                                            <img src="~/images/products/@item.Product.Image" alt="item">
+                                            @*<img src="~/images/products/@item.Product.Image" alt="item">*@
                                         </a>
                                     </td>
                                     <td><a asp-controller="shop" asp-action="detail" asp-route-id="@item.Product.Id">@item.Product.Name</a></td>

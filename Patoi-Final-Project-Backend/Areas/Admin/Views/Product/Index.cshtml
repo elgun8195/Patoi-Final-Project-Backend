@@ -27,7 +27,14 @@
                 <tr>
                     <td>@count</td>
                     <td>
-                        <img src="~/images/products/@item.Image" />
+                        @foreach (var photo in item.ProductImages)
+                       {
+                           if (photo.IsMain)
+                            {
+                                
+                        <img src="~/images/products/p/@photo.ImageUrl" />
+                            }
+                       }
                     </td>
                     <td>@item.Name</td>
                     <td>

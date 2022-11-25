@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Detail";
     int count = 1;
+    int coun = 0;
 }
 
 
@@ -32,50 +33,27 @@
                             <div class="product-imgs">
                                 <div class="img-display">
                                     <div class="img-showcase">
-                                        <img src="~/images/products/@Model.Product.Image"
+                                        @foreach (var item in Model.Product.ProductImages)
+                                        {
+
+                                            <img src="~/images/products/p/@item.ImageUrl"
                                              alt="product image" />
-                                        <img src="~/images/products/products5.jpg"
-                                             alt="product image" />
-                                        <img src="~/images/products/products6.jpg"
-                                             alt="product image" />
-                                        <img src="~/images/products/products7.jpg"
-                                             alt="product image" />
-                                        <img src="~/images/products/products8.jpg"
-                                             alt="product image" />
+                                        }
+
 
                                     </div>
                                 </div>
                                 <div class="img-select">
-                                    <div class="img-item">
-                                        <a href="#" data-id="1">
-                                            <img src="~/images/products/@Model.Product.Image"
+                                    @foreach (var item in Model.Product.ProductImages)
+                                    {
+                                        coun++;
+                                        <div class="img-item">
+                                            <a href="#" data-id="@coun">
+                                                <img src="~/images/products/p/@item.ImageUrl"
                                                  alt="product image" />
-                                        </a>
-                                    </div>
-                                    <div class="img-item">
-                                        <a href="#" data-id="2">
-                                            <img src="~/images/products/products5.jpg"
-                                                 alt="product image" />
-                                        </a>
-                                    </div>
-                                    <div class="img-item">
-                                        <a href="#" data-id="3">
-                                            <img src="~/images/products/products6.jpg"
-                                                 alt="product image" />
-                                        </a>
-                                    </div>
-                                    <div class="img-item">
-                                        <a href="#" data-id="4">
-                                            <img src="~/images/products/products7.jpg"
-                                                 alt="product image" />
-                                        </a>
-                                    </div>
-                                    <div class="img-item">
-                                        <a href="#" data-id="5">
-                                            <img src="~/images/products/products8.jpg"
-                                                 alt="product image" />
-                                        </a>
-                                    </div>
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -113,7 +91,7 @@
                         </div>
                         <a asp-controller="wish" asp-action="AddWish" asp-route-id="@Model.Product.Id" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
                         <ul class="products-info">
-                            <li><span>SKU:</span> @Model.Product.Image.Substring(0,8)</li>
+                            @*<li><span>SKU:</span> @Model.Product.Image.Substring(0,8)</li>*@
                             <li>
                                 <span>Categories:</span> <a asp-controller="shop" asp-action="detail" asp-route-id="@Model.Product.Id">
                                     @foreach (var item in Model.Product.ProductCategories)

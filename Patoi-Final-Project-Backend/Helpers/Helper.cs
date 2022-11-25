@@ -28,6 +28,13 @@ namespace Patoi_Final_Project_Backend.Helpers
             }
 
         }
+        public static void Deletemage(string path)
+        {
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            };
+        }
     }
     public enum Roless
     {

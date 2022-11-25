@@ -14,6 +14,8 @@
     <Compile Remove="Migrations\20221014114610_updatedcommenttable.Designer.cs" />
     <Compile Remove="Migrations\20221014151912_updatedtabl.cs" />
     <Compile Remove="Migrations\20221014151912_updatedtabl.Designer.cs" />
+    <Compile Remove="Migrations\20221117183302_editingproductimagetabl.cs" />
+    <Compile Remove="Migrations\20221117183302_editingproductimagetabl.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +36,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="wwwroot\images\products\p\" />
   </ItemGroup>
 
   <ItemGroup>

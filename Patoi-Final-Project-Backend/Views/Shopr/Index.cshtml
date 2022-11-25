@@ -53,7 +53,7 @@
                                 <div class="single-products-box">
                                     <div class="image">
                                         <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
-                                            <img src="~/images/products/@item.Image" alt="products-image">
+                                            @*<img src="~/images/products/@item.Image" alt="products-image">*@
                                         </a>
                                         <ul class="products-button">
                                             <li><a asp-controller="basket" asp-action="addbasket" asp-route-id="@item.Id" class="addToCart"><i class="fa-solid fa-cart-shopping"></i></a></li>

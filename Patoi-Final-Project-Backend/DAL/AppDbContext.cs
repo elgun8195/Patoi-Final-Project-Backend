@@ -12,6 +12,8 @@ namespace Patoi_Final_Project_Backend.DAL
         {
 
         }
+        public DbSet<Fake> Fake { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<WishListItem> WishListItems { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }

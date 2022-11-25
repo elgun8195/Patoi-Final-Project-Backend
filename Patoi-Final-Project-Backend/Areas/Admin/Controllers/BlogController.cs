@@ -69,19 +69,19 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
                 return View();
             }
 
-            if (!Blog.Photo.IsImage())
-            {
-                ModelState.AddModelError("Photo", "Sekil Formati secin");
-            }
+            //if (!Blog.Photo.IsImage())
+            //{
+            //    ModelState.AddModelError("Photo", "Sekil Formati secin");
+            //}
 
-            if (Blog.Photo.CheckSize(20000))
-            {
-                ModelState.AddModelError("Photo", "Sekil 20 mb-dan boyuk ola bilmez");
-            }
+            //if (Blog.Photo.CheckSize(20000))
+            //{
+            //    ModelState.AddModelError("Photo", "Sekil 20 mb-dan boyuk ola bilmez");
+            //}
 
 
             Blog db = new Blog();
-            string filename = await Blog.Photo.SaveImage(_env, "images/blog");
+            string filename = await Blog.Photo.SaveVideo(_env, "images/blog");
             db.ImageUrl = filename;
             db.Name = Blog.Name;
             db.Desc = Blog.Desc;

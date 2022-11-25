@@ -5,10 +5,16 @@
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="product-box">
             <div class="image">
-                <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
-                    <img src="~/images/products/@item.Image"
+                @foreach (var photo in item.ProductImages)
+                {
+                    if (photo.IsMain)
+                    {
+                        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
+                            <img src="~/images/products/p/@photo.ImageUrl"
                      alt="products-image" />
-                </a>
+                        </a>
+                    }
+                }
                 <ul class="products-button">
                     <li>
                         <a asp-controller="basket" asp-action="addbasket" asp-route-id="@item.Id">
@@ -20,13 +26,13 @@
                             <i class="fa-solid fa-heart"></i>
                         </a>
                     </li>
-                   @* <li>
-                        <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" 
-                       data-bs-toggle="modal"
-                       data-bs-target="#productsQuickView">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                    </li>*@
+                    @* <li>
+                <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id"
+                data-bs-toggle="modal"
+                data-bs-target="#productsQuickView">
+                <i class="fa-solid fa-eye"></i>
+                </a>
+                </li>*@
                     <li>
                         <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
                             <i class="fa-solid fa-link"></i>
