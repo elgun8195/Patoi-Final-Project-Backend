@@ -29,10 +29,7 @@
                 <div class="patoi-grid-sorting row align-items-center">
                     <div class="col-lg-6 col-md-6 result-count">
                         <div class="d-flex align-items-center">
-                            <a href="#"
-                               data-bs-toggle="modal"
-                               data-bs-target="#productsFilterModal"
-                               class="sidebar-filter mb-3"><i class="fa-solid fa-filter"></i> Filter</a>
+                           
                             <p>
                                 We found <span class="count">@ViewBag.Pcount</span> products available
                                 for you
@@ -66,10 +63,16 @@
                                         @ite.Category.Name.ToLower()
                                     }">
                                 <div class="image">
-                                    <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
-                                        @*<img src="~/images/products/@item.Image"*@
+                                    @foreach (var photo in item.ProductImages)
+                                    {
+                                        if (photo.IsMain)
+                                        {
+                                            <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
+                                                <img src="~/images/products/p/@photo.ImageUrl"
                                          alt="products-image" />
-                                    </a>
+                                            </a>
+                                        }
+                                    }
                                     <ul class="products-button">
                                         <li>
                                             <a asp-controller="basket" asp-action="addbasket" asp-route-id="@item.Id" class="addToCart">
@@ -81,13 +84,14 @@
                                                 <i class="fa-solid fa-heart"></i>
                                             </a>
                                         </li>
-                                        @*   <li>
-                                    <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#productsQuickView">
-                                    <i class="fa-solid fa-eye"></i>
-                                    </a>
-                                    </li>*@
+                                        <li>
+                                            
+                                            <a class="modalim"  data-bs-toggle="modal" data-bs-target="#productsQuickView" id="@item.Id">
+                                            
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <input type="hidden" id="@item.Id" >
+                                        </li>
                                         <li>
                                             <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
                                                 <i class="fa-solid fa-link"></i>
@@ -135,132 +139,43 @@
     </section>
 
     <!-- Product Area  -->
+    <div id="formodalim"></div>
 
-
-    <div class="productsFilterModal modal right fade"
-         id="productsFilterModal"
-         tabindex="-1"
-         style="display: none"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div class="modal-body">
-                    <aside class="widget-area">
-                        <div class="widget widget_categories">
-                            <h3 class="widget-title"><span>Categories</span></h3>
-                            <ul>
-                                <li><a asp-controller="blogr" asp-action="index">Business</a></li>
-                                <li><a asp-controller="blogr" asp-action="index">Privacy</a></li>
-                                <li><a asp-controller="blogr" asp-action="index">Technology</a></li>
-                                <li><a asp-controller="blogr" asp-action="index">Tips</a></li>
-                                <li><a asp-controller="blogr" asp-action="index">Log in</a></li>
-                                <li><a asp-controller="blogr" asp-action="index">Uncategorized</a></li>
-                            </ul>
-                        </div>
-                        @* <div class="widget widget_price_filter">
-                        <h3 class="widget-title"><span>Filter by Price</span></h3>
-
-                        <div class="collection_filter_by_price">
-                        <div class="wrapper">
-
-                        <div class="price-input">
-                        <div class="field">
-                        <span>Min</span>
-                        <input type="number" class="input-min" value="2500">
-                        </div>
-                        <div class="separator">-</div>
-                        <div class="field">
-                        <span>Max</span>
-                        <input type="number" class="input-max" value="7500">
-                        </div>
-                        </div>
-                        <div class="slider">
-                        <div class="progress"></div>
-                        </div>
-                        <div class="range-input">
-                        <input type="range" class="range-min" min="0" max="10000" value="2500" step="1">
-                        <input type="range" class="range-max" min="0" max="10000" value="7500" step="1">
-                        </div>
-                        </div>
-                        </div>
-                        </div>*@
-                        <div class="widget widget_patoi_posts_thumb">
-                            <h3 class="widget-title"><span>Our Best Sellers</span></h3>
-                            @foreach (var item in Model.Take(4))
-                            {
-
-
-                                <article class="item">
-                                    <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="thumb">
-                                        @*<img src="~/images/products/@item.Image"*@
-                                         alt="image" />
-                                    </a>
-                                    <div class="info">
-                                        <h4 class="title">
-                                            <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">@item.Name</a>
-                                        </h4>
-                                        <div class="star-rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <span class="price">$@item.Price</span>
-                                    </div>
-                                </article>
-                            }
-                        </div>
-                        <div class="widget widget_tag_cloud">
-                            <h3 class="widget-title"><span>Tags</span></h3>
-                            <div class="tagcloud">
-                                @foreach (var item in ViewBag.tags)
-                                {
-
-                                    <a data-tid="@item.Name.ToLower()">@item.Name</a>
-                                }
-
-                            </div>
-                        </div>
-                        <div class="widget widget_follow_us">
-                            <h3 class="widget-title"><span>Follow Us</span></h3>
-                            <ul>
-                                <li><a href="@ViewBag.Bio.Facebook" target="_blank">Facebook</a></li>
-                                <li><a href="@ViewBag.Bio.Twitter" target="_blank">Twitter</a></li>
-                                <li><a href="@ViewBag.Bio.Instagram" target="_blank">Instagram</a></li>
-                                <li><a href="@ViewBag.Bio.YouTube" target="_blank">YouTube</a></li>
-                            </ul>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </div>
-    </div>
-
+     
 </main>
 <script>
     var option = document.querySelectorAll("#select option")
     var id = document.getElementById("getvalue").innerHTML
-    console.log(id)
+   // console.log(id)
     for (i = 0; i <= option.length - 1; i++) {
         if (option[i].value == id) {
             option[i].setAttribute("selected", "true")
         }
     }
     $(document).ready(function () {
+    var ele = document.getElementsByClassName('modalim');
+    for (i = 0; i <= ele.length - 1; i++) {
+        document.getElementsByClassName('modalim').item(i).onclick = function () {
+                document.getElementById("formodalim").innerHTML=" ";
+                    $.ajax({
+                        method: "get",
+                        url: "home/modalim?id=" + this.id,
+                        success: function (res) {
+                        $("#formodalim").append(res);
+                        }
+                    })
+            
+          console.log(this.id)
+        }
+    }
 
-        $(document).on("change", "#select", function (e) {
 
-            var base = window.location.origin;
-            var url = `${base}/shop?sortId=${$(this).val()}`
-            window.location.replace(url)
 
-        })
+       
+      
+
+        
     });
+
+
 </script>

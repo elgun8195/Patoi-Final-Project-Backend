@@ -96,17 +96,16 @@
                         Sign up for our mailing list to get the latest updates news
                         &amp; offers.
                     </p>
-                    <form class="newsletter-form"
+                    <form method="post" class="newsletter-form"
                           data-toggle="validator"
                           novalidate="true">
                         <input type="email"
                                class="input-newsletter"
                                placeholder="Your email address"
-                               name="EMAIL"
+                               name="Email"
                                required=""
                                autocomplete="off" />
-                        <button type="submit"
-                                class="disabled"
+                        <button class="disabled"
                                 style="pointer-events: all; cursor: pointer">
                             <i class="fa-solid fa-paper-plane"></i>
                         </button>
@@ -151,3 +150,38 @@
         </div>
     </div>
 </footer>
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(document).on("submit", ".newsletter-form", function (e) {
+                e.preventDefault();
+                var email = document.querySelector(".input-newsletter").val().trim();
+
+                $.ajax({
+                    method: "post",
+                    url: "home/index?subscribe=" + email,
+                    success: function (res) {
+                        //console.log()
+                        if (res.error == "true") {
+                            alert("An error occurred: " & result.errorMessage);
+                        }
+                        // $("#validator-newsletter").innerHTML =`Success`;
+                    }
+                })
+
+            })
+
+           
+
+        })
+
+
+
+
+
+    </script>
+}

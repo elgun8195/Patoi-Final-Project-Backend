@@ -37,7 +37,7 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
         {
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Tags = _context.Tags.ToList();
-            List<Product> products = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Where(p=>p.IsDeleted==false).Skip((pagesize - 1) * take).Take(take).ToList();
+            List<Product> products = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Where(p => p.IsDeleted == false).Skip((pagesize - 1) * take).Take(take).ToList();
             Pagination<Product> pagination = new Pagination<Product>(
 
                ReturnPageCount(take), pagesize, products);
@@ -50,15 +50,15 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Delete(int? id)
         {
-           
+
             if (id == null) return NotFound();
             Product product = await _context.Products.FindAsync(id);
             if (product == null) return NotFound();
-            product.IsDeleted = true; 
+            product.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction("index");
         }
-       
+
 
 
         public IActionResult Edit(int id)
@@ -78,7 +78,7 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-     
+
         public async Task<IActionResult> Edit(int? id, Product product)
         {
             var altTags = _context.Tags.Where(c => c.ParentId != null).Where(p => p.IsDeleted != true).ToList();
@@ -280,39 +280,41 @@ namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 
 
 
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
             List<Subscribe> subscribes = _context.Subscribes.ToList();
-            foreach (var sub in subscribes)
+            if (product.Campaign.DiscountPercent >= 25)
             {
-                string link = "https://localhost:5001/shop/detail/" + product.Id;
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("qolaelo@gmail.com", "patoi");
-                mail.To.Add(new MailAddress(sub.Email));
-
-
-                mail.Subject = "New Product";
-                string body = string.Empty;
-
-                using (StreamReader reader = new StreamReader("wwwroot/Assets/Template/NewSubscribe.html"))
+                foreach (var sub in subscribes)
                 {
-                    body = reader.ReadToEnd();
+                    string link = "https://localhost:5001/shop/detail/" + product.Id;
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("qolaelo@gmail.com", "patoi");
+                    mail.To.Add(new MailAddress(sub.Email));
+
+
+                    mail.Subject = "New Product";
+                    string body = string.Empty;
+
+                    using (StreamReader reader = new StreamReader("wwwroot/Assets/Template/NewSubscribe.html"))
+                    {
+                        body = reader.ReadToEnd();
+                    }
+
+                    string about = $"<strong>Hello</strong><br /> a new <strong>{product.Name} </strong> product added to our shop <br/>click the link down below to discover new product!!!";
+                    body = body.Replace("{{link}}", link);
+                    mail.Body = body.Replace("{{about}}", about);
+                    mail.IsBodyHtml = true;
+
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+
+                    smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
+                    smtp.Send(mail);
                 }
-
-                string about = $"<strong>Hello</strong><br /> a new <strong>{product.Name} </strong> product added to our shop <br/>click the link down below to discover new product!!!";
-                body = body.Replace("{{link}}", link);
-                mail.Body = body.Replace("{{about}}", about);
-                mail.IsBodyHtml = true;
-
-                SmtpClient smtp = new SmtpClient();
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-
-                smtp.Credentials = new NetworkCredential("qolaelo@gmail.com", "olkdjlioakxrczvx");
-                smtp.Send(mail);
             }
-
 
             return RedirectToAction("index");
         }

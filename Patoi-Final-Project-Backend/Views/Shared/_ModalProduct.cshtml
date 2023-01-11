@@ -1,5 +1,5 @@
 ﻿@model Product
-<div class="modal fade productsQuickView" id="productsQuickView" tabindex="-1" aria-hidden="true">
+<div class="modal fade productsQuickView" data-b="@Model.Id" id="productsQuickView" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <button type="button"
@@ -11,16 +11,23 @@
             <div class="modal-body">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
-                        <div class="image">
-                            <img src="~/images/products/Model.Product.Image"
+                        @foreach (var photo in Model.ProductImages)
+                        {
+                            if (photo.IsMain)
+                            {
+
+                                <div class="image">
+                                    <img src="~/images/products/p/@photo.ImageUrl"
                                  alt="image" />
-                        </div>
+                                </div>
+                            }
+                        }
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="content">
-                            <h3><a href="idii">Pet Brash</a></h3>
+                            <h3><a href="idii">@Model.Name</a></h3>
                             <div class="price">
-                                <span class="new-price">$Model.Product.Price</span>
+                                <span class="new-price">$@Model.Price</span>
                                 <span class="old-price">$200.00</span>
                             </div>
                             <div class="rating">
@@ -31,7 +38,7 @@
                                 <i class="fa-solid fa-star"></i>
                             </div>
                             <p>
-                                Model.Product.Desc
+                               @Model.Desc
                             </p>
                             <div class="products-add-to-cart">
                                 <div class="input-counter">
@@ -47,7 +54,7 @@
                                     <span>Add to Cart</span>
                                 </button>
                             </div>
-                            <a href="wishlist.html" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
+                            <a asp-controller="wish" asp-action="AddWish" asp-route-id="@Model.Id" class="add-to-wishlist"><i class="fa-solid fa-heart"></i> Add to wishlist</a>
                             <ul class="products-info">
                                 <li><span>SKU:</span> 007</li>
                                 <li>

@@ -27,26 +27,26 @@ namespace Patoi_Final_Project_Backend.Controllers
             ViewBag.Bio = _context.Bio.FirstOrDefault();
             ViewBag.Tags = _context.Tags.ToList();
             ViewBag.Category = _context.Categories.ToList();
-            List<Product> model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).ToList();
+            List<Product> model = _context.Products.Where(p => p.IsDeleted == false).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Include(p=>p.ProductImages).Skip((page - 1) * 8).Take(8).ToList();
             ViewBag.Pcount = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Count();
             ViewBag.id = sortId;
 
             switch (sortId)
             {
                 case 1:
-                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Include(p => p.ProductImages).Skip((page - 1) * 8).Take(8).ToList();
                     break;
                 case 2:
-                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).OrderByDescending(s => s.Name).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Include(p => p.ProductImages).Skip((page - 1) * 8).Take(8).OrderByDescending(s => s.Name).ToList();
                     break;
                 case 3:
-                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).OrderBy(s => s.Name).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Include(p => p.ProductImages).Skip((page - 1) * 8).Take(8).OrderBy(s => s.Name).ToList();
                     break;
                 case 4:
-                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).OrderByDescending(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Include(p => p.ProductImages).Skip((page - 1) * 8).Take(8).OrderByDescending(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
                     break;
                 case 5:
-                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Skip((page - 1) * 8).Take(8).OrderBy(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
+                    model = _context.Products.Where(p => p.IsDeleted == false && p.OnSale == true).Include(pc => pc.ProductCategories).ThenInclude(x => x.Category).Include(p => p.ProductImages).Skip((page - 1) * 8).Take(8).OrderBy(s => s.CampaignId == null ? s.Price : (s.Price * (100 - s.Campaign.DiscountPercent) / 100)).ToList();
                     break;
                 default:
 
@@ -101,6 +101,8 @@ namespace Patoi_Final_Project_Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> AddComment(Comments comment)
         {
+            if (User.Identity.IsAuthenticated)
+            {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (!ModelState.IsValid) return RedirectToAction("Detail", "Shop", new { id = comment.ProductId });
             if (!_context.Products.Any(f => f.Id == comment.ProductId)) return NotFound();
@@ -115,6 +117,9 @@ namespace Patoi_Final_Project_Backend.Controllers
             _context.Comments.Add(cmnt);
             _context.SaveChanges();
             return RedirectToAction("Detail", "Shop", new { id = comment.ProductId });
+            }
+            return RedirectToAction("login", "account");
+
         }
         public async Task<IActionResult> AddBasket(int id, int count)
         {
@@ -160,7 +165,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             Comments comment = _context.Comments.FirstOrDefault(c => c.Id == id && c.AppUserId == user.Id);
             _context.Comments.Remove(comment);
             _context.SaveChanges();
-            return RedirectToAction("Detail", "Shop", new { id = comment.ProductId });
+            return Json(comment);
         }
     }
 }

@@ -74,7 +74,7 @@ namespace Patoi_Final_Project_Backend.Controllers
 
 
 
-            await _userManager.AddToRoleAsync(user, "Admin");
+            await _userManager.AddToRoleAsync(user, "Member");
 
 
             string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -106,6 +106,7 @@ namespace Patoi_Final_Project_Backend.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
         public IActionResult Login()
         {
             return View();
@@ -207,7 +208,7 @@ namespace Patoi_Final_Project_Backend.Controllers
             string token = await _userManager.GeneratePasswordResetTokenAsync(user);
             string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("qolaelo@gmail.com", "BookShop");
+            mail.From = new MailAddress("qolaelo@gmail.com", "Patoi");
             mail.To.Add(new MailAddress(user.Email));
 
             mail.Subject = "Reset Password";

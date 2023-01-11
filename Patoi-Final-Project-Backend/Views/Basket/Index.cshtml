@@ -26,7 +26,7 @@
                 @if (TempData["Succeeded"] == null)
                 {
                     <div class="alert alert-danger ml-5 pl-5 mr-5 pr-5" id="failAlert" role="alert">
-                       Stokda bundan artiq yoxdur !!!
+                        Stokda bundan artiq yoxdur !!!
                     </div>
                 }
                 <form method="post">
@@ -44,8 +44,6 @@
                             <tbody>
                                 @foreach (var item in Model.BasketItems)
                                 {
-
-
                                     <tr>
                                         <td>
                                             <a asp-controller="basket" asp-action="removecartitem" asp-route-id="@item.Product.Id" class="remove cart-remove-btn">
@@ -53,21 +51,24 @@
                                             </a>
                                         </td>
                                         <td class="product-thumbnail">
-                                            <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
-                                                @*<img src="~/images/products/@item.Product.Image"*@
-                                                 alt="item" />
-                                                <h3>@item.Product.Name</h3>
-                                            </a>
+                                            @foreach (var photo in item.Product.ProductImages)
+                                            {
+                                                @if (photo.IsMain)
+                                                {
+                                                    <a>
+                                                        <img src="~/images/products/p/@photo.ImageUrl" alt="item" />
+                                                        <h3>@item.Product.Name</h3>
+                                                    </a>
+                                                }
+                                            }
                                         </td>
                                         <td>$@item.Product.Price</td>
                                         <td class="product-quantity">
                                             <div class="input-counter d-flex">
                                                 <a data-id="@item.Product.Id" class="down" id="downbtn"><i class="fas fa-chevron-left"></i></a>
-                                                <div class="ml-3 inp-value">@item.Count</div>
+                                                <div class="ml-2 inp-value">@item.Count</div>
                                                 <a data-id="@item.Product.Id" class="up" id="upbtn"><i class="fas fa-chevron-right"></i></a>
-
                                             </div>
-                                           
                                         </td>
                                         <td id="total-price" data-id="@item.Product.Id">
                                             @{
@@ -97,7 +98,7 @@
                         </div>
                     </div>
                     <div class="cart-totals">
-                        <ul>                            
+                        <ul>
                             <li>Subtotal <span id="cem">      </span></li>
                             <li>Shipping <span id="shipping"> </span></li>
                             <li>Total    <span id="final">    </span></li>
@@ -136,7 +137,7 @@
                         money.forEach(mon => {
                             if (id == mon.getAttribute("data-id")) {
                                 mon.innerHTML += data.price
-                               // console.log(data.price)
+                                // console.log(data.price)
                             }
                         })
                         money.innerHTML += `${data.totalPrice}`

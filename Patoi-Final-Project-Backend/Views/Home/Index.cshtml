@@ -64,7 +64,7 @@
                 <div class="categories-slides owl-carousel owl-theme owl-loaded owl-drag">
                     <div class="owl-stage-outer">
                         <div class="owl-stage">
-                            @foreach (var item in Model.Categories)
+                          @*  @foreach (var item in Model.Categories)
                             {
                                 <div class="owl-item"
                                  style="width: 239.2px; margin-right: 25px">
@@ -78,7 +78,7 @@
                                 </div>
                             }
 
-
+*@
                         </div>
                     </div>
                     <div class="owl-nav">
@@ -102,7 +102,7 @@
                     <h2>New Arrivals</h2>
                 </div>
                 <div class="row justify-content-center">
-                    @await Component.InvokeAsync("Product",12)
+                    @*@await Component.InvokeAsync("Product",12)*@
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
                 <div class="products-slides owl-carousel owl-theme owl-loaded owl-drag">
                     <div class="owl-stage-outer">
                         <div class="owl-stage">
-                            @foreach (var item in Model.Products.Take(5))
+                            @foreach (var item in Model.Products)
                             {
 
 
@@ -179,7 +179,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a asp-controller="home" asp-action="ModalProduct" asp-route-id="@item.Id"
+                                                    <a asp-controller="home"  id="modalid" 
                                                    data-bs-toggle="modal"
                                                    data-bs-target="#productsQuickView">
 
@@ -281,8 +281,15 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="image">
-                                            @*<img src="~/images/products/@item.Image"*@
-                                            alt="offer-image" />
+                                            @foreach (var photo in item.ProductImages)
+                                            {
+                                                if (photo.IsMain)
+                                                {
+                                                    <img src="~/images/products/p/@photo.ImageUrl"
+                                                    alt = "offer-image" />
+                                                }
+                                            }
+                                            
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
@@ -323,16 +330,23 @@
                         </div>
                     }
 
-                    @foreach (var item in Model.Products.Skip(13).Take(2))
+                    @foreach (var item in Model.Products.Take(2))
                     {
 
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                             <div class="single-products-box">
                                 <div class="image">
+                                    @foreach (var photo in item.ProductImages)
+                                    {
+                                        if (photo.IsMain)
+                                        {
+                                            
                                     <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id" class="d-block">
-                                        @*<img src="~/images/products/@item.Image"*@
+                                        <img src="~/images/products/p/@photo.ImageUrl"
                                         alt="products-image" />
                                     </a>
+                                        }
+                                    }
                                     <ul class="products-button">
                                         <li>
                                             <a asp-controller="basket" asp-action="addbasket" asp-route-id="@item.Id" class="addToCart">
@@ -348,7 +362,7 @@
 
                                             </a>
                                         </li>
-                                        @*    <li>
+                                            <li>
                                     <a href="#"
                                     data-bs-toggle="modal"
                                     data-bs-target="#productsQuickView">
@@ -356,7 +370,7 @@
                                     <i class="fa-solid fa-eye"></i>
 
                                     </a>
-                                    </li>*@
+                                    </li>
                                         <li>
                                             <a asp-controller="shop" asp-action="detail" asp-route-id="@item.Id">
 
@@ -408,6 +422,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="single-blog-post">
                                 <div class="image">
+
                                     <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="d-block">
                                         <img src="~/images/blog/@item.ImageUrl"
                                          alt="blog-image" />
@@ -428,7 +443,7 @@
         </div>
     </section>
     <!-- Blog Area -->
-    @await Html.PartialAsync("_ModalProduct")
+    @*@await Html.PartialAsync("_ModalProduct")*@
 
 </main>
 
@@ -516,6 +531,21 @@
                     "hideMethod": "fadeOut"
                 }
             }
+             $(document).on("click", ".modalid", function (e) {
+                e.preventDefault();
+                var id = document.querySelector(".modalid").attr("data-id");
+                        console.log(id)
+              
+                //$.ajax({
+                //    method: "get",
+                //    url: "home/modalproduct?id" + id,
+                //    success: function (res) {
+                //       //
+                //       // $("#validator-newsletter").innerHTML =`Success`;
+                //    } 
+                //})
+
+            })
         })
     </script>
         }

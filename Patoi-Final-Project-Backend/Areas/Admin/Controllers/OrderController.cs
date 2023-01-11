@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Patoi_Final_Project_Backend.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    
 
     public class OrderController : Controller
     {

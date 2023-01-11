@@ -252,9 +252,9 @@
                                                         <i class="fa-solid fa-star checked"></i>
                                                         <i class="fa-solid fa-star"></i>
                                                     </div>
-                                                    <a asp-controller="shop" asp-action="deletecomment" asp-route-id="@comment.Id" class="text-danger" style="position:absolute;right:2%;top: 5%;"><i class="far fa-times-circle" style="font-size:20px;"></i></a>
+                                                    <a data-id="@comment.Id" href="#" id="delete-this" class="text-danger" style="position:absolute;right:2%;top: 5%;"><i class="far fa-times-circle" style="font-size:20px;"></i></a>
                                                 </div>
-                                                <span class="d-block sub-name">@comment.AppUser.Fullname.ToUpper()</span>
+                                                <span class="d-block sub-name">@comment.AppUser.UserName.ToUpper()</span>
                                                 <p>
                                                     @comment.Message
                                                 </p>
@@ -317,5 +317,27 @@
 
             console.log(add.getAttribute("asp-route-count"))
         })
+    </script>
+    <script>
+        $(document).on("click", "#delete-this", function (e) {
+            e.preventDefault();
+            var id = $(this).attr("data-id")
+             console.log(id)
+            $.ajax({
+                url: "/Shop/DeleteComment/",
+                data: {
+                    id: id
+                },
+                type: "post",
+                datatype: "json",
+                success: function (data) {
+                   
+
+                }
+            })
+
+        })
+
+
     </script>
 }

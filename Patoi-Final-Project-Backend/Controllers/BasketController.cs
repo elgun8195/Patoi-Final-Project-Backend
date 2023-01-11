@@ -38,7 +38,8 @@ namespace Patoi_Final_Project_Backend.Controllers
             {
                 Username = user.UserName,
                 Email = user.Email,
-                BasketItems = _context.BasketItems.Include(b => b.Product).ThenInclude(f => f.Campaign).Include(b => b.Product).Where(b => b.AppUserId == user.Id).ToList(),
+                BasketItems = _context.BasketItems.Include(b => b.Product).ThenInclude(f => f.Campaign).Include(
+                    p=>p.Product.ProductImages).Where(b => b.AppUserId == user.Id).ToList(),
 
             };
 
